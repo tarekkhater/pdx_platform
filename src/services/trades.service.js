@@ -112,7 +112,8 @@ export const closeAllPositions = async () => {
  */
 export const cancelPendingOrder = async (id) => {
   try {
-    await api.post('/users/trade/close/trade', { id, profit: 0 }, { __noRetry: true });
+    // real pending orders now: cancelling never touches an open trade
+    await api.post('/users/trade/pending/cancel', { id }, { __noRetry: true });
     return { ok: true };
   } catch (error) {
     return { ok: false, message: apiErrorMessage(error, 'The order could not be cancelled.') };

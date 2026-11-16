@@ -8,6 +8,7 @@ import { toast } from '@/components/ui/use-toast';
 import { useTrading } from '@/context/TradingContext';
 import { useInstruments } from '@/context/InstrumentsContext';
 import { useLiveRates } from '@/context/LiveRatesContext';
+import { quoteToUsd } from '@/domain/fx';
 import { useAccount } from '@/context/AccountContext';
 import { useMediaQuery } from '@/hooks/use-media-query';
 import {
@@ -135,8 +136,8 @@ const LeverageMenu = ({ open, value, onSelect }) => (
 const OrderPanel = ({ currentPrice, asset, serverTradable }) => {
   const { t } = useTranslation();
   const { addPosition, addPendingOrder, tradingBlocked } = useTrading();
-  const { getInstrument } = useInstruments();
-  const { quoteFor, tradeStatusFor } = useLiveRates();
+  const { getInstrument, instruments } = useInstruments();
+  const { quoteFor, priceFor, tradeStatusFor } = useLiveRates();
   const { balance } = useAccount();
   const [submitting, setSubmitting] = useState(false);
   // The desktop terminal has a whole column for the ticket, so it is never
@@ -180,6 +181,8 @@ const OrderPanel = ({ currentPrice, asset, serverTradable }) => {
   const { bid, ask } = quoteFor(asset);
 
   const contractSize = instrument.contractSize || 1;
+  // margin and SL/TP dollars are in USD; prices of JPY/CHF/… pairs are not
+  const toUsd = quoteToUsd(instrument.base, instruments, priceFor);
 
   /**
    * Both input modes resolve to the one formula the server uses:
@@ -209,12 +212,12 @@ const OrderPanel = ({ currentPrice, asset, serverTradable }) => {
   const effectiveLots =
     unit === 'lots'
       ? liveSize
-      : lotsForMargin({ margin: liveSize, contractSize, entryPrice: referencePrice, leverage });
+      : lotsForMargin({ margin: liveSize, contractSize, entryPrice: referencePrice, leverage, toUsd });
 
-  const notional = computeNotional({ lots: effectiveLots, contractSize, entryPrice: referencePrice });
+  const notional = computeNotional({ lots: effectiveLots, contractSize, entryPrice: referencePrice, toUsd });
   const initialMargin =
     unit === 'lots'
-      ? computeMargin({ lots: effectiveLots, contractSize, entryPrice: referencePrice, leverage })
+      ? computeMargin({ lots: effectiveLots, contractSize, entryPrice: referencePrice, leverage, toUsd })
       : liveSize;
 
   const marginPct = balance.equity > 0 ? (initialMargin / balance.equity) * 100 : 0;
@@ -353,6 +356,7 @@ const OrderPanel = ({ currentPrice, asset, serverTradable }) => {
       entryPrice,
       lots: effectiveLots,
       contractSize,
+      toUsd,
     });
   };
 
@@ -381,7 +385,7 @@ const OrderPanel = ({ currentPrice, asset, serverTradable }) => {
       lots: Number(Number(effectiveLots).toFixed(6)),
       contractSize,
       leverage,
-      margin: computeMargin({ lots: effectiveLots, contractSize, entryPrice, leverage }),
+      margin: computeMargin({ lots: effectiveLots, contractSize, entryPrice, leverage, toUsd }),
       spread: getSpreadPercent(orderSide, instrument),
       stopLoss: slOn ? protectiveAmount(slValue, entryPrice) : 0,
       takeProfit: tpOn ? protectiveAmount(tpValue, entryPrice) : 0,
