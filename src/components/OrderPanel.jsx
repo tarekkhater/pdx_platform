@@ -17,7 +17,7 @@ import {
   computeMargin,
   computeNotional,
   lotsForMargin,
-  priceLevelToAmount,
+  amountToPriceLevel,
   parseLotInput,
   isLotInputPartial,
   formatTicketSize,
@@ -338,29 +338,57 @@ const OrderPanel = ({ currentPrice, asset, serverTradable }) => {
       });
       return;
     }
+    // The trade starts with the spread as an open loss, so a stop loss at or below that amount
+    // would close it the moment it opens.
+    const slAmount = slOn ? protectiveAmount(slValue) : 0;
+    if (slAmount > 0) {
+      const openingCost =
+        (getSpreadPercent(orderSide, instrument) / 100) * referencePrice * contractSize * effectiveLots * toUsd;
+      if (slAmount <= openingCost) {
+        toast({
+          title: t('orderPanel.toast.slTooSmallTitle', { defaultValue: 'Stop loss is too small' }),
+          description: t('orderPanel.toast.slTooSmallDesc', {
+            defaultValue: 'This trade opens with about ${{cost}} of spread. Set a stop loss above that amount.',
+            cost: openingCost.toFixed(2),
+          }),
+          variant: 'destructive',
+        });
+        return;
+      }
+    }
     setConfirmSide(orderSide);
   };
 
   /**
-   * The dollar threshold the server stores for a protective price.
-   *
-   * The trader types a price. The backend closes by P&L (`profit >= TP` /
-   * `profit <= -SL`), and both columns are `min:0`, so the ticket converts
-   * the level into a positive USD amount before it leaves.
+   * Stop loss / take profit are typed in DOLLARS: the most the client is ready to lose, and the
+   * profit to lock in. The backend closes by P&L (`profit >= TP` / `profit <= -SL`), so the
+   * amount goes out exactly as typed.
    */
-  const protectiveAmount = (value, entryPrice) => {
+  const protectiveAmount = (value) => {
     const parsed = parseFloat(value);
-    if (!Number.isFinite(parsed) || parsed <= 0) return 0;
-    return priceLevelToAmount({
-      level: parsed,
-      entryPrice,
-      lots: effectiveLots,
-      contractSize,
-      toUsd,
-    });
+    return Number.isFinite(parsed) && parsed > 0 ? Number(parsed.toFixed(2)) : 0;
   };
 
-  // Live preview of that conversion — the side is not chosen yet, so the
+  /** How far the price has to move for that amount (before spread and fees). */
+  const protectiveDistance = (value, entryPrice) => {
+    const amount = protectiveAmount(value);
+    if (!amount || !(entryPrice > 0) || !(effectiveLots > 0)) return 0;
+    const level = amountToPriceLevel({
+      amount, entryPrice, lots: effectiveLots, contractSize, side: 'buy', kind: 'take', toUsd,
+    });
+    return level > entryPrice ? level - entryPrice : 0;
+  };
+
+  /** The price where the amount is reached for this side: stop is against the trade, take is with it. */
+  const protectiveLevel = (value, entryPrice, side, kind) => {
+    const distance = protectiveDistance(value, entryPrice);
+    if (!distance) return 0;
+    const withTrade = kind === 'stop' ? -distance : distance;
+    const level = String(side).toLowerCase() === 'sell' ? entryPrice - withTrade : entryPrice + withTrade;
+    return level > 0 ? level : 0;
+  };
+
+  // Live preview of the price move — the side is not chosen yet, so the
   // mid (or the pending target) is close enough for the figure next to the box.
   const previewEntry = execution === 'pending' && targetValid ? targetPrice : currentPrice;
 
@@ -387,8 +415,8 @@ const OrderPanel = ({ currentPrice, asset, serverTradable }) => {
       leverage,
       margin: computeMargin({ lots: effectiveLots, contractSize, entryPrice, leverage, toUsd }),
       spread: getSpreadPercent(orderSide, instrument),
-      stopLoss: slOn ? protectiveAmount(slValue, entryPrice) : 0,
-      takeProfit: tpOn ? protectiveAmount(tpValue, entryPrice) : 0,
+      stopLoss: slOn ? protectiveAmount(slValue) : 0,
+      takeProfit: tpOn ? protectiveAmount(tpValue) : 0,
       pendingPrice: isPending ? targetPrice : 0,
     };
 
@@ -515,7 +543,7 @@ const OrderPanel = ({ currentPrice, asset, serverTradable }) => {
       >
         {flash('buy')}
         <span className="text-[9.5px] font-semibold text-white/85 leading-none">{t('orderPanel.buyLong')}</span>
-        <span className="text-[13.5px] font-bold text-white font-tabular leading-none mt-0.5">{bid.toFixed(decimals)}</span>
+        <span className="text-[13.5px] font-bold text-white font-tabular leading-none mt-0.5">{ask.toFixed(decimals)}</span>
       </motion.button>
 
       {lotStepper}
@@ -528,7 +556,7 @@ const OrderPanel = ({ currentPrice, asset, serverTradable }) => {
       >
         {flash('sell')}
         <span className="text-[9.5px] font-semibold text-white/85 leading-none">{t('orderPanel.sellShort')}</span>
-        <span className="text-[13.5px] font-bold text-white font-tabular leading-none mt-0.5">{ask.toFixed(decimals)}</span>
+        <span className="text-[13.5px] font-bold text-white font-tabular leading-none mt-0.5">{bid.toFixed(decimals)}</span>
       </motion.button>
     </div>
   );
@@ -567,8 +595,12 @@ const OrderPanel = ({ currentPrice, asset, serverTradable }) => {
       ? targetPrice
       : getEntryPrice(confirmSide, currentPrice, instrument)
     : 0;
-  const confirmSlUsd = slOn ? protectiveAmount(slValue, confirmEntry) : 0;
-  const confirmTpUsd = tpOn ? protectiveAmount(tpValue, confirmEntry) : 0;
+  const confirmSlUsd = slOn ? protectiveAmount(slValue) : 0;
+  const confirmTpUsd = tpOn ? protectiveAmount(tpValue) : 0;
+  const confirmLevel = (value, kind) => {
+    const level = confirmSide ? protectiveLevel(value, confirmEntry, confirmSide, kind) : 0;
+    return level > 0 ? ` (≈ ${level.toFixed(decimals)})` : '';
+  };
 
   const confirmRows = confirmSide
     ? [
@@ -588,17 +620,17 @@ const OrderPanel = ({ currentPrice, asset, serverTradable }) => {
           strong: true,
         },
         // Protective levels only earn a line when there is one to show.
-        // The box is a price; the figure in brackets is the USD that will
-        // actually be sent — the two are not the same number.
+        // The box is a dollar amount; the figure in brackets is roughly the
+        // price where that amount is reached.
         ...(slOn || tpOn
           ? [
               {
                 id: 'sltp',
                 label: `${t('openTrades.sl')} / ${t('openTrades.tp')}`,
                 value: `${
-                  slOn && slValue ? `${slValue} ($${confirmSlUsd.toFixed(2)})` : '—'
+                  confirmSlUsd > 0 ? `$${confirmSlUsd.toFixed(2)}${confirmLevel(slValue, 'stop')}` : '—'
                 } / ${
-                  tpOn && tpValue ? `${tpValue} ($${confirmTpUsd.toFixed(2)})` : '—'
+                  confirmTpUsd > 0 ? `$${confirmTpUsd.toFixed(2)}${confirmLevel(tpValue, 'take')}` : '—'
                 }`,
               },
             ]
@@ -731,7 +763,7 @@ const OrderPanel = ({ currentPrice, asset, serverTradable }) => {
    * toggle one on — the input expands into the space already there.
    */
   const slTpField = (label, on, setOn, value, setValue, placeholder) => {
-    const usd = on ? protectiveAmount(value, previewEntry) : 0;
+    const distance = on ? protectiveDistance(value, previewEntry) : 0;
     return (
       <div
         className={`flex items-center gap-2 h-8 rounded-md px-2 transition-colors ${
@@ -757,17 +789,21 @@ const OrderPanel = ({ currentPrice, asset, serverTradable }) => {
               className="flex-1 min-w-0 flex items-center gap-1.5 overflow-hidden"
             >
               <div className="relative flex-1 min-w-0">
+                <span className="pointer-events-none absolute left-2 top-1/2 -translate-y-1/2 text-[13px] text-content-faint">$</span>
                 <input
                   type="number"
+                  inputMode="decimal"
+                  min="0"
+                  step="any"
                   value={value}
                   onChange={(e) => setValue(e.target.value)}
                   placeholder={placeholder}
-                  className="w-full h-[24px] px-2 rounded bg-surface text-[13px] text-content font-tabular placeholder:text-content-faint focus:outline-none focus:ring-1 focus:ring-yellow-500/50 transition-shadow"
+                  className="w-full h-[24px] pl-5 pr-2 rounded bg-surface text-[13px] text-content font-tabular placeholder:text-content-faint focus:outline-none focus:ring-1 focus:ring-yellow-500/50 transition-shadow"
                 />
               </div>
-              {/* The dollar figure that will be sent. The box is a price. */}
+              {/* The box is dollars. This is the price move that amount means. */}
               <span className="flex-shrink-0 text-[10px] font-tabular text-content-faint min-w-[3.5rem] text-right">
-                {usd > 0 ? `$${usd.toFixed(2)}` : '—'}
+                {distance > 0 ? `±${distance.toFixed(decimals)}` : '—'}
               </span>
             </motion.div>
           )}
@@ -906,8 +942,8 @@ const OrderPanel = ({ currentPrice, asset, serverTradable }) => {
         )}
       </AnimatePresence>
 
-      {slTpField(t('orderPanel.stopLoss'), slOn, setSlOn, slValue, setSlValue, (bid * 0.999).toFixed(decimals))}
-      {slTpField(t('orderPanel.takeProfit'), tpOn, setTpOn, tpValue, setTpValue, (ask * 1.001).toFixed(decimals))}
+      {slTpField(t('orderPanel.stopLoss'), slOn, setSlOn, slValue, setSlValue, '0.00')}
+      {slTpField(t('orderPanel.takeProfit'), tpOn, setTpOn, tpValue, setTpValue, '0.00')}
 
       <div className="flex items-stretch gap-1">
         {lotStepper}

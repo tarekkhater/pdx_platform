@@ -315,6 +315,8 @@
       "orderDesc": "{{orderType}} megbízás {{amount}} {{asset}} mennyiségre ${{price}} áron, {{leverage}}x tőkeáttétellel.",
       "invalidTargetTitle": "Nincs célár",
       "invalidTargetDesc": "Adja meg az árat, amelyen a megbízás megnyíljon.",
+      "slTooSmallTitle": "A stop loss túl kicsi",
+      "slTooSmallDesc": "Ez az ügylet körülbelül ${{cost}} spreaddel indul. Állítson be ennél nagyobb stop losst.",
       "pendingPlacedTitle": "Függő megbízás rögzítve",
       "pendingPlacedDesc": "{{orderType}} {{amount}} {{asset}} vár a(z) ${{price}} árra.",
       "pendingFilledTitle": "Függő megbízás megnyílt",

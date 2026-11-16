@@ -322,6 +322,8 @@
       "orderDesc": "{{orderType}} order for {{amount}} {{asset}} at ${{price}} with {{leverage}}x leverage.",
       "invalidTargetTitle": "No target price",
       "invalidTargetDesc": "Enter the price the order should open at.",
+      "slTooSmallTitle": "Stop loss is too small",
+      "slTooSmallDesc": "This trade opens with about ${{cost}} of spread. Set a stop loss above that amount.",
       "pendingPlacedTitle": "Pending order placed",
       "pendingPlacedDesc": "{{orderType}} {{amount}} {{asset}} waiting for ${{price}}.",
       "pendingFilledTitle": "Pending order opened",
