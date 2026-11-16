@@ -317,6 +317,8 @@
       "orderDesc": "Příkaz {{orderType}} na {{amount}} {{asset}} za ${{price}} s pákou {{leverage}}x.",
       "invalidTargetTitle": "Chybí cílová cena",
       "invalidTargetDesc": "Zadejte cenu, za kterou se má příkaz otevřít.",
+      "slTooSmallTitle": "Stop loss je příliš malý",
+      "slTooSmallDesc": "Tento obchod začíná se spreadem přibližně ${{cost}}. Nastavte stop loss nad tuto částku.",
       "pendingPlacedTitle": "Čekající příkaz zadán",
       "pendingPlacedDesc": "{{orderType}} {{amount}} {{asset}} čeká na ${{price}}.",
       "pendingFilledTitle": "Čekající příkaz otevřen",

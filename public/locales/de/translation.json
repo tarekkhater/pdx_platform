@@ -315,6 +315,8 @@
       "orderDesc": "{{orderType}}-Order für {{amount}} {{asset}} zu ${{price}} mit {{leverage}}x Hebel.",
       "invalidTargetTitle": "Kein Zielkurs",
       "invalidTargetDesc": "Geben Sie den Kurs ein, zu dem die Order eröffnet werden soll.",
+      "slTooSmallTitle": "Stop-Loss ist zu klein",
+      "slTooSmallDesc": "Dieser Trade startet mit etwa ${{cost}} Spread. Setzen Sie den Stop-Loss über diesen Betrag.",
       "pendingPlacedTitle": "Offene Order platziert",
       "pendingPlacedDesc": "{{orderType}} {{amount}} {{asset}} wartet auf ${{price}}.",
       "pendingFilledTitle": "Offene Order eröffnet",

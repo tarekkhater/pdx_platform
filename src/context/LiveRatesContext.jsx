@@ -44,8 +44,13 @@ export const LiveRatesProvider = ({ children }) => {
         return { mid: 0, bid: 0, ask: 0, fresh: false, updatedAt: null, source: null, instrument };
       }
 
-      const quotedAsk = Number(liveRate?.buy_p) > 0 ? Number(liveRate.buy_p) : mid + (instrument.buySpread / 100) * mid;
-      const quotedBid = Number(liveRate?.sell_p) > 0 ? Number(liveRate.sell_p) : mid - (instrument.sellSpread / 100) * mid;
+      // The asset list endpoint and the live broadcast name the two quoted prices the opposite way
+      // round (buy_p is mid + spread in one and mid - spread in the other), so the names cannot be
+      // trusted: the ask is always the higher price (what a buyer pays) and the bid the lower.
+      const feedBuy = Number(liveRate?.buy_p) > 0 ? Number(liveRate.buy_p) : 0;
+      const feedSell = Number(liveRate?.sell_p) > 0 ? Number(liveRate.sell_p) : 0;
+      const quotedAsk = feedBuy && feedSell ? Math.max(feedBuy, feedSell) : mid + (instrument.buySpread / 100) * mid;
+      const quotedBid = feedBuy && feedSell ? Math.min(feedBuy, feedSell) : mid - (instrument.sellSpread / 100) * mid;
 
       return {
         mid,
