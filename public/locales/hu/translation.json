@@ -1,0 +1,823 @@
+{
+  "header": {
+    "title": "{{brand}}",
+    "searchPlaceholder": "Eszközök keresése...",
+    "addFunds": "+ Pénz befizetése",
+    "viewProfile": "Profil megtekintése",
+    "withdrawals": "Kifizetések",
+    "nav": {
+      "tradeStation": "Trade Station",
+      "tradingHistory": "Kereskedési előzmények",
+      "market": "Piac"
+    }
+  },
+  "topBar": {
+    "trade": "Kereskedés",
+    "wallets": "Tárcák",
+    "markets": "Piacok",
+    "trades": "Pozíciók"
+  },
+  "accountSheet": {
+    "profileSubtitle": "{{brand}} profil",
+    "balance": "Egyenleg",
+    "equity": "Saját tőke",
+    "availableFunds": "Elérhető pénzeszközök",
+    "initialMargin": "Kezdő fedezet",
+    "maintenanceMargin": "Fenntartási fedezet",
+    "marginLevel": "Fedezeti szint",
+    "myAccounts": "Fiókjaim",
+    "transactionsHistory": "Tranzakciós előzmények",
+    "certificates": "Tanúsítványok",
+    "addFunds": "Pénz befizetése",
+    "myProfile": "Profilom",
+    "settings": "Beállítások",
+    "accountName": "{{brand}} Live"
+  },
+  "settings": {
+    "title": "Beállítások",
+    "accountSub": "{{brand}} fiók",
+    "profile": "Profil",
+    "appearance": "Megjelenés",
+    "language": "Nyelv",
+    "kyc": "KYC azonosítás",
+    "help": "Súgó",
+    "aboutUs": "Rólunk",
+    "legal": "Jogi információk",
+    "documents": "Dokumentumok",
+    "logOut": "Kijelentkezés"
+  },
+  "profile": {
+    "title": "Profil",
+    "personalInfo": "Személyes adatok",
+    "security": "Biztonság",
+    "changePassword": "Jelszó módosítása",
+    "saveChanges": "Módosítások mentése",
+    "savedTitle": "✅ Profil frissítve",
+    "savedDesc": "Az adataid mentésre kerültek.",
+    "saveFailedTitle": "A mentés nem sikerült",
+    "fields": {
+      "email": "E-mail",
+      "firstName": "Keresztnév",
+      "lastName": "Vezetéknév",
+      "phone": "Telefonszám",
+      "country": "Ország",
+      "city": "Város",
+      "address": "Cím",
+      "postalCode": "Irányítószám"
+    }
+  },
+  "kyc": {
+    "inReview": "Azonosítás ellenőrzés alatt",
+    "progress": "{{total}} dokumentumból {{approved}} jóváhagyva",
+    "requiredDocuments": "Szükséges dokumentumok",
+    "updated": "Frissítve: {{date}}",
+    "notUploaded": "Nincs feltöltve",
+    "notice": "A dokumentumokat egy munkanapon belül ellenőrizzük. Amint az azonosítás elkészül, értesítünk.",
+    "uploadNotImplemented": "A dokumentumfeltöltés még nincs bekötve.",
+    "documents": {
+      "frontId": "Igazolvány — előlap",
+      "backId": "Igazolvány — hátlap",
+      "selfie": "Szelfi igazolvánnyal",
+      "proofOfAddress": "Lakcímigazolás"
+    },
+    "status": {
+      "approved": "Jóváhagyva",
+      "pending": "Ellenőrzés alatt",
+      "missing": "Szükséges"
+    },
+    "upload": "Feltöltés",
+    "replace": "Csere",
+    "uploadedTitle": "📤 Dokumentum feltöltve",
+    "uploadedDesc": "A(z) {{document}} ellenőrzésre beküldve."
+  },
+  "appearance": {
+    "theme": "Téma",
+    "note": "A rendszer az eszközöd beállítását követi és automatikusan vált.",
+    "modes": {
+      "light": "Világos",
+      "dark": "Sötét",
+      "system": "Rendszer"
+    },
+    "descriptions": {
+      "light": "Világos felület jól megvilágított térbe",
+      "dark": "Az alapértelmezett megjelenés, kíméletesebb a szemnek",
+      "system": "Igazodás az eszköz megjelenéséhez"
+    }
+  },
+  "legal": {
+    "updated": "Frissítve: {{date}}"
+  },
+  "about": {
+    "whatWeStandFor": "Amit képviselünk",
+    "contact": "Kapcsolat"
+  },
+  "documents": {
+    "tabs": {
+      "agreements": "Szerződések",
+      "additional": "További"
+    },
+    "pendingBanner_one": "{{count}} dokumentum vár intézkedésre.",
+    "pendingBanner_other": "{{count}} dokumentum vár intézkedésre.",
+    "notice": "Az aláírt dokumentumokat a fiókjához tároljuk, másolat kérésre elérhető az ügyfélkezelőjétől.",
+    "emptyAdditional": "Jelenleg nincs további dokumentum. Amit az ügyfélkezelője küld, itt fog megjelenni.",
+    "versionLine": "{{version}} verzió · Frissítve: {{date}}",
+    "completedOn": "Teljesítve: {{date}}.",
+    "underReviewSince": "1:{{leverage}} igényelve ekkor: {{date}}. Elbírálás alatt.",
+    "currentLeverage": "Jelenlegi tőkeáttétel",
+    "requestedLeverage": "Igényelt tőkeáttétel",
+    "taxCountry": "Adóügyi illetőség országa",
+    "tin": "Adóazonosító szám (TIN)",
+    "tinPlaceholder": "Az adóhatóság által kiadott szám",
+    "signatureLabel": "Írja be teljes nevét az aláíráshoz",
+    "signatureHint": "A név beírása jogilag kötelező érvényű elektronikus aláírásnak minősül.",
+    "status": {
+      "pending": "Intézkedésre vár",
+      "signed": "Teljesítve",
+      "review": "Elbírálás alatt"
+    },
+    "cta": {
+      "sign": "Aláírás",
+      "acknowledge": "Áttekintés",
+      "leverage": "Igénylés",
+      "taxForm": "Nyilatkozat"
+    },
+    "actions": {
+      "sign": "Dokumentum aláírása",
+      "acknowledge": "Tudomásul veszem",
+      "submitRequest": "Igénylés beküldése",
+      "submitDeclaration": "Nyilatkozat beküldése"
+    },
+    "consent": {
+      "sign": "Elolvastam és teljes egészében elfogadom a dokumentumot.",
+      "acknowledge": "Megerősítem, hogy elolvastam és megértettem a fenti kockázatokat.",
+      "leverage": "Tudomásul veszem, hogy a magasabb tőkeáttétel gyorsítja a veszteségek felhalmozódását, és hogy az igénylés elutasítható.",
+      "taxForm": "Kijelentem, hogy a megadott adatok valósak és teljesek, és 30 napon belül értesítem a Társaságot minden változásról."
+    },
+    "errors": {
+      "mustAgree": "A beküldéshez meg kell erősítenie.",
+      "signatureRequired": "Írja be teljes nevét az aláíráshoz.",
+      "signatureShort": "Adja meg a teljes hivatalos nevét.",
+      "countryRequired": "Adja meg az adóügyi illetőség országát.",
+      "tinRequired": "Adja meg az adóazonosító számát."
+    },
+    "submittedTitle": "Dokumentum teljesítve",
+    "submittedDesc": "A másolatot a fiókjához tároltuk.",
+    "submittedReviewTitle": "Igénylés beküldve",
+    "submittedReviewDesc": "Megvizsgáljuk az igénylését, és hamarosan jelentkezünk."
+  },
+  "wallets": {
+    "title": "Tárcám",
+    "balance": "Egyenleg",
+    "todayPnl": "Mai P&L",
+    "deposit": "Befizetés",
+    "withdraw": "Kifizetés",
+    "account": "Fiók",
+    "pnl": "P&L",
+    "margin": "Fedezet",
+    "freeMargin": "Szabad fedezet",
+    "freeMarginPercent": "Szabad fedezet %",
+    "equity": "Saját tőke",
+    "credit": "Jóváírás",
+    "recentTransactions": "Legutóbbi tranzakciók",
+    "status": {
+      "success": "Sikeres"
+    },
+    "viewAll": "Összes"
+  },
+  "balanceBar": {
+    "balance": "Egyenleg",
+    "pnl": "P&L",
+    "margin": "Fedezet",
+    "freeMargin": "Szabad fedezet",
+    "freeMarginPercent": "Szabad fedezet %",
+    "equity": "Saját tőke",
+    "awaitingDeposit": "Befizetésre vár",
+    "credit": "Kredit"
+  },
+  "assetList": {
+    "title": "Piacok",
+    "searchPlaceholder": "Bármit kereshetsz...",
+    "noAssetsFound": "Nincs találat erre: \"{{searchTerm}}\" ({{activeTab}}).",
+    "tabs": {
+      "favourite": "Kedvencek",
+      "crypto": "Kripto",
+      "stocks": "Részvények",
+      "forex": "Forex",
+      "indices": "Indexek",
+      "commodities": "Nyersanyagok"
+    },
+    "noFavourites": "Még nincs rögzített eszköz. Érintse meg a csillagot bármelyik eszköznél."
+  },
+  "tradingChart": {
+    "high": "Legmagasabb",
+    "low": "Legalacsonyabb",
+    "volume": "Forgalom",
+    "change24h": "24 órás változás",
+    "liveTrading": "Élő kereskedés"
+  },
+  "tradeStation": {
+    "changeAsset": "Módosítás",
+    "selectAsset": "Eszköz kiválasztása",
+    "favourites": {
+      "holdToRemove": "tartsa nyomva az eltávolításhoz"
+    }
+  },
+  "openTrades": {
+    "title": "Nyitott pozíciók",
+    "active": "{{count}} aktív",
+    "noTrades": "Nincs nyitott pozíció",
+    "nothingHereYet": "Egyelőre nincs itt semmi.",
+    "qty": "Mennyiség",
+    "entry": "Belépés",
+    "current": "Aktuális",
+    "market": "Piaci ár",
+    "amount": "Összeg",
+    "pnl": "P&L",
+    "roi": "ROI",
+    "long": "Long",
+    "short": "Short",
+    "sl": "SL",
+    "tp": "TP",
+    "margin": "Fedezet",
+    "opened": "Nyitva",
+    "positionId": "Pozícióazonosító",
+    "closePosition": "Pozíció zárása",
+    "tabs": {
+      "positions": "Pozíciók",
+      "pending": "Függőben",
+      "closed": "Lezárt"
+    },
+    "toast": {
+      "tradeClosedTitle": "✅ Pozíció lezárva",
+      "tradeClosedDesc": "A pozíciód sikeresen lezárult.",
+      "allClosedTitle": "Minden pozíció lezárva",
+      "allClosedDesc_one": "{{count}} pozíció lezárva.",
+      "allClosedDesc_other": "{{count}} pozíció lezárva.",
+      "orderCancelledTitle": "Megbízás törölve",
+      "orderCancelledDesc": "A függő megbízás törölve lett.",
+      "closeFailedTitle": "A zárás nem sikerült",
+      "closeFailedDesc": "A kérést elutasítottuk. A pozíció változatlan.",
+      "cancelFailedTitle": "A törlés nem sikerült"
+    },
+    "closeAll": "Mind zárása",
+    "confirmCloseAll": "Biztos?",
+    "gross": "Bruttó",
+    "swap": "Swap",
+    "fee": "Díj",
+    "net": "Nettó",
+    "cancelOrder": "Megbízás törlése",
+    "noPending": "Nincs függő megbízás",
+    "noClosed": "Nincs lezárt ügylet",
+    "reason": {
+      "manual": "Kézi",
+      "takeProfit": "Take profit",
+      "stopLoss": "Stop loss",
+      "marginCall": "Margin call"
+    },
+    "lot": "Lot",
+    "target": "Célár",
+    "closePrice": "Zárás",
+    "placed": "Rögzítve",
+    "reasonLabel": "Ok"
+  },
+  "orderPanel": {
+    "buy": "Vétel",
+    "sell": "Eladás",
+    "buyLong": "VÉTEL (LONG)",
+    "sellShort": "ELADÁS (SHORT)",
+    "amount": "Összeg",
+    "leverage": "Tőkeáttét",
+    "entryPrice": "Belépő ár",
+    "positionSize": "Pozícióméret",
+    "estFee": "Becsült díj",
+    "estMargin": "Becsült fedezet",
+    "placeBuyOrder": "Vételi megbízás",
+    "placeSellOrder": "Eladási megbízás",
+    "market": "Piaci",
+    "pending": "Függőben",
+    "slTp": "SL / TP",
+    "slTpSet": "SL / TP BEÁLLÍTVA",
+    "stopLoss": "Stop Loss",
+    "takeProfit": "Take Profit",
+    "priceMode": "Ár",
+    "lot": "Lot",
+    "lots": "Lot",
+    "initMargin": "Kezdő fedezet",
+    "confirm": "Megerősítés",
+    "asset": "Eszköz",
+    "execution": "Végrehajtás",
+    "cancel": "Mégse",
+    "toast": {
+      "invalidAmountTitle": "⚠️ Érvénytelen összeg",
+      "invalidAmountDesc": "Adj meg egy érvényes összeget a kereskedéshez.",
+      "buyOrderPlaced": "📈 Megbízás rögzítve!",
+      "sellOrderPlaced": "📉 Megbízás rögzítve!",
+      "orderDesc": "{{orderType}} megbízás {{amount}} {{asset}} mennyiségre ${{price}} áron, {{leverage}}x tőkeáttétellel.",
+      "invalidTargetTitle": "Nincs célár",
+      "invalidTargetDesc": "Adja meg az árat, amelyen a megbízás megnyíljon.",
+      "pendingPlacedTitle": "Függő megbízás rögzítve",
+      "pendingPlacedDesc": "{{orderType}} {{amount}} {{asset}} vár a(z) ${{price}} árra.",
+      "pendingFilledTitle": "Függő megbízás megnyílt",
+      "pendingFilledDesc": "A(z) {{asset}} elérte a(z) {{price}} szintet, az ügylet nyitva van.",
+      "rejectedTitle": "A megbízás elutasítva",
+      "rejectedDesc": "A megbízást elutasítottuk. Semmi nem nyílt meg.",
+      "tradingBlockedTitle": "A kereskedés nem érhető el",
+      "tradingBlockedDesc": "Ezen a számlán nincs engedélyezve a kereskedés. Vegye fel a kapcsolatot az ügyfélszolgálattal.",
+      "leverageChangeBlockedTitle": "A tőkeáttétel zárolva",
+      "leverageChangeBlocked": "Nincs jogosultsága a tőkeáttétel módosítására. Kérjük, forduljon számlavezetőjéhez vagy az ügyfélszolgálathoz.",
+      "leverageMaxTitle": "Tőkeáttétel limit",
+      "leverageMax": "A tőkeáttétel nem lehet nagyobb, mint {{max}}x.",
+      "marketClosedTitle": "A piac zárva",
+      "marketClosed": {
+        "closed": "Ez az instrumentum a kereskedési időn kívül van.",
+        "suspended": "Az instrumentum kereskedése fel van függesztve.",
+        "noQuote": "Ehhez az instrumentumhoz még nincs árfolyam.",
+        "stale": "Az instrumentum árfolyamcsatornája nem frissül."
+      }
+    },
+    "target": "Célár",
+    "opensWhenReached": "Megnyílik, amint az árfolyam eléri ezt a szintet",
+    "type": "Típus",
+    "pair": "Pár"
+  },
+  "technicalAnalysis": {
+    "title": "Technikai elemzés",
+    "marketSentiment": "Piaci hangulat",
+    "bullish": "{{percent}}% bullish",
+    "buySignal": "{{count}} vétel",
+    "neutralSignal": "{{count}} semleges",
+    "sellSignal": "{{count}} eladás",
+    "signals": {
+      "neutral": "Semleges",
+      "buy": "Vétel",
+      "sell": "Eladás"
+    }
+  },
+  "notifications": {
+    "title": "Értesítések",
+    "empty": "Nincs új értesítés",
+    "emptyDesc": "Minden rendben, nincs teendő.",
+    "notImplementedTitle": "🚧 A funkció még nem elérhető",
+    "notImplementedDesc": "🚧 Ez a funkció még nincs implementálva — de ne aggódj! A következő üzenetedben kérheted! 🚀"
+  },
+  "modals": {
+    "securedEncryption": "Banki szintű titkosítással védve",
+    "common": {
+      "amount": "Összeg",
+      "amountRequired": "Összeg *",
+      "continue": "Tovább",
+      "back": "Vissza",
+      "cancel": "Mégse",
+      "done": "Kész",
+      "max": "MAX",
+      "confirmDeposit": "Befizetés megerősítése",
+      "reviewBeforeSubmit": "Ellenőrizd, mielőtt elküldöd",
+      "failedTitle": "A kérést nem fogadtuk el",
+      "depositSubmitted": "Befizetés elküldve",
+      "fundsReflectShortly": "Az összeg hamarosan megjelenik az egyenlegeden."
+    },
+    "deposit": {
+      "title": "Pénz befizetése",
+      "instant": "Azonnali",
+      "card": {
+        "name": "Bankkártya",
+        "desc": "Azonnali · 10 – 10 000 $"
+      },
+      "crypto": {
+        "name": "Kriptovaluta",
+        "desc": "BTC, USDT, ETH · 10–60 perc"
+      },
+      "cardCheckout": {
+        "title": "Kártyás fizetés",
+        "subtitle": "Válaszd ki, hogyan szeretnél fizetni",
+        "external": {
+          "name": "Fizetés a checkout oldalon",
+          "desc": "Folytatás a biztonságos külső oldalon"
+        },
+        "internal": {
+          "name": "Fizetés Visa/Mastercard kártyával",
+          "desc": "Add meg a kártyaadataidat itt"
+        }
+      }
+    },
+    "cardDeposit": {
+      "title": "Kártyás befizetés",
+      "subtitle": "Azonnali befizetés a kártyáddal",
+      "cardNumberRequired": "Kártyaszám *",
+      "cardNumber": "Kártyaszám",
+      "expiryRequired": "Lejárat *",
+      "cvvRequired": "CVV *",
+      "cardholderNameRequired": "Kártyabirtokos neve *",
+      "namePlaceholder": "Kártyán szereplő név",
+      "sslNotice": "Titkosítva és SSL védelemmel ellátva.",
+      "cardholder": "Kártyabirtokos",
+      "notImplementedDesc": "A kártyás befizetés még nem elérhető."
+    },
+    "cryptoDeposit": {
+      "title": "Kripto befizetés",
+      "subtitle": "Válaszd ki a kívánt kriptovalutát",
+      "networkWarning": "Csak {{crypto}}-t küldj a {{network}} hálózaton. Más eszközök elveszhetnek.",
+      "depositAddress": "Befizetési cím",
+      "network": "Hálózat",
+      "confirmNotice": "Csak azután küldj pénzt, hogy elküldted a fenti címre. A befizetések általában 10-60 percen belül megerősítést kapnak.",
+      "successDesc": "Értesítünk, amint a befizetésed megerősítést kap a láncon.",
+      "copiedTitle": "Vágólapra másolva!",
+      "copiedDesc": "A tárcacím másolva lett.",
+      "notImplementedDesc": "A kripto befizetés még nem elérhető."
+    },
+    "withdraw": {
+      "title": "Pénz kifizetése",
+      "verificationNotice": "További ellenőrzést igényelhet",
+      "cryptoWallet": "Kripto tárca",
+      "cryptoFee": "Díj 0,5–2% · 0–1 munkaóra",
+      "bankTransfer": "Banki átutalás",
+      "bankFee": "Díj 0,5–2% · 1–5 munkanap"
+    },
+    "bankWithdraw": {
+      "chooseMethod": "Válassz kifizetési módot",
+      "bankDetails": "Banki átutalás adatai",
+      "cardDetails": "Kártyás kifizetés adatai",
+      "confirmTitle": "Kifizetés megerősítése",
+      "bankWireIban": "Banki átutalás / IBAN",
+      "bankWireDesc": "USD vagy EUR · 1–5 munkanap",
+      "debitCard": "Betéti kártya",
+      "debitCardDesc": "Visa / Mastercard · Azonnali kifizetés",
+      "currency": "Pénznem",
+      "accountHolderRequired": "Számlatulajdonos neve *",
+      "accountHolderPlaceholder": "Teljes név a számla szerint",
+      "routingNumberRequired": "Routing szám *",
+      "accountNumberRequired": "Számlaszám *",
+      "accountTypeRequired": "Számlatípus *",
+      "selectType": "Válassz típust",
+      "checking": "Folyószámla",
+      "savings": "Megtakarítási számla",
+      "bicRequired": "BIC / SWIFT *",
+      "countryRequired": "Ország *",
+      "selectCountry": "Válassz országot",
+      "ibanRequired": "IBAN *",
+      "processedNotice": "Biztonságosan feldolgozva. Általában 1–3 munkanapon belül megérkezik.",
+      "cardPayoutNotice": "Azonnali kifizetés jogosult Visa/Mastercard betéti kártyákra. CVV nem szükséges — mi fizetünk neked, nem terhelünk.",
+      "confirmWithdrawal": "Kifizetés megerősítése",
+      "usdWarning": "Ellenőrizd a számlaszámot és a routing számot — a banki átutalás elküldés után nem vonható vissza.",
+      "eurWarning": "Ellenőrizd az IBAN-t — a banki átutalás elküldés után nem vonható vissza.",
+      "accountHolder": "Számlatulajdonos",
+      "accountType": "Számlatípus",
+      "bic": "BIC / SWIFT",
+      "routingNumber": "Routing szám",
+      "accountNumber": "Számlaszám",
+      "country": "Ország",
+      "iban": "IBAN",
+      "cardWarning": "Ellenőrizd a kártyaadatokat — a kifizetés elküldés után nem vonható vissza.",
+      "expiry": "Lejárat",
+      "withdrawalSubmitted": "Kifizetés elküldve",
+      "withdrawalSuccessDesc": "Jóváhagyás után értesítést kapsz."
+    },
+    "cryptoWithdraw": {
+      "title": "Kripto kifizetés",
+      "subtitle": "Külső tárcára",
+      "network": "Hálózat",
+      "fee": "Díj",
+      "processing": "Feldolgozás",
+      "minWithdrawal": "Minimum kifizetés",
+      "address": "Cím",
+      "addressPlaceholder": "Illeszd be a {{crypto}} címedet",
+      "available": "Elérhető",
+      "destinationAddress": "Célcím",
+      "doubleCheckTitle": "Ellenőrizd megerősítés előtt",
+      "irreversibleNotice": "A tranzakciók elküldés után nem vonhatók vissza.",
+      "networkSupportNotice": "Győződj meg róla, hogy a cím támogatja a(z) {{network}} hálózatot.",
+      "withdrawCrypto": "{{crypto}} kifizetése",
+      "submittedTitle": "Kifizetés igényelve",
+      "submittedDesc": "Értesítjük, amint feldolgoztuk."
+    }
+  },
+  "languages": {
+    "en": "English",
+    "hu": "Magyar",
+    "cs": "Čeština",
+    "de": "Deutsch"
+  },
+  "mobileNav": {
+    "trade": "Kereskedés",
+    "assets": "Eszközök",
+    "wallets": "Tárcák",
+    "trades": "Pozíciók",
+    "history": "Előzmények"
+  },
+  "changePassword": {
+    "title": "Jelszó módosítása",
+    "subtitle": "Legalább {{count}} karakter szükséges.",
+    "current": "Jelenlegi",
+    "new": "Új",
+    "confirm": "Megerősítés",
+    "update": "Mentés",
+    "errors": {
+      "required": "Kérjük, töltse ki az összes mezőt.",
+      "tooShort": "Az új jelszónak legalább {{count}} karakterből kell állnia.",
+      "mismatch": "A két új jelszó nem egyezik."
+    },
+    "successTitle": "Jelszó módosítva",
+    "successDesc": "A jelszava frissítve lett.",
+    "failedTitle": "A jelszó módosítása nem sikerült"
+  },
+  "common": {
+    "back": "Vissza",
+    "loading": "Betöltés…"
+  },
+  "assets": {
+    "title": "Eszközök"
+  },
+  "transactions": {
+    "deposits": "Befétek",
+    "withdrawals": "Kifizetések",
+    "empty": "Még nincsenek tranzakciók.",
+    "columns": {
+      "amount": "Összeg",
+      "notes": "Megjegyzés",
+      "date": "Dátum",
+      "status": "Állapot",
+      "type": "Típus"
+    },
+    "status": {
+      "approved": "Jóváhagyva",
+      "success": "Sikeres",
+      "pending": "Függőben",
+      "rejected": "Elutasítva"
+    },
+    "types": {
+      "card": "Kártya",
+      "wire": "Banki átutalás",
+      "bank": "Banki átutalás",
+      "crypto": "Kriptó",
+      "credit": "Bónusz jóváírás"
+    },
+    "summary": {
+      "deposited": "Befizetve",
+      "withdrawn": "Kifizetve",
+      "pending": "Függőben",
+      "count": "Tranzakciók"
+    }
+  },
+  "auth": {
+    "logIn": "Bejelentkezés",
+    "signUp": "Regisztráció",
+    "logInSubtitle": "Lépjen be a(z) {{brand}} kereskedési számlájára.",
+    "createAccount": "Fiók létrehozása",
+    "createAccountSubtitle": "Kezdje el a kereskedést a(z) {{brand}} platformon.",
+    "email": "E-mail",
+    "emailPlaceholder": "on@pelda.com",
+    "password": "Jelszó",
+    "passwordPlaceholder": "Adja meg a jelszavát",
+    "passwordCreatePlaceholder": "Legalább {{count}} karakter",
+    "rememberMe": "Maradjak bejelentkezve",
+    "forgotPassword": "Elfelejtett jelszó?",
+    "referralOptional": "Ajánlókód (nem kötelező)",
+    "referralPlaceholder": "Kód megadása",
+    "agreeTerms": "Elfogadom az Általános Szerződési Feltételeket és az Adatvédelmi Szabályzatot.",
+    "noAccount": "Még nincs fiókja?",
+    "haveAccount": "Már van fiókja?",
+    "welcomeBack": "Üdvözlöjük újra",
+    "signedInAs": "Bejelentkezve: {{email}}.",
+    "signInFailed": "A bejelentkezés sikertelen",
+    "accountCreated": "Fiók létrehozva",
+    "accountCreatedDesc": "Üdvözöljük a(z) {{brand}} platformon.",
+    "resetSentTitle": "Ellenőrizze e-mailjeit",
+    "resetSentDesc": "Ha a cím regisztrálva van, elküldtük a visszaállító linket.",
+    "strength": {
+      "weak": "Gyenge",
+      "fair": "Megfelelő",
+      "good": "Jó",
+      "strong": "Erős"
+    },
+    "errors": {
+      "emailRequired": "Adja meg az e-mail címét.",
+      "emailInvalid": "Adjon meg érvényes e-mail címet.",
+      "passwordRequired": "Adja meg a jelszavát.",
+      "passwordShort": "Használjon legalább 8 karaktert.",
+      "passwordMismatch": "A két jelszó nem egyezik.",
+      "codeRequired": "Adja meg a 6 jegyű kódot.",
+      "termsRequired": "A folytatáshoz fogadja el a feltételeket."
+    },
+    "code": "Ellenőrző kód",
+    "verify": "Ellenőrzés",
+    "verifyTitle": "Erősítse meg az e-mail-címét",
+    "verifySubtitle": "Küldtünk egy 6 jegyű kódot a(z) {{email}} címre.",
+    "verifiedTitle": "E-mail megerősítve",
+    "verifiedDesc": "A címét ellenőriztük.",
+    "resendCode": "Új kód küldése",
+    "resendIn": "Új kód {{seconds}} mp múlva",
+    "codeSentTitle": "Kód elküldve",
+    "codeSentDesc": "Új kód érkezik a(z) {{email}} címre.",
+    "forgotTitle": "Jelszó visszaállítása",
+    "forgotSubtitle": "Adja meg az e-mail-címét, és küldünk egy kódot.",
+    "sendCode": "Kód küldése",
+    "backToLogin": "Vissza a bejelentkezéshez",
+    "resetTitle": "Jelszó visszaállítása",
+    "resetCodeSubtitle": "Adja meg a(z) {{email}} címre küldött kódot.",
+    "resetPasswordSubtitle": "Válasszon új jelszót.",
+    "newPassword": "Új jelszó",
+    "confirmPassword": "Jelszó megerősítése",
+    "changePassword": "Jelszó módosítása",
+    "continue": "Tovább",
+    "passwordChangedTitle": "A jelszó megváltozott",
+    "passwordChangedDesc": "Jelentkezzen be az új jelszavával."
+  },
+  "notFound": {
+    "title": "Az oldal nem található",
+    "description": "Ez a cím nem létezik, vagy áthelyezték.",
+    "action": "Vissza a terminálhoz"
+  },
+  "onboarding": {
+    "stepOf": "{{current}}. lépés a(z) {{total}}-ből",
+    "continue": "Tovább",
+    "submit": "Jelentkezés beküldése",
+    "required": "Ez a mező kötelező.",
+    "selectPlaceholder": "Válasszon egy lehetőséget",
+    "submittedTitle": "Jelentkezés elküldve",
+    "submittedDesc": "A fiókja készen áll. Most már kereskedhet.",
+    "submittedReview": "Jelentkezését felülvizsgáljuk. Hamarosan jelentkezünk.",
+    "failedTitle": "A jelentkezés nem lett elküldve",
+    "manualReview": "A válaszai alapján jelentkezése kézi felülvizsgálatot igényel a fiók aktiválása előtt.",
+    "riskNotice": "A tőkeáttételes termékek magas kockázattal járnak. A beküldéssel megerősíti, hogy a megadott adatok pontosak és teljesek.",
+    "steps": {
+      "personal": {
+        "title": "Személyes adatok",
+        "subtitle": "Ahogy a hivatalos igazolványán szerepel."
+      },
+      "address": {
+        "title": "Lakcím",
+        "subtitle": "Ahol adózási szempontból honos."
+      },
+      "financial": {
+        "title": "Pénzügyi profil",
+        "subtitle": "Szükséges annak felméréséhez, hogy termékeink megfelelőek-e."
+      },
+      "experience": {
+        "title": "Kereskedési tapasztalat",
+        "subtitle": "Segít a megfelelő limitek beállításában."
+      },
+      "review": {
+        "title": "Ellenőrzés és beküldés",
+        "subtitle": "Nézze át a válaszait a fiók megnyitása előtt."
+      }
+    },
+    "fields": {
+      "firstName": "Keresztnév",
+      "lastName": "Vezetéknév",
+      "dateOfBirth": "Születési dátum",
+      "nationality": "Állampolgárság",
+      "phone": "Telefonszám",
+      "country": "Ország",
+      "city": "Város",
+      "street": "Utca, házszám",
+      "currency": "Számla pénzneme",
+      "postalCode": "Irányítószám",
+      "employment": "Foglalkoztatási státusz",
+      "annualIncome": "Éves jövedelem",
+      "sourceOfFunds": "Pénzeszközök forrása",
+      "expectedDeposit": "Várható első befizetés",
+      "tradingExperience": "Kereskedési tapasztalat",
+      "tradingFrequency": "Kereskedés gyakorisága",
+      "riskTolerance": "Kockázattűrés",
+      "politicallyExposed": "Ön politikailag kitett személy?",
+      "usTaxResident": "Ön amerikai adóügyi illetőségű?"
+    },
+    "options": {
+      "employment": {
+        "employed": "Alkalmazott",
+        "selfEmployed": "Vállalkozó",
+        "student": "Diák",
+        "retired": "Nyugdíjas",
+        "unemployed": "Munkanélküli"
+      },
+      "income": {
+        "under25k": "25 000 $ alatt",
+        "from25to50k": "25 000 - 50 000 $",
+        "from50to100k": "50 000 - 100 000 $",
+        "from100to250k": "100 000 - 250 000 $",
+        "over250k": "250 000 $ felett"
+      },
+      "funds": {
+        "salary": "Fizetés",
+        "savings": "Megtakarítás",
+        "investments": "Befektetések",
+        "business": "Vállalkozói jövedelem",
+        "inheritance": "Örökség",
+        "other": "Egyéb"
+      },
+      "deposit": {
+        "under1k": "1 000 $ alatt",
+        "from1to5k": "1 000 - 5 000 $",
+        "from5to25k": "5 000 - 25 000 $",
+        "from25to100k": "25 000 - 100 000 $",
+        "over100k": "100 000 $ felett"
+      },
+      "experience": {
+        "none": "Nincs",
+        "underOneYear": "Kevesebb mint 1 év",
+        "oneToThree": "1 - 3 év",
+        "overThree": "Több mint 3 év"
+      },
+      "frequency": {
+        "never": "Soha",
+        "occasionally": "Alkalmanként",
+        "monthly": "Havonta",
+        "weekly": "Hetente",
+        "daily": "Naponta"
+      },
+      "risk": {
+        "low": "Alacsony",
+        "medium": "Közepes",
+        "high": "Magas"
+      },
+      "yesNo": {
+        "no": "Nem",
+        "yes": "Igen"
+      }
+    }
+  },
+  "support": {
+    "assistantName": "Ügyfélszolgálati asszisztens",
+    "assistantStatus": "Azonnal válaszol",
+    "agentName": "Ügyfélszolgálati munkatárs",
+    "agentStatus": "Most online",
+    "greeting": "Üdv {{name}} — segíthetek befizetésekkel, kifizetésekkel, ellenőrzéssel és kereskedési kérdésekkel.",
+    "prompt": "Miben segíthetek?",
+    "there": "ott",
+    "connecting": "Kapcsolás munkatárshoz…",
+    "agentJoined": "Üdv, Sara vagyok a(z) {{brand}} ügyfélszolgálatától. Látom a fiókját — miben segíthetek?",
+    "agentAck": "Köszönöm, utánanézek.",
+    "noMatch": "Erre nem tudok pontos választ adni. Egy munkatárs közvetlenül ellenőrizheti a fiókját.",
+    "inputPlaceholder": "Írjon üzenetet…",
+    "topics": {
+      "depositMissing": "A befizetésem nem érkezett meg",
+      "depositPending": "Miért függőben van még?",
+      "depositWrongAmount": "A jóváírt összeg hibás",
+      "withdrawalTime": "Meddig tart a kifizetés?",
+      "withdrawalRejected": "A kifizetésemet elutasították",
+      "kyc": "Fiók ellenőrzése",
+      "kycRejected": "A dokumentumomat elutasították",
+      "marginCall": "A pozíciómat automatikusan lezárták",
+      "leverage": "Tőkeáttétel és fedezet",
+      "charges": "Spreadek, díjak és swapok",
+      "loginIssue": "Bejelentkezési vagy jelszó probléma",
+      "agent": "Munkatárssal beszélnék"
+    },
+    "answers": {
+      "depositMissing": {
+        "0": "Card deposits normally credit within a few minutes. Bank transfers can take 1–3 business days depending on your bank, and crypto deposits credit after the required network confirmations.",
+        "1": "You can check the current state of every payment under Transactions History — anything still processing shows as Pending there."
+      },
+      "depositPending": {
+        "0": "A deposit stays Pending until the payment provider confirms settlement. Nothing is required from you while it is in that state.",
+        "1": "If a card deposit has been pending for more than 2 hours, or a bank transfer for more than 3 business days, an agent can trace it with your payment reference."
+      },
+      "depositWrongAmount": {
+        "0": "If the credited amount differs from what you sent, the difference is usually the sending bank’s transfer fee or a currency conversion applied on their side.",
+        "1": "Send the payment confirmation from your bank to an agent and the account will be reconciled."
+      },
+      "withdrawalTime": {
+        "0": "Withdrawals are processed back to the original funding method, as anti-money-laundering rules require. Requests submitted before the daily cut-off are reviewed the same business day.",
+        "1": "Once approved, card refunds take 3–5 business days to appear, bank transfers 1–3 business days, and crypto withdrawals are sent once the network confirms."
+      },
+      "withdrawalRejected": {
+        "0": "Withdrawals are most often declined for one of three reasons: verification is incomplete, the destination does not match the original funding method, or open positions would leave the account below its margin requirement.",
+        "1": "Check Settings → KYC Verification first — an unverified account cannot withdraw."
+      },
+      "kyc": {
+        "0": "Verification needs a government ID, a proof of address dated within the last 3 months, and a selfie. Upload them under Settings → KYC Verification.",
+        "1": "Documents are usually reviewed within one business day. Rejections are almost always a cropped edge, glare on the document, or an address document that is too old."
+      },
+      "kycRejected": {
+        "0": "Re-upload using the Replace button on the rejected document. Photograph it flat, in daylight, with all four corners visible and no flash.",
+        "1": "Utility bills, bank statements and council tax letters are accepted as proof of address. Mobile phone bills and handwritten documents are not."
+      },
+      "marginCall": {
+        "0": "Positions are closed automatically when your margin level falls to the close-out threshold. This protects you from going into negative balance and happens without prior notice.",
+        "1": "You can reduce the risk by lowering position size, adding funds, or setting a Stop Loss that triggers before the close-out level is reached."
+      },
+      "leverage": {
+        "0": "Your account leverage is shown on the order ticket next to the estimated margin. Higher leverage lowers the margin per position but makes a close-out happen sooner.",
+        "1": "To apply for a higher tier, go to Settings → Documents → Leverage Increase Request. Requests are reviewed against your trading experience and account history."
+      },
+      "charges": {
+        "0": "Three costs apply: the spread (the difference between the buy and sell price), commission where the instrument charges one, and overnight financing on positions held past the daily rollover.",
+        "1": "Overnight financing can be positive or negative depending on direction and instrument, and it is the cost most often mistaken for an unexplained deduction."
+      },
+      "loginIssue": {
+        "0": "You can set a new password from Settings → My Profile → Change Password, or use Forgot password on the login screen.",
+        "1": "If you are not receiving the reset email, check your spam folder and confirm you are using the address the account was opened with."
+      }
+    }
+  },
+  "tradingHistory": {
+    "title": "Ügyletek"
+  },
+  "marketStats": {
+    "pin": "Eszköz rögzítése",
+    "change24h": "24ó változás",
+    "high24h": "24ó maximum",
+    "low24h": "24ó minimum",
+    "volume24h": "24ó forgalom"
+  }
+}

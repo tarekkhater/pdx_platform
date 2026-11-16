@@ -1,0 +1,825 @@
+{
+  "header": {
+    "title": "{{brand}}",
+    "searchPlaceholder": "Hledat aktiva...",
+    "addFunds": "+ Přidat prostředky",
+    "viewProfile": "Zobrazit profil",
+    "withdrawals": "Výběry",
+    "nav": {
+      "tradeStation": "Trade Station",
+      "tradingHistory": "Historie obchodů",
+      "market": "Trh"
+    }
+  },
+  "topBar": {
+    "trade": "Obchod",
+    "wallets": "Peněženky",
+    "markets": "Trhy",
+    "trades": "Obchody"
+  },
+  "accountSheet": {
+    "profileSubtitle": "Profil {{brand}}",
+    "balance": "Zůstatek",
+    "equity": "Kapitál",
+    "availableFunds": "Dostupné prostředky",
+    "initialMargin": "Počáteční marže",
+    "maintenanceMargin": "Udržovací marže",
+    "marginLevel": "Úroveň marže",
+    "myAccounts": "Moje účty",
+    "transactionsHistory": "Historie transakcí",
+    "certificates": "Certifikáty",
+    "addFunds": "Přidat prostředky",
+    "myProfile": "Můj profil",
+    "settings": "Nastavení",
+    "accountName": "{{brand}} Live"
+  },
+  "settings": {
+    "title": "Nastavení",
+    "accountSub": "Účet {{brand}}",
+    "profile": "Profil",
+    "appearance": "Vzhled",
+    "language": "Jazyk",
+    "kyc": "Ověření KYC",
+    "help": "Nápověda",
+    "aboutUs": "O nás",
+    "legal": "Právní informace",
+    "documents": "Dokumenty",
+    "logOut": "Odhlásit se"
+  },
+  "profile": {
+    "title": "Profil",
+    "personalInfo": "Osobní údaje",
+    "security": "Zabezpečení",
+    "changePassword": "Změnit heslo",
+    "saveChanges": "Uložit změny",
+    "savedTitle": "✅ Profil aktualizován",
+    "savedDesc": "Vaše údaje byly uloženy.",
+    "saveFailedTitle": "Uložení se nezdařilo",
+    "fields": {
+      "email": "E-mail",
+      "firstName": "Jméno",
+      "lastName": "Příjmení",
+      "phone": "Telefon",
+      "country": "Země",
+      "city": "Město",
+      "address": "Adresa",
+      "postalCode": "PSČ"
+    }
+  },
+  "kyc": {
+    "inReview": "Ověření se kontroluje",
+    "progress": "Schváleno {{approved}} z {{total}} dokumentů",
+    "requiredDocuments": "Požadované dokumenty",
+    "updated": "Aktualizováno {{date}}",
+    "notUploaded": "Nenahráno",
+    "notice": "Dokumenty kontrolujeme do jednoho pracovního dne. Jakmile bude ověření hotové, dáme vám vědět.",
+    "uploadNotImplemented": "Nahrávání dokumentů zatím není napojeno.",
+    "documents": {
+      "frontId": "Doklad — přední strana",
+      "backId": "Doklad — zadní strana",
+      "selfie": "Selfie s dokladem",
+      "proofOfAddress": "Doklad o adrese"
+    },
+    "status": {
+      "approved": "Schváleno",
+      "pending": "Kontroluje se",
+      "missing": "Vyžadováno"
+    },
+    "upload": "Nahrát",
+    "replace": "Nahradit",
+    "uploadedTitle": "📤 Dokument nahrán",
+    "uploadedDesc": "{{document}} byl odeslán ke kontrole."
+  },
+  "appearance": {
+    "theme": "Motiv",
+    "note": "Systém se řídí nastavením vašeho zařízení a přepíná se automaticky.",
+    "modes": {
+      "light": "Světlý",
+      "dark": "Tmavý",
+      "system": "Systém"
+    },
+    "descriptions": {
+      "light": "Světlé rozhraní do dobře osvětlených prostor",
+      "dark": "Výchozí vzhled, šetrnější k očím",
+      "system": "Podle vzhledu zařízení"
+    }
+  },
+  "legal": {
+    "updated": "Aktualizováno {{date}}"
+  },
+  "about": {
+    "whatWeStandFor": "Na čem si zakládáme",
+    "contact": "Kontakt"
+  },
+  "documents": {
+    "tabs": {
+      "agreements": "Smlouvy",
+      "additional": "Další"
+    },
+    "pendingBanner_one": "{{count}} dokument čeká na vaši akci.",
+    "pendingBanner_few": "{{count}} dokumenty čekají na vaši akci.",
+    "pendingBanner_other": "{{count}} dokumentů čeká na vaši akci.",
+    "notice": "Podepsané dokumenty jsou uloženy k vašemu účtu; kopii vám na vyžádání poskytne váš account manager.",
+    "emptyAdditional": "Momentálně žádné další dokumenty. Co vám account manager pošle, se objeví zde.",
+    "versionLine": "Verze {{version}} · Aktualizováno {{date}}",
+    "completedOn": "Dokončeno {{date}}.",
+    "underReviewSince": "Požadováno 1:{{leverage}} dne {{date}}. Posuzuje se.",
+    "currentLeverage": "Současná páka",
+    "requestedLeverage": "Požadovaná páka",
+    "taxCountry": "Země daňové rezidence",
+    "tin": "Daňové identifikační číslo (DIČ)",
+    "tinPlaceholder": "Vydané vaším finančním úřadem",
+    "signatureLabel": "Napište celé jméno pro podpis",
+    "signatureHint": "Napsání jména představuje právně závazný elektronický podpis.",
+    "status": {
+      "pending": "Čeká na vaši akci",
+      "signed": "Dokončeno",
+      "review": "Posuzuje se"
+    },
+    "cta": {
+      "sign": "Podepsat",
+      "acknowledge": "Přečíst",
+      "leverage": "Požádat",
+      "taxForm": "Prohlásit"
+    },
+    "actions": {
+      "sign": "Podepsat dokument",
+      "acknowledge": "Beru na vědomí",
+      "submitRequest": "Odeslat žádost",
+      "submitDeclaration": "Odeslat prohlášení"
+    },
+    "consent": {
+      "sign": "Přečetl jsem si dokument a souhlasím s ním v plném rozsahu.",
+      "acknowledge": "Potvrzuji, že jsem si přečetl a porozuměl výše uvedeným rizikům.",
+      "leverage": "Rozumím, že vyšší páka zrychluje kumulaci ztrát a že žádost může být zamítnuta.",
+      "taxForm": "Prohlašuji, že uvedené údaje jsou pravdivé a úplné, a do 30 dnů oznámím jakoukoli změnu."
+    },
+    "errors": {
+      "mustAgree": "Před odesláním musíte potvrdit.",
+      "signatureRequired": "Napište celé jméno pro podpis.",
+      "signatureShort": "Zadejte své celé jméno.",
+      "countryRequired": "Zadejte zemi daňové rezidence.",
+      "tinRequired": "Zadejte daňové identifikační číslo."
+    },
+    "submittedTitle": "Dokument dokončen",
+    "submittedDesc": "Kopie byla uložena k vašemu účtu.",
+    "submittedReviewTitle": "Žádost odeslána",
+    "submittedReviewDesc": "Vaši žádost posoudíme a brzy se vám ozveme."
+  },
+  "wallets": {
+    "title": "Moje peněženka",
+    "balance": "Zůstatek",
+    "todayPnl": "Dnešní Z&Z",
+    "deposit": "Vklad",
+    "withdraw": "Výběr",
+    "account": "Účet",
+    "pnl": "Z&Z",
+    "margin": "Marže",
+    "freeMargin": "Volná marže",
+    "freeMarginPercent": "Volná marže %",
+    "equity": "Kapitál",
+    "credit": "Kredit",
+    "recentTransactions": "Nedávné transakce",
+    "status": {
+      "success": "Úspěšné"
+    },
+    "viewAll": "Vše"
+  },
+  "balanceBar": {
+    "balance": "Zůstatek",
+    "pnl": "Z&Z",
+    "margin": "Marže",
+    "freeMargin": "Volná marže",
+    "freeMarginPercent": "Volná marže %",
+    "equity": "Kapitál",
+    "awaitingDeposit": "Čeká na vklad",
+    "credit": "Kredit"
+  },
+  "assetList": {
+    "title": "Trhy",
+    "searchPlaceholder": "Hledat aktiva...",
+    "noAssetsFound": "Pro \"{{searchTerm}}\" v {{activeTab}} nebyla nalezena žádná aktiva.",
+    "tabs": {
+      "favourite": "Oblíbené",
+      "crypto": "Krypto",
+      "stocks": "Akcie",
+      "forex": "Forex",
+      "indices": "Indexy",
+      "commodities": "Komodity"
+    },
+    "noFavourites": "Zatím žádné připnuté instrumenty. Klepnutím na hvězdičku instrument připnete."
+  },
+  "tradingChart": {
+    "high": "Vysoká",
+    "low": "Nízká",
+    "volume": "Objem",
+    "change24h": "Změna 24h",
+    "liveTrading": "Živé obchodování"
+  },
+  "tradeStation": {
+    "changeAsset": "Změnit",
+    "selectAsset": "Vybrat aktivum",
+    "favourites": {
+      "holdToRemove": "podržte pro odebrání"
+    }
+  },
+  "openTrades": {
+    "title": "Otevřené obchody",
+    "active": "{{count}} Aktivní",
+    "noTrades": "Žádné otevřené obchody",
+    "nothingHereYet": "Zatím tu nic není.",
+    "qty": "Množ.",
+    "entry": "Vstup",
+    "current": "Aktuální",
+    "market": "Trh",
+    "amount": "Částka",
+    "pnl": "Z&Z",
+    "roi": "ROI",
+    "long": "Long",
+    "short": "Short",
+    "sl": "SL",
+    "tp": "TP",
+    "margin": "Marže",
+    "opened": "Otevřeno",
+    "positionId": "ID pozice",
+    "closePosition": "Zavřít pozici",
+    "tabs": {
+      "positions": "Pozice",
+      "pending": "Čekající",
+      "closed": "Uzavřené"
+    },
+    "toast": {
+      "tradeClosedTitle": "✅ Obchod uzavřen",
+      "tradeClosedDesc": "Vaše pozice byla úspěšně uzavřena.",
+      "allClosedTitle": "Všechny pozice uzavřeny",
+      "allClosedDesc_one": "{{count}} pozice byla uzavřena.",
+      "allClosedDesc_few": "{{count}} pozice byly uzavřeny.",
+      "allClosedDesc_other": "{{count}} pozic bylo uzavřeno.",
+      "orderCancelledTitle": "Příkaz zrušen",
+      "orderCancelledDesc": "Čekající příkaz byl zrušen.",
+      "closeFailedTitle": "Nelze uzavřít",
+      "closeFailedDesc": "Požadavek byl odmítnut. Pozice zůstává beze změny.",
+      "cancelFailedTitle": "Nelze zrušit"
+    },
+    "closeAll": "Zavřít vše",
+    "confirmCloseAll": "Potvrdit?",
+    "gross": "Hrubý",
+    "swap": "Swap",
+    "fee": "Poplatek",
+    "net": "Čistý",
+    "cancelOrder": "Zrušit příkaz",
+    "noPending": "Žádné čekající příkazy",
+    "noClosed": "Žádné uzavřené obchody",
+    "reason": {
+      "manual": "Ručně",
+      "takeProfit": "Take profit",
+      "stopLoss": "Stop loss",
+      "marginCall": "Margin call"
+    },
+    "lot": "Lot",
+    "target": "Cílová cena",
+    "closePrice": "Uzavření",
+    "placed": "Zadáno",
+    "reasonLabel": "Důvod"
+  },
+  "orderPanel": {
+    "buy": "Koupit",
+    "sell": "Prodat",
+    "buyLong": "KOUPIT (LONG)",
+    "sellShort": "PRODAT (SHORT)",
+    "amount": "Částka",
+    "leverage": "Páka",
+    "entryPrice": "Vstupní cena",
+    "positionSize": "Velikost pozice",
+    "estFee": "Odhad. poplatek",
+    "estMargin": "Odhad. marže",
+    "placeBuyOrder": "Zadat nákupní příkaz",
+    "placeSellOrder": "Zadat prodejní příkaz",
+    "market": "Trh",
+    "pending": "Čekající",
+    "slTp": "SL / TP",
+    "slTpSet": "SL / TP NASTAVENO",
+    "stopLoss": "Stop Loss",
+    "takeProfit": "Take Profit",
+    "priceMode": "Cena",
+    "lot": "Lot",
+    "lots": "Loty",
+    "initMargin": "Počát. marže",
+    "confirm": "Potvrdit",
+    "asset": "Aktivum",
+    "execution": "Provedení",
+    "cancel": "Zrušit",
+    "toast": {
+      "invalidAmountTitle": "⚠️ Neplatná částka",
+      "invalidAmountDesc": "Zadejte prosím platnou částku k obchodování.",
+      "buyOrderPlaced": "📈 Příkaz zadán!",
+      "sellOrderPlaced": "📉 Příkaz zadán!",
+      "orderDesc": "Příkaz {{orderType}} na {{amount}} {{asset}} za ${{price}} s pákou {{leverage}}x.",
+      "invalidTargetTitle": "Chybí cílová cena",
+      "invalidTargetDesc": "Zadejte cenu, za kterou se má příkaz otevřít.",
+      "pendingPlacedTitle": "Čekající příkaz zadán",
+      "pendingPlacedDesc": "{{orderType}} {{amount}} {{asset}} čeká na ${{price}}.",
+      "pendingFilledTitle": "Čekající příkaz otevřen",
+      "pendingFilledDesc": "{{asset}} dosáhl {{price}} a obchod je nyní otevřený.",
+      "rejectedTitle": "Pokyn nebyl přijat",
+      "rejectedDesc": "Pokyn byl zamítnut. Nic nebylo otevřeno.",
+      "tradingBlockedTitle": "Obchodování není dostupné",
+      "tradingBlockedDesc": "Na tomto účtu není obchodování povoleno. Kontaktujte podporu.",
+      "leverageChangeBlockedTitle": "Páka je uzamčena",
+      "leverageChangeBlocked": "Nemáte oprávnění měnit páku. Kontaktujte svého manažera účtu nebo zákaznickou podporu pro pomoc.",
+      "leverageMaxTitle": "Limit páky",
+      "leverageMax": "Páka nesmí být vyšší než {{max}}x.",
+      "marketClosedTitle": "Trh je zavřený",
+      "marketClosed": {
+        "closed": "Tento instrument je mimo obchodní hodiny.",
+        "suspended": "Obchodování s tímto instrumentem je pozastaveno.",
+        "noQuote": "Pro tento instrument zatím není k dispozici cena.",
+        "stale": "Cenový kanál pro tento instrument se přestal aktualizovat."
+      }
+    },
+    "target": "Cílová cena",
+    "opensWhenReached": "Otevře se, jakmile cena dosáhne této úrovně",
+    "type": "Typ",
+    "pair": "Pár"
+  },
+  "technicalAnalysis": {
+    "title": "Technická analýza",
+    "marketSentiment": "Nálada na trhu",
+    "bullish": "{{percent}}% Býčí",
+    "buySignal": "{{count}} Nákup",
+    "neutralSignal": "{{count}} Neutrální",
+    "sellSignal": "{{count}} Prodej",
+    "signals": {
+      "neutral": "Neutrální",
+      "buy": "Koupit",
+      "sell": "Prodat"
+    }
+  },
+  "notifications": {
+    "title": "Oznámení",
+    "empty": "Žádná nová oznámení",
+    "emptyDesc": "Jste v obraze.",
+    "notImplementedTitle": "🚧 Funkce není implementována",
+    "notImplementedDesc": "🚧 Tato funkce ještě není implementována, ale nebojte se! Můžete si ji vyžádat v dalším dotazu! 🚀"
+  },
+  "modals": {
+    "securedEncryption": "Zabezpečeno šifrováním na bankovní úrovni",
+    "common": {
+      "amount": "Částka",
+      "amountRequired": "Částka *",
+      "continue": "Pokračovat",
+      "back": "Zpět",
+      "cancel": "Zrušit",
+      "done": "Hotovo",
+      "max": "MAX",
+      "confirmDeposit": "Potvrdit vklad",
+      "reviewBeforeSubmit": "Zkontrolujte údaje před odesláním",
+      "failedTitle": "Požadavek nebyl přijat",
+      "depositSubmitted": "Vklad odeslán",
+      "fundsReflectShortly": "Prostředky se brzy projeví na vašem zůstatku."
+    },
+    "deposit": {
+      "title": "Vložit prostředky",
+      "instant": "Okamžitě",
+      "card": {
+        "name": "Platební/kreditní karta",
+        "desc": "Okamžitě · 10 – 10 000 $"
+      },
+      "crypto": {
+        "name": "Kryptoměna",
+        "desc": "BTC, USDT, ETH · 10–60 min"
+      },
+      "cardCheckout": {
+        "title": "Platba kartou",
+        "subtitle": "Vyberte způsob platby",
+        "external": {
+          "name": "Zaplatit na platební stránce",
+          "desc": "Pokračovat na zabezpečené externí stránce"
+        },
+        "internal": {
+          "name": "Zaplatit přes Visa/Mastercard",
+          "desc": "Zadejte údaje karty zde"
+        }
+      }
+    },
+    "cardDeposit": {
+      "title": "Vklad kartou",
+      "subtitle": "Okamžitý vklad vaší kartou",
+      "cardNumberRequired": "Číslo karty *",
+      "cardNumber": "Číslo karty",
+      "expiryRequired": "Platnost *",
+      "cvvRequired": "CVV *",
+      "cardholderNameRequired": "Jméno držitele karty *",
+      "namePlaceholder": "Jméno na kartě",
+      "sslNotice": "Šifrováno a zabezpečeno SSL ochranou.",
+      "cardholder": "Držitel karty",
+      "notImplementedDesc": "Vklad kartou zatím není dostupný."
+    },
+    "cryptoDeposit": {
+      "title": "Krypto vklad",
+      "subtitle": "Vyberte preferovanou kryptoměnu",
+      "networkWarning": "Posílejte pouze {{crypto}} přes {{network}}. Jiná aktiva mohou být ztracena.",
+      "depositAddress": "Vkladová adresa",
+      "network": "Síť",
+      "confirmNotice": "Prostředky posílejte až po zadání výše uvedené adresy. Vklady se obvykle potvrdí do 10-60 minut.",
+      "successDesc": "Jakmile bude váš vklad potvrzen v síti, dáme vám vědět.",
+      "copiedTitle": "Zkopírováno do schránky!",
+      "copiedDesc": "Adresa peněženky byla zkopírována.",
+      "notImplementedDesc": "Krypto vklad zatím není dostupný."
+    },
+    "withdraw": {
+      "title": "Vybrat prostředky",
+      "verificationNotice": "Může vyžadovat dodatečné ověření",
+      "cryptoWallet": "Kryptopeněženka",
+      "cryptoFee": "Poplatek 0,5–2 % · 0–1 pracovní hodiny",
+      "bankTransfer": "Bankovní převod",
+      "bankFee": "Poplatek 0,5–2 % · 1–5 pracovních dní"
+    },
+    "bankWithdraw": {
+      "chooseMethod": "Vyberte způsob výběru",
+      "bankDetails": "Údaje k bankovnímu převodu",
+      "cardDetails": "Údaje k výplatě na kartu",
+      "confirmTitle": "Potvrdit výběr",
+      "bankWireIban": "Bankovní převod / IBAN",
+      "bankWireDesc": "USD nebo EUR · 1–5 pracovních dní",
+      "debitCard": "Debetní karta",
+      "debitCardDesc": "Visa / Mastercard · Okamžitá výplata",
+      "currency": "Měna",
+      "accountHolderRequired": "Jméno majitele účtu *",
+      "accountHolderPlaceholder": "Celé jméno dle účtu",
+      "routingNumberRequired": "Routing number *",
+      "accountNumberRequired": "Číslo účtu *",
+      "accountTypeRequired": "Typ účtu *",
+      "selectType": "Vyberte typ",
+      "checking": "Běžný účet",
+      "savings": "Spořicí účet",
+      "bicRequired": "BIC / SWIFT *",
+      "countryRequired": "Země *",
+      "selectCountry": "Vyberte zemi",
+      "ibanRequired": "IBAN *",
+      "processedNotice": "Zpracováno bezpečně. Obvykle dorazí do 1–3 pracovních dnů.",
+      "cardPayoutNotice": "Okamžitá výplata na způsobilé debetní karty Visa/Mastercard. CVV není potřeba — jde o platbu vám, ne o zúčtování.",
+      "confirmWithdrawal": "Potvrdit výběr",
+      "usdWarning": "Zkontrolujte číslo účtu a routing number — bankovní převody nelze po odeslání vrátit zpět.",
+      "eurWarning": "Zkontrolujte svůj IBAN — bankovní převody nelze po odeslání vrátit zpět.",
+      "accountHolder": "Majitel účtu",
+      "accountType": "Typ účtu",
+      "bic": "BIC / SWIFT",
+      "routingNumber": "Routing number",
+      "accountNumber": "Číslo účtu",
+      "country": "Země",
+      "iban": "IBAN",
+      "cardWarning": "Zkontrolujte údaje karty — výplaty nelze po odeslání vrátit zpět.",
+      "expiry": "Platnost",
+      "withdrawalSubmitted": "Výběr odeslán",
+      "withdrawalSuccessDesc": "Jakmile bude schválen, dostanete oznámení."
+    },
+    "cryptoWithdraw": {
+      "title": "Krypto výběr",
+      "subtitle": "Na externí peněženku",
+      "network": "Síť",
+      "fee": "Poplatek",
+      "processing": "Zpracování",
+      "minWithdrawal": "Minimální výběr",
+      "address": "Adresa",
+      "addressPlaceholder": "Vložte svou {{crypto}} adresu",
+      "available": "Dostupné",
+      "destinationAddress": "Cílová adresa",
+      "doubleCheckTitle": "Před potvrzením zkontrolujte",
+      "irreversibleNotice": "Transakce nelze po odeslání vrátit zpět.",
+      "networkSupportNotice": "Ujistěte se, že adresa podporuje síť {{network}}.",
+      "withdrawCrypto": "Vybrat {{crypto}}",
+      "submittedTitle": "Výběr byl zadán",
+      "submittedDesc": "Jakmile bude zpracován, dáme vám vědět."
+    }
+  },
+  "languages": {
+    "en": "English",
+    "hu": "Magyar",
+    "cs": "Čeština",
+    "de": "Deutsch"
+  },
+  "mobileNav": {
+    "trade": "Obchod",
+    "assets": "Aktiva",
+    "wallets": "Peněženky",
+    "trades": "Obchody",
+    "history": "Historie"
+  },
+  "changePassword": {
+    "title": "Změna hesla",
+    "subtitle": "Použijte alespoň {{count}} znaků.",
+    "current": "Současné",
+    "new": "Nové",
+    "confirm": "Potvrdit",
+    "update": "Uložit",
+    "errors": {
+      "required": "Vyplňte prosím všechna pole.",
+      "tooShort": "Nové heslo musí mít alespoň {{count}} znaků.",
+      "mismatch": "Nová hesla se neshodují."
+    },
+    "successTitle": "Heslo změněno",
+    "successDesc": "Vaše heslo bylo aktualizováno.",
+    "failedTitle": "Heslo se nepodařilo změnit"
+  },
+  "common": {
+    "back": "Zpět",
+    "loading": "Načítání…"
+  },
+  "assets": {
+    "title": "Instrumenty"
+  },
+  "transactions": {
+    "deposits": "Vklady",
+    "withdrawals": "Výběry",
+    "empty": "Zatím žádné transakce.",
+    "columns": {
+      "amount": "Částka",
+      "notes": "Poznámka",
+      "date": "Datum",
+      "status": "Stav",
+      "type": "Typ"
+    },
+    "status": {
+      "approved": "Schváleno",
+      "success": "Úspěšné",
+      "pending": "Čeká",
+      "rejected": "Zamítnuto"
+    },
+    "types": {
+      "card": "Karta",
+      "wire": "Bankovní převod",
+      "bank": "Bankovní převod",
+      "crypto": "Krypto",
+      "credit": "Bonusový kredit"
+    },
+    "summary": {
+      "deposited": "Vloženo",
+      "withdrawn": "Vybráno",
+      "pending": "Čeká",
+      "count": "Transakce"
+    }
+  },
+  "auth": {
+    "logIn": "Přihlásit se",
+    "signUp": "Registrovat",
+    "logInSubtitle": "Přihlaste se ke svému účtu {{brand}}.",
+    "createAccount": "Vytvořit účet",
+    "createAccountSubtitle": "Začněte obchodovat na {{brand}} během chvilky.",
+    "email": "E-mail",
+    "emailPlaceholder": "vy@priklad.cz",
+    "password": "Heslo",
+    "passwordPlaceholder": "Zadejte heslo",
+    "passwordCreatePlaceholder": "Alespoň {{count}} znaků",
+    "rememberMe": "Zůstat přihlášen",
+    "forgotPassword": "Zapomenuté heslo?",
+    "referralOptional": "Referral kód (volitelné)",
+    "referralPlaceholder": "Zadejte kód",
+    "agreeTerms": "Souhlasím s obchodními podmínkami a zásadami ochrany soukromí.",
+    "noAccount": "Nemáte účet?",
+    "haveAccount": "Už máte účet?",
+    "welcomeBack": "Vítejte zpět",
+    "signedInAs": "Přihlášen jako {{email}}.",
+    "signInFailed": "Přihlášení se nezdařilo",
+    "accountCreated": "Účet vytvořen",
+    "accountCreatedDesc": "Vítejte na {{brand}}.",
+    "resetSentTitle": "Zkontrolujte e-mail",
+    "resetSentDesc": "Pokud je adresa registrována, odkaz pro obnovení je na cestě.",
+    "strength": {
+      "weak": "Slabé",
+      "fair": "Přijatelné",
+      "good": "Dobré",
+      "strong": "Silné"
+    },
+    "errors": {
+      "emailRequired": "Zadejte svou e-mailovou adresu.",
+      "emailInvalid": "Zadejte platnou e-mailovou adresu.",
+      "passwordRequired": "Zadejte heslo.",
+      "passwordShort": "Použijte alespoň 8 znaků.",
+      "passwordMismatch": "Hesla se neshodují.",
+      "codeRequired": "Zadejte šestimístný kód.",
+      "termsRequired": "Pro pokračování přijměte podmínky."
+    },
+    "code": "Ověřovací kód",
+    "verify": "Ověřit",
+    "verifyTitle": "Potvrďte svůj e-mail",
+    "verifySubtitle": "Poslali jsme šestimístný kód na {{email}}.",
+    "verifiedTitle": "E-mail potvrzen",
+    "verifiedDesc": "Vaše adresa byla ověřena.",
+    "resendCode": "Poslat nový kód",
+    "resendIn": "Nový kód za {{seconds}}s",
+    "codeSentTitle": "Kód odeslán",
+    "codeSentDesc": "Nový kód je na cestě na {{email}}.",
+    "forgotTitle": "Obnovit heslo",
+    "forgotSubtitle": "Zadejte svůj e-mail a pošleme vám kód.",
+    "sendCode": "Poslat kód",
+    "backToLogin": "Zpět na přihlášení",
+    "resetTitle": "Obnovit heslo",
+    "resetCodeSubtitle": "Zadejte kód, který jsme poslali na {{email}}.",
+    "resetPasswordSubtitle": "Zvolte nové heslo.",
+    "newPassword": "Nové heslo",
+    "confirmPassword": "Potvrdit heslo",
+    "changePassword": "Změnit heslo",
+    "continue": "Pokračovat",
+    "passwordChangedTitle": "Heslo změněno",
+    "passwordChangedDesc": "Přihlaste se novým heslem."
+  },
+  "notFound": {
+    "title": "Stránka nenalezena",
+    "description": "Tato adresa neexistuje nebo byla přesunuta.",
+    "action": "Zpět do terminálu"
+  },
+  "onboarding": {
+    "stepOf": "Krok {{current}} z {{total}}",
+    "continue": "Pokračovat",
+    "submit": "Odeslat žádost",
+    "required": "Toto pole je povinné.",
+    "selectPlaceholder": "Vyberte možnost",
+    "submittedTitle": "Žádost odeslána",
+    "submittedDesc": "Váš účet je připraven. Můžete začít obchodovat.",
+    "submittedReview": "Vaše žádost se posuzuje. Brzy se vám ozveme.",
+    "failedTitle": "Žádost nebyla odeslána",
+    "manualReview": "Na základě vašich odpovědí vyžaduje žádost ruční posouzení před aktivací účtu.",
+    "riskNotice": "Pákové produkty nesou vysoké riziko rychlé ztráty. Odesláním potvrzujete, že uvedené údaje jsou přesné a úplné.",
+    "steps": {
+      "personal": {
+        "title": "Osobní údaje",
+        "subtitle": "Tak, jak jsou uvedeny na vašem dokladu."
+      },
+      "address": {
+        "title": "Adresa bydliště",
+        "subtitle": "Kde máte daňový domicil."
+      },
+      "financial": {
+        "title": "Finanční profil",
+        "subtitle": "Nutné k posouzení vhodnosti našich produktů."
+      },
+      "experience": {
+        "title": "Obchodní zkušenosti",
+        "subtitle": "Pomáhá nastavit vhodné limity účtu."
+      },
+      "review": {
+        "title": "Kontrola a odeslání",
+        "subtitle": "Zkontrolujte odpovědi před otevřením účtu."
+      }
+    },
+    "fields": {
+      "firstName": "Jméno",
+      "lastName": "Příjmení",
+      "dateOfBirth": "Datum narození",
+      "nationality": "Státní příslušnost",
+      "phone": "Telefonní číslo",
+      "country": "Země",
+      "city": "Město",
+      "street": "Ulice a číslo",
+      "currency": "Měna účtu",
+      "postalCode": "PSČ",
+      "employment": "Zaměstnanecký status",
+      "annualIncome": "Roční příjem",
+      "sourceOfFunds": "Zdroj prostředků",
+      "expectedDeposit": "Očekávaný první vklad",
+      "tradingExperience": "Obchodní zkušenosti",
+      "tradingFrequency": "Frekvence obchodování",
+      "riskTolerance": "Tolerance rizika",
+      "politicallyExposed": "Jste politicky exponovaná osoba?",
+      "usTaxResident": "Jste daňový rezident USA?"
+    },
+    "options": {
+      "employment": {
+        "employed": "Zaměstnanec",
+        "selfEmployed": "OSVČ",
+        "student": "Student",
+        "retired": "Důchodce",
+        "unemployed": "Nezaměstnaný"
+      },
+      "income": {
+        "under25k": "Méně než 25 000 $",
+        "from25to50k": "25 000 - 50 000 $",
+        "from50to100k": "50 000 - 100 000 $",
+        "from100to250k": "100 000 - 250 000 $",
+        "over250k": "Více než 250 000 $"
+      },
+      "funds": {
+        "salary": "Mzda",
+        "savings": "Úspory",
+        "investments": "Investice",
+        "business": "Příjem z podnikání",
+        "inheritance": "Dědictví",
+        "other": "Jiné"
+      },
+      "deposit": {
+        "under1k": "Méně než 1 000 $",
+        "from1to5k": "1 000 - 5 000 $",
+        "from5to25k": "5 000 - 25 000 $",
+        "from25to100k": "25 000 - 100 000 $",
+        "over100k": "Více než 100 000 $"
+      },
+      "experience": {
+        "none": "Žádné",
+        "underOneYear": "Méně než 1 rok",
+        "oneToThree": "1 - 3 roky",
+        "overThree": "Více než 3 roky"
+      },
+      "frequency": {
+        "never": "Nikdy",
+        "occasionally": "Příležitostně",
+        "monthly": "Měsíčně",
+        "weekly": "Týdně",
+        "daily": "Denně"
+      },
+      "risk": {
+        "low": "Nízká",
+        "medium": "Střední",
+        "high": "Vysoká"
+      },
+      "yesNo": {
+        "no": "Ne",
+        "yes": "Ano"
+      }
+    }
+  },
+  "support": {
+    "assistantName": "Asistent podpory",
+    "assistantStatus": "Odpovídá okamžitě",
+    "agentName": "Operátor podpory",
+    "agentStatus": "Nyní online",
+    "greeting": "Dobrý den {{name}} — pomohu s vklady, výběry, ověřením a dotazy k obchodování.",
+    "prompt": "S čím potřebujete pomoci?",
+    "there": "tam",
+    "connecting": "Spojuji vás s operátorem…",
+    "agentJoined": "Dobrý den, tady Sara z podpory {{brand}}. Vidím váš účet — jak mohu pomoci?",
+    "agentAck": "Děkuji, podívám se na to.",
+    "noMatch": "Na tuto otázku neumím odpovědět přesně. Operátor může zkontrolovat váš účet přímo.",
+    "inputPlaceholder": "Napište zprávu…",
+    "topics": {
+      "depositMissing": "Můj vklad nedorazil",
+      "depositPending": "Proč stále čeká?",
+      "depositWrongAmount": "Připsaná částka je špatná",
+      "withdrawalTime": "Jak dlouho trvá výběr?",
+      "withdrawalRejected": "Můj výběr byl zamítnut",
+      "kyc": "Ověřit účet",
+      "kycRejected": "Můj dokument byl zamítnut",
+      "marginCall": "Pozice byla automaticky uzavřena",
+      "leverage": "Páka a margin",
+      "charges": "Spready, poplatky a swapy",
+      "loginIssue": "Problém s přihlášením nebo heslem",
+      "agent": "Chci mluvit s operátorem"
+    },
+    "answers": {
+      "depositMissing": {
+        "0": "Card deposits normally credit within a few minutes. Bank transfers can take 1–3 business days depending on your bank, and crypto deposits credit after the required network confirmations.",
+        "1": "You can check the current state of every payment under Transactions History — anything still processing shows as Pending there."
+      },
+      "depositPending": {
+        "0": "A deposit stays Pending until the payment provider confirms settlement. Nothing is required from you while it is in that state.",
+        "1": "If a card deposit has been pending for more than 2 hours, or a bank transfer for more than 3 business days, an agent can trace it with your payment reference."
+      },
+      "depositWrongAmount": {
+        "0": "If the credited amount differs from what you sent, the difference is usually the sending bank’s transfer fee or a currency conversion applied on their side.",
+        "1": "Send the payment confirmation from your bank to an agent and the account will be reconciled."
+      },
+      "withdrawalTime": {
+        "0": "Withdrawals are processed back to the original funding method, as anti-money-laundering rules require. Requests submitted before the daily cut-off are reviewed the same business day.",
+        "1": "Once approved, card refunds take 3–5 business days to appear, bank transfers 1–3 business days, and crypto withdrawals are sent once the network confirms."
+      },
+      "withdrawalRejected": {
+        "0": "Withdrawals are most often declined for one of three reasons: verification is incomplete, the destination does not match the original funding method, or open positions would leave the account below its margin requirement.",
+        "1": "Check Settings → KYC Verification first — an unverified account cannot withdraw."
+      },
+      "kyc": {
+        "0": "Verification needs a government ID, a proof of address dated within the last 3 months, and a selfie. Upload them under Settings → KYC Verification.",
+        "1": "Documents are usually reviewed within one business day. Rejections are almost always a cropped edge, glare on the document, or an address document that is too old."
+      },
+      "kycRejected": {
+        "0": "Re-upload using the Replace button on the rejected document. Photograph it flat, in daylight, with all four corners visible and no flash.",
+        "1": "Utility bills, bank statements and council tax letters are accepted as proof of address. Mobile phone bills and handwritten documents are not."
+      },
+      "marginCall": {
+        "0": "Positions are closed automatically when your margin level falls to the close-out threshold. This protects you from going into negative balance and happens without prior notice.",
+        "1": "You can reduce the risk by lowering position size, adding funds, or setting a Stop Loss that triggers before the close-out level is reached."
+      },
+      "leverage": {
+        "0": "Your account leverage is shown on the order ticket next to the estimated margin. Higher leverage lowers the margin per position but makes a close-out happen sooner.",
+        "1": "To apply for a higher tier, go to Settings → Documents → Leverage Increase Request. Requests are reviewed against your trading experience and account history."
+      },
+      "charges": {
+        "0": "Three costs apply: the spread (the difference between the buy and sell price), commission where the instrument charges one, and overnight financing on positions held past the daily rollover.",
+        "1": "Overnight financing can be positive or negative depending on direction and instrument, and it is the cost most often mistaken for an unexplained deduction."
+      },
+      "loginIssue": {
+        "0": "You can set a new password from Settings → My Profile → Change Password, or use Forgot password on the login screen.",
+        "1": "If you are not receiving the reset email, check your spam folder and confirm you are using the address the account was opened with."
+      }
+    }
+  },
+  "tradingHistory": {
+    "title": "Obchody"
+  },
+  "marketStats": {
+    "pin": "Připnout instrument",
+    "change24h": "Změna 24h",
+    "high24h": "Maximum 24h",
+    "low24h": "Minimum 24h",
+    "volume24h": "Objem 24h"
+  }
+}

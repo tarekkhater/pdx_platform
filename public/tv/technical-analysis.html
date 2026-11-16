@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Technical Analysis</title>
+<!--
+  Host page for TradingView's <tv-technical-analysis> element.
+
+  The element is loaded here, inside a frame, rather than directly in the app
+  because a custom element can only be defined once per document: whichever
+  language bundle registered the tag first kept it, so switching language left
+  the panel in the old language until a full refresh. Each frame is its own
+  document with its own element registry, so reloading this page with a
+  different `locale` genuinely re-registers the tag in that language.
+
+  Everything is transparent so the panel picks up the terminal's own surface
+  rather than painting TradingView's grey card on top of it.
+-->
+<style>
+  html, body { margin: 0; padding: 0; height: 100%; background: transparent; overflow: hidden; }
+  /* min-height is the point below which the widget starts dropping its own
+     content: shorter than that and it is scaled down whole (see fit) rather
+     than having the gauge and the breakdown cut off. */
+  #stage { transform-origin: top left; width: 100%; height: 100%; min-height: 380px; }
+  /* The element sizes to whatever box it is given, so handing it the frame
+     is what keeps the panel from scrolling. */
+  tv-technical-analysis { display: block; width: 100%; height: 100%; }
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<script src="./technical-analysis.js"></script>
+</body>
+</html>

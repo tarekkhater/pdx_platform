@@ -1,0 +1,864 @@
+{
+  "header": {
+    "title": "{{brand}}",
+    "searchPlaceholder": "Search assets...",
+    "addFunds": "+ Add Funds",
+    "viewProfile": "View Profile",
+    "withdrawals": "Withdrawals",
+    "nav": {
+      "tradeStation": "Trade Station",
+      "tradingHistory": "Trading History",
+      "market": "Market"
+    }
+  },
+  "topBar": {
+    "trade": "Trade",
+    "wallets": "Wallets",
+    "markets": "Markets",
+    "trades": "Trades"
+  },
+  "accountSheet": {
+    "profileSubtitle": "{{brand}} Profile",
+    "balance": "Balance",
+    "equity": "Equity",
+    "availableFunds": "Available Funds",
+    "initialMargin": "Initial Margin",
+    "maintenanceMargin": "Maintenance Margin",
+    "marginLevel": "Margin Level",
+    "myAccounts": "My accounts",
+    "transactionsHistory": "Transactions History",
+    "certificates": "Certificates",
+    "addFunds": "Add Funds",
+    "myProfile": "My Profile",
+    "settings": "Settings",
+    "accountName": "{{brand}} Live"
+  },
+  "settings": {
+    "title": "Settings",
+    "accountSub": "{{brand}} account",
+    "profile": "Profile",
+    "appearance": "Appearance",
+    "language": "Language",
+    "kyc": "KYC Verification",
+    "help": "Help",
+    "aboutUs": "About Us",
+    "legal": "Legal",
+    "documents": "Documents",
+    "logOut": "Log Out",
+    "aiTrading": "AI Trading",
+    "aiTradingOn": "On",
+    "aiTradingOff": "Off",
+    "aiTradingFailed": "Could not update AI trading"
+  },
+  "profile": {
+    "title": "Profile",
+    "personalInfo": "Personal Information",
+    "security": "Security",
+    "changePassword": "Change Password",
+    "saveChanges": "Save Changes",
+    "savedTitle": "✅ Profile Updated",
+    "savedDesc": "Your information has been saved.",
+    "saveFailedTitle": "Could not save",
+    "fields": {
+      "email": "Email",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "phone": "Phone",
+      "country": "Country",
+      "city": "City",
+      "address": "Address",
+      "postalCode": "Postal Code"
+    }
+  },
+  "kyc": {
+    "inReview": "Verification in review",
+    "progress": "{{approved}} of {{total}} documents approved",
+    "requiredDocuments": "Required Documents",
+    "updated": "Updated {{date}}",
+    "notUploaded": "Not uploaded",
+    "notice": "Documents are reviewed within one business day. You'll be notified as soon as your verification is complete.",
+    "uploadNotImplemented": "Document upload is not yet wired up.",
+    "documents": {
+      "frontId": "ID — Front",
+      "backId": "ID — Back",
+      "selfie": "Selfie with ID",
+      "proofOfAddress": "Proof of Address"
+    },
+    "status": {
+      "approved": "Approved",
+      "pending": "In review",
+      "missing": "Required"
+    },
+    "upload": "Upload",
+    "replace": "Replace",
+    "uploadedTitle": "📤 Document uploaded",
+    "uploadedDesc": "{{document}} was submitted for review.",
+    "uploadedLabel": "Submitted",
+    "uploadFailedTitle": "Upload failed"
+  },
+  "appearance": {
+    "theme": "Theme",
+    "note": "System follows your device setting and switches automatically.",
+    "modes": {
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System"
+    },
+    "descriptions": {
+      "light": "Bright interface for well-lit rooms",
+      "dark": "The default look, easier on the eyes",
+      "system": "Match your device appearance"
+    }
+  },
+  "legal": {
+    "updated": "Updated {{date}}"
+  },
+  "about": {
+    "whatWeStandFor": "What we stand for",
+    "contact": "Contact"
+  },
+  "documents": {
+    "tabs": {
+      "agreements": "Agreements",
+      "additional": "Additional"
+    },
+    "pendingBanner_one": "You have {{count}} document awaiting your action.",
+    "pendingBanner_other": "You have {{count}} documents awaiting your action.",
+    "notice": "Signed documents are stored against your account and a copy is available from your account manager on request.",
+    "leverageNeedsBackend": "Leverage increase requests have to be recorded by the broker. They cannot be stored in this browser — ask your account manager, or wait for the documents API.",
+    "emptyAdditional": "No additional documents right now. Anything your account manager sends will appear here.",
+    "versionLine": "Version {{version}} · Updated {{date}}",
+    "completedOn": "Completed on {{date}}.",
+    "underReviewSince": "Requested 1:{{leverage}} on {{date}}. Under review.",
+    "currentLeverage": "Current leverage",
+    "requestedLeverage": "Requested leverage",
+    "taxCountry": "Country of tax residence",
+    "tin": "Tax Identification Number (TIN)",
+    "tinPlaceholder": "As issued by your tax authority",
+    "signatureLabel": "Type your full legal name to sign",
+    "signatureHint": "Typing your name constitutes a legally binding electronic signature.",
+    "status": {
+      "pending": "Awaiting your action",
+      "signed": "Completed",
+      "review": "Under review"
+    },
+    "cta": {
+      "sign": "Sign",
+      "acknowledge": "Review",
+      "leverage": "Apply",
+      "taxForm": "Declare"
+    },
+    "actions": {
+      "sign": "Sign document",
+      "acknowledge": "I acknowledge",
+      "submitRequest": "Submit request",
+      "submitDeclaration": "Submit declaration"
+    },
+    "consent": {
+      "sign": "I have read and agree to be bound by this document in full.",
+      "acknowledge": "I confirm I have read and understood the risks described above.",
+      "leverage": "I understand that higher leverage increases the speed at which losses accumulate, and that this request may be declined.",
+      "taxForm": "I declare the information given is true, correct and complete, and I will notify the Company within 30 days of any change."
+    },
+    "errors": {
+      "mustAgree": "You must confirm before submitting.",
+      "signatureRequired": "Type your full name to sign.",
+      "signatureShort": "Enter your full legal name.",
+      "countryRequired": "Enter your country of tax residence.",
+      "tinRequired": "Enter your tax identification number."
+    },
+    "submittedTitle": "Document completed",
+    "submittedDesc": "A copy has been stored against your account.",
+    "submittedReviewTitle": "Request submitted",
+    "submittedReviewDesc": "We will review your request and come back to you shortly."
+  },
+  "wallets": {
+    "title": "My Wallet",
+    "balance": "Balance",
+    "todayPnl": "Today P&L",
+    "deposit": "Deposit",
+    "withdraw": "Withdraw",
+    "account": "Account",
+    "pnl": "P&L",
+    "margin": "Margin",
+    "freeMargin": "Free Margin",
+    "freeMarginPercent": "Free Margin %",
+    "equity": "Equity",
+    "credit": "Credit",
+    "recentTransactions": "Recent Transactions",
+    "status": {
+      "success": "Success"
+    },
+    "viewAll": "View all"
+  },
+  "balanceBar": {
+    "balance": "Balance",
+    "pnl": "PNL",
+    "margin": "Margin",
+    "freeMargin": "Free Margin",
+    "freeMarginPercent": "Free Margin %",
+    "equity": "Equity",
+    "awaitingDeposit": "Awaiting Deposit",
+    "credit": "Credit"
+  },
+  "assetList": {
+    "title": "Markets",
+    "searchPlaceholder": "Search for anything...",
+    "noAssetsFound": "No assets found for \"{{searchTerm}}\" in {{activeTab}}.",
+    "tabs": {
+      "favourite": "Favourite",
+      "crypto": "Crypto",
+      "stocks": "Stocks",
+      "forex": "Forex",
+      "indices": "Indices",
+      "commodities": "Commodities"
+    },
+    "noFavourites": "No pinned instruments yet. Tap the star on any instrument to pin it."
+  },
+  "tradingChart": {
+    "high": "High",
+    "low": "Low",
+    "volume": "Volume",
+    "change24h": "24h Change",
+    "liveTrading": "Live Trading"
+  },
+  "tradeStation": {
+    "changeAsset": "Change",
+    "selectAsset": "Select Instrument",
+    "favourites": {
+      "holdToRemove": "hold to remove"
+    }
+  },
+  "openTrades": {
+    "title": "Open Trades",
+    "active": "{{count}} Active",
+    "noTrades": "No open trades",
+    "nothingHereYet": "Nothing here yet.",
+    "qty": "Qty",
+    "entry": "Entry",
+    "current": "Current",
+    "market": "Market",
+    "amount": "Amount",
+    "pnl": "P&L",
+    "roi": "ROI",
+    "long": "Long",
+    "short": "Short",
+    "sl": "SL",
+    "tp": "TP",
+    "margin": "Margin",
+    "opened": "Opened",
+    "positionId": "Position ID",
+    "closePosition": "Close Position",
+    "tabs": {
+      "positions": "Positions",
+      "pending": "Pending",
+      "closed": "Closed"
+    },
+    "toast": {
+      "tradeClosedTitle": "✅ Trade Closed",
+      "tradeClosedDesc": "Your position has been successfully closed.",
+      "allClosedTitle": "All positions closed",
+      "allClosedDesc_one": "{{count}} position was closed.",
+      "allClosedDesc_other": "{{count}} positions were closed.",
+      "orderCancelledTitle": "Order cancelled",
+      "orderCancelledDesc": "The pending order has been cancelled.",
+      "closeFailedTitle": "Could not close",
+      "closeFailedDesc": "The request was refused. The position is unchanged.",
+      "cancelFailedTitle": "Could not cancel"
+    },
+    "closeAll": "Close All",
+    "confirmCloseAll": "Confirm?",
+    "gross": "Gross",
+    "swap": "Swap",
+    "fee": "Fee",
+    "net": "Net",
+    "cancelOrder": "Cancel order",
+    "noPending": "No pending orders",
+    "noClosed": "No closed trades",
+    "reason": {
+      "manual": "Manual",
+      "takeProfit": "Take profit",
+      "stopLoss": "Stop loss",
+      "marginCall": "Margin call"
+    },
+    "lot": "Lot",
+    "target": "Target",
+    "closePrice": "Closed",
+    "placed": "Placed",
+    "reasonLabel": "Reason"
+  },
+  "orderPanel": {
+    "buy": "Buy",
+    "sell": "Sell",
+    "buyLong": "BUY (LONG)",
+    "sellShort": "SELL (SHORT)",
+    "amount": "Amount",
+    "leverage": "Leverage",
+    "entryPrice": "Entry Price",
+    "positionSize": "Position Size",
+    "estFee": "Est. Fee",
+    "estMargin": "Est. Margin",
+    "placeBuyOrder": "Place Buy Order",
+    "placeSellOrder": "Place Sell Order",
+    "market": "Market",
+    "pending": "Pending",
+    "slTp": "SL / TP",
+    "slTpSet": "SL / TP SET",
+    "stopLoss": "Stop Loss",
+    "takeProfit": "Take Profit",
+    "priceMode": "Price",
+    "lot": "Lot",
+    "lots": "Lots",
+    "initMargin": "Init. Margin",
+    "confirm": "Confirm",
+    "asset": "Asset",
+    "execution": "Execution",
+    "cancel": "Cancel",
+    "toast": {
+      "invalidAmountTitle": "⚠️ Invalid Amount",
+      "invalidAmountDesc": "Please enter a valid amount to trade.",
+      "buyOrderPlaced": "📈 Order Placed!",
+      "sellOrderPlaced": "📉 Order Placed!",
+      "orderDesc": "{{orderType}} order for {{amount}} {{asset}} at ${{price}} with {{leverage}}x leverage.",
+      "invalidTargetTitle": "No target price",
+      "invalidTargetDesc": "Enter the price the order should open at.",
+      "pendingPlacedTitle": "Pending order placed",
+      "pendingPlacedDesc": "{{orderType}} {{amount}} {{asset}} waiting for ${{price}}.",
+      "pendingFilledTitle": "Pending order opened",
+      "pendingFilledDesc": "{{asset}} reached {{price}} and the trade is now open.",
+      "rejectedTitle": "Order not accepted",
+      "rejectedDesc": "The order was rejected. Nothing has been opened.",
+      "tradingBlockedTitle": "Trading unavailable",
+      "tradingBlockedDesc": "Trading is not enabled on this account. Contact support.",
+      "leverageChangeBlockedTitle": "Leverage locked",
+      "leverageChangeBlocked": "You do not have permission to modify your leverage. Please contact your account manager or customer support for assistance.",
+      "leverageMaxTitle": "Leverage limit",
+      "leverageMax": "Leverage cannot be higher than {{max}}x.",
+      "marketClosedTitle": "Market closed",
+      "marketClosed": {
+        "closed": "This instrument is outside its trading hours.",
+        "suspended": "Trading in this instrument is suspended.",
+        "noQuote": "No price is available for this instrument yet.",
+        "stale": "The price feed for this instrument has stopped updating."
+      }
+    },
+    "target": "Target",
+    "opensWhenReached": "Opens when the price reaches this level",
+    "type": "Type",
+    "pair": "Pair"
+  },
+  "technicalAnalysis": {
+    "title": "Technical Analysis",
+    "marketSentiment": "Market Sentiment",
+    "bullish": "{{percent}}% Bullish",
+    "buySignal": "{{count}} Buy",
+    "neutralSignal": "{{count}} Neutral",
+    "sellSignal": "{{count}} Sell",
+    "signals": {
+      "neutral": "Neutral",
+      "buy": "Buy",
+      "sell": "Sell"
+    }
+  },
+  "notifications": {
+    "title": "Notifications",
+    "empty": "No new notifications",
+    "emptyDesc": "You're all caught up.",
+    "notImplementedTitle": "🚧 Feature Not Implemented",
+    "notImplementedDesc": "🚧 This feature isn't implemented yet—but don't worry! You can request it in your next prompt! 🚀"
+  },
+  "modals": {
+    "securedEncryption": "Secured with bank-level encryption",
+    "common": {
+      "amount": "Amount",
+      "amountRequired": "Amount *",
+      "continue": "Continue",
+      "back": "Back",
+      "cancel": "Cancel",
+      "done": "Done",
+      "max": "MAX",
+      "confirmDeposit": "Confirm Deposit",
+      "reviewBeforeSubmit": "Review before you submit",
+      "failedTitle": "Request not accepted",
+      "depositSubmitted": "Deposit Submitted",
+      "fundsReflectShortly": "Funds will reflect in your balance shortly."
+    },
+    "deposit": {
+      "title": "Deposit Funds",
+      "instant": "Instant",
+      "card": {
+        "name": "Credit/Debit Card",
+        "desc": "Instant · $10 – $10,000"
+      },
+      "crypto": {
+        "name": "Cryptocurrency",
+        "desc": "BTC, USDT, ETH · 10–60 min"
+      },
+      "cardCheckout": {
+        "title": "Card payment",
+        "subtitle": "Choose how you want to pay",
+        "external": {
+          "name": "Pay via checkout page",
+          "desc": "Continue on the secure external page"
+        },
+        "internal": {
+          "name": "Pay via Visa/Mastercard",
+          "desc": "Enter your card details here"
+        }
+      }
+    },
+    "cardDeposit": {
+      "title": "Card Deposit",
+      "subtitle": "Instant deposit with your card",
+      "cardNumberRequired": "Card Number *",
+      "cardNumber": "Card Number",
+      "expiryRequired": "Expiry *",
+      "cvvRequired": "CVV *",
+      "cardholderNameRequired": "Cardholder Name *",
+      "namePlaceholder": "Name on card",
+      "sslNotice": "Encrypted and secured with SSL protection.",
+      "cardholder": "Cardholder",
+      "notImplementedDesc": "Card deposit functionality is not yet available."
+    },
+    "cryptoDeposit": {
+      "title": "Crypto Deposit",
+      "subtitle": "Select your preferred cryptocurrency",
+      "networkWarning": "Only send {{crypto}} on the {{network}}. Other assets may be lost.",
+      "depositAddress": "Deposit Address",
+      "network": "Network",
+      "confirmNotice": "Only send funds after sending to the address above. Deposits usually confirm within 10-60 minutes.",
+      "successDesc": "We'll notify you once your deposit is confirmed on-chain.",
+      "copiedTitle": "Copied to clipboard!",
+      "copiedDesc": "Wallet address has been copied.",
+      "notImplementedDesc": "Crypto deposit functionality is not yet available."
+    },
+    "withdraw": {
+      "title": "Withdraw Funds",
+      "verificationNotice": "May require additional verification",
+      "cryptoWallet": "Crypto Wallet",
+      "cryptoFee": "Fee 0.5–2% · 0–1 business hours",
+      "bankTransfer": "Bank Transfer",
+      "bankFee": "Fee 0.5–2% · 1–5 business days"
+    },
+    "bankWithdraw": {
+      "chooseMethod": "Choose a withdrawal method",
+      "bankDetails": "Bank transfer details",
+      "cardDetails": "Card payout details",
+      "confirmTitle": "Confirm Withdrawal",
+      "bankWireIban": "Bank Transfer Wire/IBAN",
+      "bankWireDesc": "USD or EUR · 1–5 business days",
+      "debitCard": "Debit Card",
+      "debitCardDesc": "Visa / Mastercard · Instant payout",
+      "currency": "Currency",
+      "accountHolderRequired": "Account Holder Name *",
+      "accountHolderPlaceholder": "Full name as it appears on the account",
+      "routingNumberRequired": "Routing Number *",
+      "accountNumberRequired": "Account Number *",
+      "accountTypeRequired": "Account Type *",
+      "selectType": "Select type",
+      "checking": "Checking",
+      "savings": "Savings",
+      "bicRequired": "BIC / SWIFT *",
+      "countryRequired": "Country *",
+      "selectCountry": "Select country",
+      "ibanRequired": "IBAN *",
+      "processedNotice": "Processed securely. Typically arrives within 1–3 business days.",
+      "cardPayoutNotice": "Instant payout to eligible Visa/Mastercard debit cards. No CVV needed — we're paying you, not charging you.",
+      "confirmWithdrawal": "Confirm Withdrawal",
+      "usdWarning": "Double-check your account and routing numbers — bank transfers cannot be reversed once sent.",
+      "eurWarning": "Double-check your IBAN — bank transfers cannot be reversed once sent.",
+      "accountHolder": "Account Holder",
+      "accountType": "Account Type",
+      "bic": "BIC / SWIFT",
+      "routingNumber": "Routing Number",
+      "accountNumber": "Account Number",
+      "country": "Country",
+      "iban": "IBAN",
+      "cardWarning": "Double-check your card details — payouts cannot be reversed once sent.",
+      "expiry": "Expiry",
+      "withdrawalSubmitted": "Withdrawal Submitted",
+      "withdrawalSuccessDesc": "You'll get a notification once it's approved."
+    },
+    "cryptoWithdraw": {
+      "title": "Crypto Withdrawal",
+      "subtitle": "To an external wallet",
+      "network": "Network",
+      "fee": "Fee",
+      "processing": "Processing",
+      "minWithdrawal": "Minimum withdrawal",
+      "address": "Address",
+      "addressPlaceholder": "Paste your {{crypto}} address",
+      "available": "Available",
+      "destinationAddress": "Destination address",
+      "doubleCheckTitle": "Double-check before you confirm",
+      "irreversibleNotice": "Transactions cannot be reversed once sent.",
+      "networkSupportNotice": "Make sure the address supports the {{network}} network.",
+      "withdrawCrypto": "Withdraw {{crypto}}",
+      "submittedTitle": "Withdrawal requested",
+      "submittedDesc": "You will be notified once it has been processed."
+    }
+  },
+  "languages": {
+    "en": "English",
+    "hu": "Magyar",
+    "cs": "Čeština",
+    "de": "Deutsch"
+  },
+  "mobileNav": {
+    "trade": "Trade",
+    "assets": "Assets",
+    "wallets": "Wallets",
+    "trades": "Trades",
+    "history": "History"
+  },
+  "changePassword": {
+    "title": "Change Password",
+    "subtitle": "Use at least {{count}} characters.",
+    "current": "Current",
+    "new": "New",
+    "confirm": "Confirm",
+    "update": "Update",
+    "errors": {
+      "required": "Please fill in all fields.",
+      "tooShort": "New password must be at least {{count}} characters.",
+      "mismatch": "The two new passwords do not match."
+    },
+    "successTitle": "Password changed",
+    "successDesc": "Your password has been updated.",
+    "failedTitle": "Could not change password"
+  },
+  "common": {
+    "back": "Back",
+    "loading": "Loading…"
+  },
+  "assets": {
+    "title": "Instruments"
+  },
+  "transactions": {
+    "deposits": "Deposits",
+    "withdrawals": "Withdrawals",
+    "empty": "No transactions yet.",
+    "columns": {
+      "amount": "Amount",
+      "notes": "Notes",
+      "date": "Date",
+      "status": "Status",
+      "type": "Type"
+    },
+    "status": {
+      "approved": "Approved",
+      "success": "Success",
+      "pending": "Pending",
+      "rejected": "Rejected"
+    },
+    "types": {
+      "card": "Card",
+      "wire": "Wire Transfer",
+      "bank": "Bank Transfer",
+      "crypto": "Crypto",
+      "credit": "Bonus Credit"
+    },
+    "summary": {
+      "deposited": "Deposited",
+      "withdrawn": "Withdrawn",
+      "pending": "Pending",
+      "count": "Transactions"
+    }
+  },
+  "auth": {
+    "logIn": "Log in",
+    "signUp": "Sign up",
+    "logInSubtitle": "Access your {{brand}} trading account.",
+    "createAccount": "Create account",
+    "createAccountSubtitle": "Start trading on {{brand}} in minutes.",
+    "email": "Email",
+    "emailPlaceholder": "you@example.com",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "passwordCreatePlaceholder": "At least {{count}} characters",
+    "rememberMe": "Remember me",
+    "forgotPassword": "Forgot password?",
+    "referralOptional": "Referral code (optional)",
+    "referralPlaceholder": "Enter code",
+    "agreeTerms": "I agree to the Terms of Service and Privacy Policy.",
+    "noAccount": "Don't have an account?",
+    "haveAccount": "Already have an account?",
+    "welcomeBack": "Welcome back",
+    "signedInAs": "Signed in as {{email}}.",
+    "signInFailed": "Could not sign in",
+    "or": "or",
+    "googleFailed": "Google sign-in failed.",
+    "accountCreated": "Account created",
+    "accountCreatedDesc": "Welcome to {{brand}}.",
+    "resetSentTitle": "Check your email",
+    "resetSentDesc": "If the address is registered, a reset link is on its way.",
+    "strength": {
+      "weak": "Weak",
+      "fair": "Fair",
+      "good": "Good",
+      "strong": "Strong"
+    },
+    "errors": {
+      "emailRequired": "Enter your email address.",
+      "emailInvalid": "Enter a valid email address.",
+      "passwordRequired": "Enter your password.",
+      "passwordShort": "Use at least 8 characters.",
+      "passwordMismatch": "The two passwords do not match.",
+      "codeRequired": "Enter the 6-digit code.",
+      "termsRequired": "Please accept the terms to continue."
+    },
+    "code": "Verification code",
+    "verify": "Verify",
+    "verifyTitle": "Confirm your email",
+    "verifySubtitle": "We sent a 6-digit code to {{email}}.",
+    "verifiedTitle": "Email confirmed",
+    "verifiedDesc": "Your address has been verified.",
+    "resendCode": "Send a new code",
+    "resendIn": "Request a new code in {{seconds}}s",
+    "codeSentTitle": "Code sent",
+    "codeSentDesc": "A new code is on its way to {{email}}.",
+    "forgotTitle": "Reset your password",
+    "forgotSubtitle": "Enter your email and we will send you a code.",
+    "sendCode": "Send code",
+    "backToLogin": "Back to log in",
+    "resetTitle": "Reset your password",
+    "resetCodeSubtitle": "Enter the code we sent to {{email}}.",
+    "resetPasswordSubtitle": "Choose a new password.",
+    "newPassword": "New password",
+    "confirmPassword": "Confirm password",
+    "changePassword": "Change password",
+    "continue": "Continue",
+    "passwordChangedTitle": "Password changed",
+    "passwordChangedDesc": "Log in with your new password."
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "That address does not exist, or it has moved.",
+    "action": "Back to the terminal"
+  },
+  "onboarding": {
+    "stepOf": "Step {{current}} of {{total}}",
+    "continue": "Continue",
+    "submit": "Submit application",
+    "required": "This field is required.",
+    "selectPlaceholder": "Select an option",
+    "submittedTitle": "Application submitted",
+    "submittedDesc": "Your account is ready. You can start trading now.",
+    "submittedReview": "Your application is under review. We will be in touch shortly.",
+    "failedTitle": "Application not submitted",
+    "manualReview": "Based on your answers, your application needs a manual review before the account is activated.",
+    "riskNotice": "Leveraged products carry a high risk of rapid loss. By submitting you confirm the information given is accurate and complete.",
+    "steps": {
+      "personal": {
+        "title": "Personal details",
+        "subtitle": "As they appear on your government ID."
+      },
+      "address": {
+        "title": "Residential address",
+        "subtitle": "Where you are legally resident for tax purposes."
+      },
+      "financial": {
+        "title": "Financial profile",
+        "subtitle": "Required to assess whether our products suit you."
+      },
+      "experience": {
+        "title": "Trading experience",
+        "subtitle": "Helps us set appropriate limits on your account."
+      },
+      "review": {
+        "title": "Review and submit",
+        "subtitle": "Check your answers before we open the account."
+      }
+    },
+    "fields": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "dateOfBirth": "Date of birth",
+      "nationality": "Nationality",
+      "phone": "Phone number",
+      "country": "Country",
+      "city": "City",
+      "street": "Street address",
+      "currency": "Account currency",
+      "postalCode": "Postal code",
+      "employment": "Employment status",
+      "annualIncome": "Annual income",
+      "sourceOfFunds": "Source of funds",
+      "expectedDeposit": "Expected first deposit",
+      "tradingExperience": "Trading experience",
+      "tradingFrequency": "Trading frequency",
+      "riskTolerance": "Risk tolerance",
+      "politicallyExposed": "Are you a politically exposed person?",
+      "usTaxResident": "Are you a US tax resident?"
+    },
+    "options": {
+      "employment": {
+        "employed": "Employed",
+        "selfEmployed": "Self-employed",
+        "student": "Student",
+        "retired": "Retired",
+        "unemployed": "Unemployed"
+      },
+      "income": {
+        "under25k": "Under $25,000",
+        "from25to50k": "$25,000 - $50,000",
+        "from50to100k": "$50,000 - $100,000",
+        "from100to250k": "$100,000 - $250,000",
+        "over250k": "Over $250,000"
+      },
+      "funds": {
+        "salary": "Salary",
+        "savings": "Savings",
+        "investments": "Investments",
+        "business": "Business income",
+        "inheritance": "Inheritance",
+        "other": "Other"
+      },
+      "deposit": {
+        "under1k": "Under $1,000",
+        "from1to5k": "$1,000 - $5,000",
+        "from5to25k": "$5,000 - $25,000",
+        "from25to100k": "$25,000 - $100,000",
+        "over100k": "Over $100,000"
+      },
+      "experience": {
+        "none": "None",
+        "underOneYear": "Less than 1 year",
+        "oneToThree": "1 - 3 years",
+        "overThree": "More than 3 years"
+      },
+      "frequency": {
+        "never": "Never",
+        "occasionally": "Occasionally",
+        "monthly": "Monthly",
+        "weekly": "Weekly",
+        "daily": "Daily"
+      },
+      "risk": {
+        "low": "Low",
+        "medium": "Medium",
+        "high": "High"
+      },
+      "yesNo": {
+        "no": "No",
+        "yes": "Yes"
+      }
+    }
+  },
+  "support": {
+    "assistantName": "Support Assistant",
+    "assistantStatus": "Replies instantly",
+    "agentName": "Support Agent",
+    "agentStatus": "Online now",
+    "greeting": "Hi {{name}} — I can help with deposits, withdrawals, verification and trading questions.",
+    "prompt": "What do you need help with?",
+    "there": "there",
+    "connecting": "Connecting you to an agent…",
+    "agentJoined": "Hi, this is Sara from {{brand}} support. I can see your account — how can I help?",
+    "agentAck": "Thanks, let me look into that for you.",
+    "noMatch": "I am not sure I can answer that one accurately. An agent can check your account directly.",
+    "inputPlaceholder": "Type a message…",
+    "topics": {
+      "depositMissing": "My deposit has not arrived",
+      "depositPending": "Why is it still pending?",
+      "depositWrongAmount": "The amount credited is wrong",
+      "withdrawalTime": "How long do withdrawals take?",
+      "withdrawalRejected": "My withdrawal was declined",
+      "kyc": "Verify my account",
+      "kycRejected": "My document was rejected",
+      "marginCall": "My position was closed automatically",
+      "leverage": "Leverage and margin",
+      "charges": "Spreads, fees and swaps",
+      "loginIssue": "Login or password problem",
+      "agent": "Talk to an agent"
+    },
+    "answers": {
+      "depositMissing": {
+        "0": "Card deposits normally credit within a few minutes. Bank transfers can take 1–3 business days depending on your bank, and crypto deposits credit after the required network confirmations.",
+        "1": "You can check the current state of every payment under Transactions History — anything still processing shows as Pending there."
+      },
+      "depositPending": {
+        "0": "A deposit stays Pending until the payment provider confirms settlement. Nothing is required from you while it is in that state.",
+        "1": "If a card deposit has been pending for more than 2 hours, or a bank transfer for more than 3 business days, an agent can trace it with your payment reference."
+      },
+      "depositWrongAmount": {
+        "0": "If the credited amount differs from what you sent, the difference is usually the sending bank’s transfer fee or a currency conversion applied on their side.",
+        "1": "Send the payment confirmation from your bank to an agent and the account will be reconciled."
+      },
+      "withdrawalTime": {
+        "0": "Withdrawals are processed back to the original funding method, as anti-money-laundering rules require. Requests submitted before the daily cut-off are reviewed the same business day.",
+        "1": "Once approved, card refunds take 3–5 business days to appear, bank transfers 1–3 business days, and crypto withdrawals are sent once the network confirms."
+      },
+      "withdrawalRejected": {
+        "0": "Withdrawals are most often declined for one of three reasons: verification is incomplete, the destination does not match the original funding method, or open positions would leave the account below its margin requirement.",
+        "1": "Check Settings → KYC Verification first — an unverified account cannot withdraw."
+      },
+      "kyc": {
+        "0": "Verification needs a government ID, a proof of address dated within the last 3 months, and a selfie. Upload them under Settings → KYC Verification.",
+        "1": "Documents are usually reviewed within one business day. Rejections are almost always a cropped edge, glare on the document, or an address document that is too old."
+      },
+      "kycRejected": {
+        "0": "Re-upload using the Replace button on the rejected document. Photograph it flat, in daylight, with all four corners visible and no flash.",
+        "1": "Utility bills, bank statements and council tax letters are accepted as proof of address. Mobile phone bills and handwritten documents are not."
+      },
+      "marginCall": {
+        "0": "Positions are closed automatically when your margin level falls to the close-out threshold. This protects you from going into negative balance and happens without prior notice.",
+        "1": "You can reduce the risk by lowering position size, adding funds, or setting a Stop Loss that triggers before the close-out level is reached."
+      },
+      "leverage": {
+        "0": "Your account leverage is shown on the order ticket next to the estimated margin. Higher leverage lowers the margin per position but makes a close-out happen sooner.",
+        "1": "To apply for a higher tier, go to Settings → Documents → Leverage Increase Request. Requests are reviewed against your trading experience and account history."
+      },
+      "charges": {
+        "0": "Three costs apply: the spread (the difference between the buy and sell price), commission where the instrument charges one, and overnight financing on positions held past the daily rollover.",
+        "1": "Overnight financing can be positive or negative depending on direction and instrument, and it is the cost most often mistaken for an unexplained deduction."
+      },
+      "loginIssue": {
+        "0": "You can set a new password from Settings → My Profile → Change Password, or use Forgot password on the login screen.",
+        "1": "If you are not receiving the reset email, check your spam folder and confirm you are using the address the account was opened with."
+      }
+    }
+  },
+  "certificates": {
+    "mine": "My certificates",
+    "available": "Available",
+    "emptyTitle": "No certificates yet",
+    "emptyDesc": "Completed purchases appear here. Browse the available plans to get started.",
+    "browse": "Browse certificates",
+    "owned": "Owned",
+    "buy": "Buy",
+    "buyTitle": "Buy {{name}}",
+    "period": "Duration",
+    "distribution": "Payout",
+    "agreeTerms": "I agree to the certificate terms and conditions.",
+    "confirmBuy": "Confirm purchase",
+    "incompleteTitle": "Complete the form",
+    "incompleteDesc": "Choose a duration, a payout schedule, and accept the terms.",
+    "buyFailedTitle": "Purchase failed",
+    "boughtTitle": "Certificate purchased",
+    "boughtDesc": "{{name}} has been added to your account.",
+    "returnRange": "{{from}}–{{to}}% projected return",
+    "durationLine": "{{years}} year term",
+    "periods": {
+      "year": "1 year",
+      "years3": "3 years",
+      "years5": "5 years"
+    },
+    "distributions": {
+      "monthly": "Monthly",
+      "quarterly": "Quarterly",
+      "semiAnnually": "Semi-annually",
+      "annually": "Annually"
+    }
+  },
+  "tradingHistory": {
+    "title": "Trades"
+  },
+  "marketStats": {
+    "pin": "Pin instrument",
+    "change24h": "24h Change",
+    "high24h": "24h High",
+    "low24h": "24h Low",
+    "volume24h": "24h Volume"
+  }
+}

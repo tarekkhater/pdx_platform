@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" role="img" aria-label="Bein Markets">
+  <defs>
+    <linearGradient id="g" x1="6" y1="2" x2="42" y2="46" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F7E3A6"/>
+      <stop offset=".55" stop-color="#E2B04A"/>
+      <stop offset="1" stop-color="#B98A2E"/>
+    </linearGradient>
+  </defs>
+  <rect width="48" height="48" rx="13" fill="url(#g)"/>
+  <rect x=".75" y=".75" width="46.5" height="46.5" rx="12.25" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.5"/>
+  <g fill="none" stroke="#0A1712" stroke-width="4.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 11v26"/>
+    <path d="M16 11h8.5a5.5 5.5 0 0 1 0 11H16"/>
+    <path d="M16 22h9.5a7.5 7.5 0 0 1 0 15H16"/>
+  </g>
+  <g fill="none" stroke="#0A1712" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M31.5 21l5.5-6"/>
+    <path d="M32.5 13.5H38v5.5"/>
+  </g>
+</svg>

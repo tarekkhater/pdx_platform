@@ -1,0 +1,823 @@
+{
+  "header": {
+    "title": "{{brand}}",
+    "searchPlaceholder": "Assets suchen...",
+    "addFunds": "+ Geld einzahlen",
+    "viewProfile": "Profil ansehen",
+    "withdrawals": "Auszahlungen",
+    "nav": {
+      "tradeStation": "Trade Station",
+      "tradingHistory": "Handelsverlauf",
+      "market": "Markt"
+    }
+  },
+  "topBar": {
+    "trade": "Handel",
+    "wallets": "Wallets",
+    "markets": "Märkte",
+    "trades": "Trades"
+  },
+  "accountSheet": {
+    "profileSubtitle": "{{brand}} Profil",
+    "balance": "Guthaben",
+    "equity": "Eigenkapital",
+    "availableFunds": "Verfügbare Mittel",
+    "initialMargin": "Anfangsmargin",
+    "maintenanceMargin": "Haltemargin",
+    "marginLevel": "Marginlevel",
+    "myAccounts": "Meine Konten",
+    "transactionsHistory": "Transaktionsverlauf",
+    "certificates": "Zertifikate",
+    "addFunds": "Geld einzahlen",
+    "myProfile": "Mein Profil",
+    "settings": "Einstellungen",
+    "accountName": "{{brand}} Live"
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "accountSub": "{{brand}} Konto",
+    "profile": "Profil",
+    "appearance": "Erscheinungsbild",
+    "language": "Sprache",
+    "kyc": "KYC-Verifizierung",
+    "help": "Hilfe",
+    "aboutUs": "Über uns",
+    "legal": "Rechtliches",
+    "documents": "Dokumente",
+    "logOut": "Abmelden"
+  },
+  "profile": {
+    "title": "Profil",
+    "personalInfo": "Persönliche Daten",
+    "security": "Sicherheit",
+    "changePassword": "Passwort ändern",
+    "saveChanges": "Änderungen speichern",
+    "savedTitle": "✅ Profil aktualisiert",
+    "savedDesc": "Ihre Daten wurden gespeichert.",
+    "saveFailedTitle": "Speichern fehlgeschlagen",
+    "fields": {
+      "email": "E-Mail",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "phone": "Telefon",
+      "country": "Land",
+      "city": "Stadt",
+      "address": "Adresse",
+      "postalCode": "Postleitzahl"
+    }
+  },
+  "kyc": {
+    "inReview": "Verifizierung in Prüfung",
+    "progress": "{{approved}} von {{total}} Dokumenten genehmigt",
+    "requiredDocuments": "Erforderliche Dokumente",
+    "updated": "Aktualisiert {{date}}",
+    "notUploaded": "Nicht hochgeladen",
+    "notice": "Dokumente werden innerhalb eines Werktags geprüft. Sie werden benachrichtigt, sobald Ihre Verifizierung abgeschlossen ist.",
+    "uploadNotImplemented": "Der Dokumenten-Upload ist noch nicht angebunden.",
+    "documents": {
+      "frontId": "Ausweis — Vorderseite",
+      "backId": "Ausweis — Rückseite",
+      "selfie": "Selfie mit Ausweis",
+      "proofOfAddress": "Adressnachweis"
+    },
+    "status": {
+      "approved": "Genehmigt",
+      "pending": "In Prüfung",
+      "missing": "Erforderlich"
+    },
+    "upload": "Hochladen",
+    "replace": "Ersetzen",
+    "uploadedTitle": "📤 Dokument hochgeladen",
+    "uploadedDesc": "{{document}} wurde zur Prüfung eingereicht."
+  },
+  "appearance": {
+    "theme": "Design",
+    "note": "System folgt der Einstellung Ihres Geräts und wechselt automatisch.",
+    "modes": {
+      "light": "Hell",
+      "dark": "Dunkel",
+      "system": "System"
+    },
+    "descriptions": {
+      "light": "Helle Oberfläche für gut beleuchtete Räume",
+      "dark": "Die Standardansicht, angenehmer für die Augen",
+      "system": "An Gerätedesign anpassen"
+    }
+  },
+  "legal": {
+    "updated": "Aktualisiert {{date}}"
+  },
+  "about": {
+    "whatWeStandFor": "Wofür wir stehen",
+    "contact": "Kontakt"
+  },
+  "documents": {
+    "tabs": {
+      "agreements": "Verträge",
+      "additional": "Weitere"
+    },
+    "pendingBanner_one": "{{count}} Dokument erfordert Ihre Aktion.",
+    "pendingBanner_other": "{{count}} Dokumente erfordern Ihre Aktion.",
+    "notice": "Unterzeichnete Dokumente werden Ihrem Konto zugeordnet; eine Kopie erhalten Sie auf Anfrage von Ihrem Account Manager.",
+    "emptyAdditional": "Derzeit keine weiteren Dokumente. Was Ihr Account Manager sendet, erscheint hier.",
+    "versionLine": "Version {{version}} · Aktualisiert {{date}}",
+    "completedOn": "Abgeschlossen am {{date}}.",
+    "underReviewSince": "1:{{leverage}} beantragt am {{date}}. In Prüfung.",
+    "currentLeverage": "Aktueller Hebel",
+    "requestedLeverage": "Gewünschter Hebel",
+    "taxCountry": "Land der Steueransässigkeit",
+    "tin": "Steueridentifikationsnummer (TIN)",
+    "tinPlaceholder": "Von Ihrer Steuerbehörde vergeben",
+    "signatureLabel": "Vollständigen Namen zur Unterschrift eingeben",
+    "signatureHint": "Die Eingabe Ihres Namens gilt als rechtsverbindliche elektronische Unterschrift.",
+    "status": {
+      "pending": "Aktion erforderlich",
+      "signed": "Abgeschlossen",
+      "review": "In Prüfung"
+    },
+    "cta": {
+      "sign": "Signieren",
+      "acknowledge": "Lesen",
+      "leverage": "Beantragen",
+      "taxForm": "Erklären"
+    },
+    "actions": {
+      "sign": "Dokument unterschreiben",
+      "acknowledge": "Zur Kenntnis genommen",
+      "submitRequest": "Antrag senden",
+      "submitDeclaration": "Erklärung senden"
+    },
+    "consent": {
+      "sign": "Ich habe das Dokument gelesen und erkenne es vollumfänglich an.",
+      "acknowledge": "Ich bestätige, die oben beschriebenen Risiken gelesen und verstanden zu haben.",
+      "leverage": "Mir ist bewusst, dass ein höherer Hebel Verluste beschleunigt und dieser Antrag abgelehnt werden kann.",
+      "taxForm": "Ich erkläre, dass die Angaben richtig und vollständig sind, und melde Änderungen innerhalb von 30 Tagen."
+    },
+    "errors": {
+      "mustAgree": "Bitte bestätigen Sie vor dem Absenden.",
+      "signatureRequired": "Geben Sie Ihren vollständigen Namen ein.",
+      "signatureShort": "Geben Sie Ihren vollständigen Namen ein.",
+      "countryRequired": "Geben Sie das Land der Steueransässigkeit an.",
+      "tinRequired": "Geben Sie Ihre Steueridentifikationsnummer an."
+    },
+    "submittedTitle": "Dokument abgeschlossen",
+    "submittedDesc": "Eine Kopie wurde Ihrem Konto zugeordnet.",
+    "submittedReviewTitle": "Antrag gesendet",
+    "submittedReviewDesc": "Wir prüfen Ihren Antrag und melden uns in Kürze."
+  },
+  "wallets": {
+    "title": "Mein Wallet",
+    "balance": "Guthaben",
+    "todayPnl": "Heutiger G&V",
+    "deposit": "Einzahlen",
+    "withdraw": "Auszahlen",
+    "account": "Konto",
+    "pnl": "G&V",
+    "margin": "Margin",
+    "freeMargin": "Freie Margin",
+    "freeMarginPercent": "Freie Margin %",
+    "equity": "Eigenkapital",
+    "credit": "Kredit",
+    "recentTransactions": "Letzte Transaktionen",
+    "status": {
+      "success": "Erfolgreich"
+    },
+    "viewAll": "Alle"
+  },
+  "balanceBar": {
+    "balance": "Guthaben",
+    "pnl": "G&V",
+    "margin": "Margin",
+    "freeMargin": "Freie Margin",
+    "freeMarginPercent": "Freie Margin %",
+    "equity": "Eigenkapital",
+    "awaitingDeposit": "Warte auf Einzahlung",
+    "credit": "Kredit"
+  },
+  "assetList": {
+    "title": "Märkte",
+    "searchPlaceholder": "Assets suchen...",
+    "noAssetsFound": "Keine Assets für \"{{searchTerm}}\" in {{activeTab}} gefunden.",
+    "tabs": {
+      "favourite": "Favoriten",
+      "crypto": "Krypto",
+      "stocks": "Aktien",
+      "forex": "Forex",
+      "indices": "Indizes",
+      "commodities": "Rohstoffe"
+    },
+    "noFavourites": "Noch keine angehefteten Instrumente. Tippen Sie auf den Stern, um eines anzuheften."
+  },
+  "tradingChart": {
+    "high": "Hoch",
+    "low": "Tief",
+    "volume": "Volumen",
+    "change24h": "24h Änderung",
+    "liveTrading": "Live-Handel"
+  },
+  "tradeStation": {
+    "changeAsset": "Ändern",
+    "selectAsset": "Asset auswählen",
+    "favourites": {
+      "holdToRemove": "gedrückt halten zum Entfernen"
+    }
+  },
+  "openTrades": {
+    "title": "Offene Trades",
+    "active": "{{count}} Aktiv",
+    "noTrades": "Keine offenen Trades",
+    "nothingHereYet": "Hier gibt es noch nichts.",
+    "qty": "Menge",
+    "entry": "Einstieg",
+    "current": "Aktuell",
+    "market": "Markt",
+    "amount": "Betrag",
+    "pnl": "G&V",
+    "roi": "ROI",
+    "long": "Long",
+    "short": "Short",
+    "sl": "SL",
+    "tp": "TP",
+    "margin": "Margin",
+    "opened": "Eröffnet",
+    "positionId": "Positions-ID",
+    "closePosition": "Position schließen",
+    "tabs": {
+      "positions": "Positionen",
+      "pending": "Ausstehend",
+      "closed": "Geschlossen"
+    },
+    "toast": {
+      "tradeClosedTitle": "✅ Trade geschlossen",
+      "tradeClosedDesc": "Ihre Position wurde erfolgreich geschlossen.",
+      "allClosedTitle": "Alle Positionen geschlossen",
+      "allClosedDesc_one": "{{count}} Position wurde geschlossen.",
+      "allClosedDesc_other": "{{count}} Positionen wurden geschlossen.",
+      "orderCancelledTitle": "Order storniert",
+      "orderCancelledDesc": "Die offene Order wurde storniert.",
+      "closeFailedTitle": "Schließen fehlgeschlagen",
+      "closeFailedDesc": "Die Anfrage wurde abgelehnt. Die Position ist unverändert.",
+      "cancelFailedTitle": "Stornierung fehlgeschlagen"
+    },
+    "closeAll": "Alle schließen",
+    "confirmCloseAll": "Bestätigen?",
+    "gross": "Brutto",
+    "swap": "Swap",
+    "fee": "Gebühr",
+    "net": "Netto",
+    "cancelOrder": "Order stornieren",
+    "noPending": "Keine offenen Orders",
+    "noClosed": "Keine geschlossenen Trades",
+    "reason": {
+      "manual": "Manuell",
+      "takeProfit": "Take-Profit",
+      "stopLoss": "Stop-Loss",
+      "marginCall": "Margin Call"
+    },
+    "lot": "Lot",
+    "target": "Zielkurs",
+    "closePrice": "Schluss",
+    "placed": "Platziert",
+    "reasonLabel": "Grund"
+  },
+  "orderPanel": {
+    "buy": "Kaufen",
+    "sell": "Verkaufen",
+    "buyLong": "KAUFEN (LONG)",
+    "sellShort": "VERKAUFEN (SHORT)",
+    "amount": "Betrag",
+    "leverage": "Hebel",
+    "entryPrice": "Einstiegskurs",
+    "positionSize": "Positionsgröße",
+    "estFee": "Gesch. Gebühr",
+    "estMargin": "Gesch. Margin",
+    "placeBuyOrder": "Kauforder platzieren",
+    "placeSellOrder": "Verkaufsorder platzieren",
+    "market": "Markt",
+    "pending": "Ausstehend",
+    "slTp": "SL / TP",
+    "slTpSet": "SL / TP GESETZT",
+    "stopLoss": "Stop Loss",
+    "takeProfit": "Take Profit",
+    "priceMode": "Preis",
+    "lot": "Lot",
+    "lots": "Lots",
+    "initMargin": "Anfangsmargin",
+    "confirm": "Bestätigen",
+    "asset": "Asset",
+    "execution": "Ausführung",
+    "cancel": "Abbrechen",
+    "toast": {
+      "invalidAmountTitle": "⚠️ Ungültiger Betrag",
+      "invalidAmountDesc": "Bitte geben Sie einen gültigen Betrag für den Handel ein.",
+      "buyOrderPlaced": "📈 Order platziert!",
+      "sellOrderPlaced": "📉 Order platziert!",
+      "orderDesc": "{{orderType}}-Order für {{amount}} {{asset}} zu ${{price}} mit {{leverage}}x Hebel.",
+      "invalidTargetTitle": "Kein Zielkurs",
+      "invalidTargetDesc": "Geben Sie den Kurs ein, zu dem die Order eröffnet werden soll.",
+      "pendingPlacedTitle": "Offene Order platziert",
+      "pendingPlacedDesc": "{{orderType}} {{amount}} {{asset}} wartet auf ${{price}}.",
+      "pendingFilledTitle": "Offene Order eröffnet",
+      "pendingFilledDesc": "{{asset}} hat {{price}} erreicht — die Position ist jetzt offen.",
+      "rejectedTitle": "Auftrag nicht angenommen",
+      "rejectedDesc": "Der Auftrag wurde abgelehnt. Es wurde nichts eröffnet.",
+      "tradingBlockedTitle": "Handel nicht verfügbar",
+      "tradingBlockedDesc": "Für dieses Konto ist der Handel nicht freigeschaltet. Bitte wenden Sie sich an den Support.",
+      "leverageChangeBlockedTitle": "Hebel gesperrt",
+      "leverageChangeBlocked": "Sie haben keine Berechtigung, die Hebelwirkung zu ändern. Wenden Sie sich an Ihren Kundenbetreuer oder den Kundendienst für Unterstützung.",
+      "leverageMaxTitle": "Hebel-Limit",
+      "leverageMax": "Der Hebel darf nicht höher als {{max}}x sein.",
+      "marketClosedTitle": "Markt geschlossen",
+      "marketClosed": {
+        "closed": "Dieses Instrument ist außerhalb seiner Handelszeiten.",
+        "suspended": "Der Handel mit diesem Instrument ist ausgesetzt.",
+        "noQuote": "Für dieses Instrument liegt noch kein Kurs vor.",
+        "stale": "Der Kursfeed für dieses Instrument wird nicht mehr aktualisiert."
+      }
+    },
+    "target": "Zielkurs",
+    "opensWhenReached": "Wird eröffnet, sobald der Kurs dieses Niveau erreicht",
+    "type": "Typ",
+    "pair": "Paar"
+  },
+  "technicalAnalysis": {
+    "title": "Technische Analyse",
+    "marketSentiment": "Marktstimmung",
+    "bullish": "{{percent}}% Bullisch",
+    "buySignal": "{{count}} Kaufen",
+    "neutralSignal": "{{count}} Neutral",
+    "sellSignal": "{{count}} Verkaufen",
+    "signals": {
+      "neutral": "Neutral",
+      "buy": "Kaufen",
+      "sell": "Verkaufen"
+    }
+  },
+  "notifications": {
+    "title": "Benachrichtigungen",
+    "empty": "Keine neuen Benachrichtigungen",
+    "emptyDesc": "Sie sind auf dem neuesten Stand.",
+    "notImplementedTitle": "🚧 Funktion nicht implementiert",
+    "notImplementedDesc": "🚧 Diese Funktion ist noch nicht implementiert, aber keine Sorge! Sie können sie in Ihrer nächsten Anfrage anfordern! 🚀"
+  },
+  "modals": {
+    "securedEncryption": "Gesichert mit Verschlüsselung auf Bankniveau",
+    "common": {
+      "amount": "Betrag",
+      "amountRequired": "Betrag *",
+      "continue": "Weiter",
+      "back": "Zurück",
+      "cancel": "Abbrechen",
+      "done": "Fertig",
+      "max": "MAX",
+      "confirmDeposit": "Einzahlung bestätigen",
+      "reviewBeforeSubmit": "Prüfen Sie die Angaben vor dem Absenden",
+      "failedTitle": "Anfrage nicht angenommen",
+      "depositSubmitted": "Einzahlung übermittelt",
+      "fundsReflectShortly": "Das Guthaben wird in Kürze auf Ihrem Konto angezeigt."
+    },
+    "deposit": {
+      "title": "Geld einzahlen",
+      "instant": "Sofort",
+      "card": {
+        "name": "Kredit-/Debitkarte",
+        "desc": "Sofort · $10 – $10.000"
+      },
+      "crypto": {
+        "name": "Kryptowährung",
+        "desc": "BTC, USDT, ETH · 10–60 Min."
+      },
+      "cardCheckout": {
+        "title": "Kartenzahlung",
+        "subtitle": "Wählen Sie, wie Sie zahlen möchten",
+        "external": {
+          "name": "Über die Checkout-Seite zahlen",
+          "desc": "Weiter auf der sicheren externen Seite"
+        },
+        "internal": {
+          "name": "Mit Visa/Mastercard zahlen",
+          "desc": "Kartendaten hier eingeben"
+        }
+      }
+    },
+    "cardDeposit": {
+      "title": "Kartenzahlung",
+      "subtitle": "Sofortige Einzahlung mit Ihrer Karte",
+      "cardNumberRequired": "Kartennummer *",
+      "cardNumber": "Kartennummer",
+      "expiryRequired": "Ablaufdatum *",
+      "cvvRequired": "CVV *",
+      "cardholderNameRequired": "Name des Karteninhabers *",
+      "namePlaceholder": "Name auf der Karte",
+      "sslNotice": "Verschlüsselt und durch SSL geschützt.",
+      "cardholder": "Karteninhaber",
+      "notImplementedDesc": "Die Kartenzahlung ist noch nicht verfügbar."
+    },
+    "cryptoDeposit": {
+      "title": "Krypto-Einzahlung",
+      "subtitle": "Wählen Sie Ihre bevorzugte Kryptowährung",
+      "networkWarning": "Senden Sie nur {{crypto}} über das {{network}}. Andere Assets können verloren gehen.",
+      "depositAddress": "Einzahlungsadresse",
+      "network": "Netzwerk",
+      "confirmNotice": "Senden Sie Gelder erst, nachdem Sie an die obige Adresse gesendet haben. Einzahlungen bestätigen sich meist innerhalb von 10-60 Minuten.",
+      "successDesc": "Wir benachrichtigen Sie, sobald Ihre Einzahlung on-chain bestätigt ist.",
+      "copiedTitle": "In die Zwischenablage kopiert!",
+      "copiedDesc": "Die Wallet-Adresse wurde kopiert.",
+      "notImplementedDesc": "Die Krypto-Einzahlung ist noch nicht verfügbar."
+    },
+    "withdraw": {
+      "title": "Geld auszahlen",
+      "verificationNotice": "Kann eine zusätzliche Verifizierung erfordern",
+      "cryptoWallet": "Krypto-Wallet",
+      "cryptoFee": "Gebühr 0,5–2 % · 0–1 Werkstunden",
+      "bankTransfer": "Banküberweisung",
+      "bankFee": "Gebühr 0,5–2 % · 1–5 Werktage"
+    },
+    "bankWithdraw": {
+      "chooseMethod": "Wählen Sie eine Auszahlungsmethode",
+      "bankDetails": "Details zur Banküberweisung",
+      "cardDetails": "Details zur Kartenauszahlung",
+      "confirmTitle": "Auszahlung bestätigen",
+      "bankWireIban": "Banküberweisung/IBAN",
+      "bankWireDesc": "USD oder EUR · 1–5 Werktage",
+      "debitCard": "Debitkarte",
+      "debitCardDesc": "Visa / Mastercard · Sofortige Auszahlung",
+      "currency": "Währung",
+      "accountHolderRequired": "Name des Kontoinhabers *",
+      "accountHolderPlaceholder": "Vollständiger Name laut Konto",
+      "routingNumberRequired": "Bankleitzahl *",
+      "accountNumberRequired": "Kontonummer *",
+      "accountTypeRequired": "Kontotyp *",
+      "selectType": "Typ auswählen",
+      "checking": "Girokonto",
+      "savings": "Sparkonto",
+      "bicRequired": "BIC / SWIFT *",
+      "countryRequired": "Land *",
+      "selectCountry": "Land auswählen",
+      "ibanRequired": "IBAN *",
+      "processedNotice": "Sicher verarbeitet. Trifft in der Regel innerhalb von 1–3 Werktagen ein.",
+      "cardPayoutNotice": "Sofortige Auszahlung an teilnahmeberechtigte Visa-/Mastercard-Debitkarten. Kein CVV nötig — wir zahlen Ihnen aus, wir belasten Sie nicht.",
+      "confirmWithdrawal": "Auszahlung bestätigen",
+      "usdWarning": "Prüfen Sie Konto- und Bankleitzahl genau — Überweisungen können nach dem Absenden nicht rückgängig gemacht werden.",
+      "eurWarning": "Prüfen Sie Ihre IBAN genau — Überweisungen können nach dem Absenden nicht rückgängig gemacht werden.",
+      "accountHolder": "Kontoinhaber",
+      "accountType": "Kontotyp",
+      "bic": "BIC / SWIFT",
+      "routingNumber": "Bankleitzahl",
+      "accountNumber": "Kontonummer",
+      "country": "Land",
+      "iban": "IBAN",
+      "cardWarning": "Prüfen Sie Ihre Kartendaten genau — Auszahlungen können nach dem Absenden nicht rückgängig gemacht werden.",
+      "expiry": "Ablaufdatum",
+      "withdrawalSubmitted": "Auszahlung übermittelt",
+      "withdrawalSuccessDesc": "Sie erhalten eine Benachrichtigung, sobald sie genehmigt wurde."
+    },
+    "cryptoWithdraw": {
+      "title": "Krypto-Auszahlung",
+      "subtitle": "An eine externe Wallet",
+      "network": "Netzwerk",
+      "fee": "Gebühr",
+      "processing": "Bearbeitung",
+      "minWithdrawal": "Mindestauszahlung",
+      "address": "Adresse",
+      "addressPlaceholder": "{{crypto}}-Adresse einfügen",
+      "available": "Verfügbar",
+      "destinationAddress": "Zieladresse",
+      "doubleCheckTitle": "Vor der Bestätigung prüfen",
+      "irreversibleNotice": "Transaktionen können nach dem Absenden nicht rückgängig gemacht werden.",
+      "networkSupportNotice": "Stellen Sie sicher, dass die Adresse das {{network}}-Netzwerk unterstützt.",
+      "withdrawCrypto": "{{crypto}} auszahlen",
+      "submittedTitle": "Auszahlung beantragt",
+      "submittedDesc": "Wir benachrichtigen Sie, sobald sie bearbeitet wurde."
+    }
+  },
+  "languages": {
+    "en": "English",
+    "hu": "Magyar",
+    "cs": "Čeština",
+    "de": "Deutsch"
+  },
+  "mobileNav": {
+    "trade": "Handel",
+    "assets": "Assets",
+    "wallets": "Wallets",
+    "trades": "Trades",
+    "history": "Verlauf"
+  },
+  "changePassword": {
+    "title": "Passwort ändern",
+    "subtitle": "Mindestens {{count}} Zeichen verwenden.",
+    "current": "Aktuell",
+    "new": "Neu",
+    "confirm": "Bestätigen",
+    "update": "Speichern",
+    "errors": {
+      "required": "Bitte füllen Sie alle Felder aus.",
+      "tooShort": "Das neue Passwort muss mindestens {{count}} Zeichen haben.",
+      "mismatch": "Die neuen Passwörter stimmen nicht überein."
+    },
+    "successTitle": "Passwort geändert",
+    "successDesc": "Ihr Passwort wurde aktualisiert.",
+    "failedTitle": "Passwortänderung fehlgeschlagen"
+  },
+  "common": {
+    "back": "Zurück",
+    "loading": "Wird geladen…"
+  },
+  "assets": {
+    "title": "Instrumente"
+  },
+  "transactions": {
+    "deposits": "Einzahlungen",
+    "withdrawals": "Auszahlungen",
+    "empty": "Noch keine Transaktionen.",
+    "columns": {
+      "amount": "Betrag",
+      "notes": "Notizen",
+      "date": "Datum",
+      "status": "Status",
+      "type": "Typ"
+    },
+    "status": {
+      "approved": "Genehmigt",
+      "success": "Erfolgreich",
+      "pending": "Ausstehend",
+      "rejected": "Abgelehnt"
+    },
+    "types": {
+      "card": "Karte",
+      "wire": "Überweisung",
+      "bank": "Banküberweisung",
+      "crypto": "Krypto",
+      "credit": "Bonusgutschrift"
+    },
+    "summary": {
+      "deposited": "Eingezahlt",
+      "withdrawn": "Ausgezahlt",
+      "pending": "Ausstehend",
+      "count": "Transaktionen"
+    }
+  },
+  "auth": {
+    "logIn": "Anmelden",
+    "signUp": "Registrieren",
+    "logInSubtitle": "Melden Sie sich bei Ihrem {{brand}}-Konto an.",
+    "createAccount": "Konto erstellen",
+    "createAccountSubtitle": "Starten Sie in wenigen Minuten den Handel auf {{brand}}.",
+    "email": "E-Mail",
+    "emailPlaceholder": "sie@beispiel.de",
+    "password": "Passwort",
+    "passwordPlaceholder": "Passwort eingeben",
+    "passwordCreatePlaceholder": "Mindestens {{count}} Zeichen",
+    "rememberMe": "Angemeldet bleiben",
+    "forgotPassword": "Passwort vergessen?",
+    "referralOptional": "Empfehlungscode (optional)",
+    "referralPlaceholder": "Code eingeben",
+    "agreeTerms": "Ich stimme den Nutzungsbedingungen und der Datenschutzerklärung zu.",
+    "noAccount": "Noch kein Konto?",
+    "haveAccount": "Bereits ein Konto?",
+    "welcomeBack": "Willkommen zurück",
+    "signedInAs": "Angemeldet als {{email}}.",
+    "signInFailed": "Anmeldung fehlgeschlagen",
+    "accountCreated": "Konto erstellt",
+    "accountCreatedDesc": "Willkommen bei {{brand}}.",
+    "resetSentTitle": "Prüfen Sie Ihre E-Mails",
+    "resetSentDesc": "Falls die Adresse registriert ist, ist der Link unterwegs.",
+    "strength": {
+      "weak": "Schwach",
+      "fair": "Ausreichend",
+      "good": "Gut",
+      "strong": "Stark"
+    },
+    "errors": {
+      "emailRequired": "Geben Sie Ihre E-Mail-Adresse ein.",
+      "emailInvalid": "Geben Sie eine gültige E-Mail-Adresse ein.",
+      "passwordRequired": "Geben Sie Ihr Passwort ein.",
+      "passwordShort": "Verwenden Sie mindestens 8 Zeichen.",
+      "passwordMismatch": "Die beiden Passwörter stimmen nicht überein.",
+      "codeRequired": "Geben Sie den 6-stelligen Code ein.",
+      "termsRequired": "Bitte akzeptieren Sie die Bedingungen."
+    },
+    "code": "Bestätigungscode",
+    "verify": "Bestätigen",
+    "verifyTitle": "E-Mail bestätigen",
+    "verifySubtitle": "Wir haben einen 6-stelligen Code an {{email}} gesendet.",
+    "verifiedTitle": "E-Mail bestätigt",
+    "verifiedDesc": "Ihre Adresse wurde bestätigt.",
+    "resendCode": "Neuen Code senden",
+    "resendIn": "Neuer Code in {{seconds}}s",
+    "codeSentTitle": "Code gesendet",
+    "codeSentDesc": "Ein neuer Code ist an {{email}} unterwegs.",
+    "forgotTitle": "Passwort zurücksetzen",
+    "forgotSubtitle": "Geben Sie Ihre E-Mail ein und wir senden Ihnen einen Code.",
+    "sendCode": "Code senden",
+    "backToLogin": "Zurück zur Anmeldung",
+    "resetTitle": "Passwort zurücksetzen",
+    "resetCodeSubtitle": "Geben Sie den Code ein, den wir an {{email}} gesendet haben.",
+    "resetPasswordSubtitle": "Wählen Sie ein neues Passwort.",
+    "newPassword": "Neues Passwort",
+    "confirmPassword": "Passwort bestätigen",
+    "changePassword": "Passwort ändern",
+    "continue": "Weiter",
+    "passwordChangedTitle": "Passwort geändert",
+    "passwordChangedDesc": "Melden Sie sich mit Ihrem neuen Passwort an."
+  },
+  "notFound": {
+    "title": "Seite nicht gefunden",
+    "description": "Diese Adresse existiert nicht oder wurde verschoben.",
+    "action": "Zurück zum Terminal"
+  },
+  "onboarding": {
+    "stepOf": "Schritt {{current}} von {{total}}",
+    "continue": "Weiter",
+    "submit": "Antrag einreichen",
+    "required": "Dieses Feld ist erforderlich.",
+    "selectPlaceholder": "Bitte wählen",
+    "submittedTitle": "Antrag eingereicht",
+    "submittedDesc": "Ihr Konto ist bereit. Sie können jetzt handeln.",
+    "submittedReview": "Ihr Antrag wird geprüft. Wir melden uns in Kürze.",
+    "failedTitle": "Antrag nicht übermittelt",
+    "manualReview": "Aufgrund Ihrer Angaben muss Ihr Antrag vor der Kontoaktivierung manuell geprüft werden.",
+    "riskNotice": "Hebelprodukte bergen ein hohes Risiko schneller Verluste. Mit dem Absenden bestätigen Sie, dass Ihre Angaben richtig und vollständig sind.",
+    "steps": {
+      "personal": {
+        "title": "Persönliche Angaben",
+        "subtitle": "Wie auf Ihrem amtlichen Ausweis."
+      },
+      "address": {
+        "title": "Wohnanschrift",
+        "subtitle": "Wo Sie steuerlich ansässig sind."
+      },
+      "financial": {
+        "title": "Finanzprofil",
+        "subtitle": "Erforderlich zur Prüfung der Produkteignung."
+      },
+      "experience": {
+        "title": "Handelserfahrung",
+        "subtitle": "Hilft uns, passende Kontolimits festzulegen."
+      },
+      "review": {
+        "title": "Prüfen und absenden",
+        "subtitle": "Prüfen Sie Ihre Angaben vor der Kontoeröffnung."
+      }
+    },
+    "fields": {
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "dateOfBirth": "Geburtsdatum",
+      "nationality": "Staatsangehörigkeit",
+      "phone": "Telefonnummer",
+      "country": "Land",
+      "city": "Stadt",
+      "street": "Straße und Hausnummer",
+      "currency": "Kontowährung",
+      "postalCode": "Postleitzahl",
+      "employment": "Beschäftigungsstatus",
+      "annualIncome": "Jahreseinkommen",
+      "sourceOfFunds": "Herkunft der Mittel",
+      "expectedDeposit": "Erwartete Ersteinzahlung",
+      "tradingExperience": "Handelserfahrung",
+      "tradingFrequency": "Handelshäufigkeit",
+      "riskTolerance": "Risikobereitschaft",
+      "politicallyExposed": "Sind Sie eine politisch exponierte Person?",
+      "usTaxResident": "Sind Sie in den USA steuerpflichtig?"
+    },
+    "options": {
+      "employment": {
+        "employed": "Angestellt",
+        "selfEmployed": "Selbstständig",
+        "student": "Student",
+        "retired": "Im Ruhestand",
+        "unemployed": "Arbeitslos"
+      },
+      "income": {
+        "under25k": "Unter 25.000 $",
+        "from25to50k": "25.000 - 50.000 $",
+        "from50to100k": "50.000 - 100.000 $",
+        "from100to250k": "100.000 - 250.000 $",
+        "over250k": "Über 250.000 $"
+      },
+      "funds": {
+        "salary": "Gehalt",
+        "savings": "Ersparnisse",
+        "investments": "Investitionen",
+        "business": "Geschäftseinkommen",
+        "inheritance": "Erbschaft",
+        "other": "Sonstiges"
+      },
+      "deposit": {
+        "under1k": "Unter 1.000 $",
+        "from1to5k": "1.000 - 5.000 $",
+        "from5to25k": "5.000 - 25.000 $",
+        "from25to100k": "25.000 - 100.000 $",
+        "over100k": "Über 100.000 $"
+      },
+      "experience": {
+        "none": "Keine",
+        "underOneYear": "Weniger als 1 Jahr",
+        "oneToThree": "1 - 3 Jahre",
+        "overThree": "Mehr als 3 Jahre"
+      },
+      "frequency": {
+        "never": "Nie",
+        "occasionally": "Gelegentlich",
+        "monthly": "Monatlich",
+        "weekly": "Wöchentlich",
+        "daily": "Täglich"
+      },
+      "risk": {
+        "low": "Niedrig",
+        "medium": "Mittel",
+        "high": "Hoch"
+      },
+      "yesNo": {
+        "no": "Nein",
+        "yes": "Ja"
+      }
+    }
+  },
+  "support": {
+    "assistantName": "Support-Assistent",
+    "assistantStatus": "Antwortet sofort",
+    "agentName": "Support-Mitarbeiter",
+    "agentStatus": "Jetzt online",
+    "greeting": "Hallo {{name}} — ich helfe bei Einzahlungen, Auszahlungen, Verifizierung und Handelsfragen.",
+    "prompt": "Womit kann ich helfen?",
+    "there": "dort",
+    "connecting": "Sie werden mit einem Mitarbeiter verbunden…",
+    "agentJoined": "Hallo, hier ist Sara vom {{brand}}-Support. Ich sehe Ihr Konto — wie kann ich helfen?",
+    "agentAck": "Danke, ich sehe mir das an.",
+    "noMatch": "Das kann ich nicht sicher beantworten. Ein Mitarbeiter kann Ihr Konto direkt prüfen.",
+    "inputPlaceholder": "Nachricht schreiben…",
+    "topics": {
+      "depositMissing": "Meine Einzahlung ist nicht angekommen",
+      "depositPending": "Warum ist sie noch ausstehend?",
+      "depositWrongAmount": "Der gutgeschriebene Betrag stimmt nicht",
+      "withdrawalTime": "Wie lange dauern Auszahlungen?",
+      "withdrawalRejected": "Meine Auszahlung wurde abgelehnt",
+      "kyc": "Konto verifizieren",
+      "kycRejected": "Mein Dokument wurde abgelehnt",
+      "marginCall": "Meine Position wurde automatisch geschlossen",
+      "leverage": "Hebel und Margin",
+      "charges": "Spreads, Gebühren und Swaps",
+      "loginIssue": "Anmelde- oder Passwortproblem",
+      "agent": "Mit einem Mitarbeiter sprechen"
+    },
+    "answers": {
+      "depositMissing": {
+        "0": "Card deposits normally credit within a few minutes. Bank transfers can take 1–3 business days depending on your bank, and crypto deposits credit after the required network confirmations.",
+        "1": "You can check the current state of every payment under Transactions History — anything still processing shows as Pending there."
+      },
+      "depositPending": {
+        "0": "A deposit stays Pending until the payment provider confirms settlement. Nothing is required from you while it is in that state.",
+        "1": "If a card deposit has been pending for more than 2 hours, or a bank transfer for more than 3 business days, an agent can trace it with your payment reference."
+      },
+      "depositWrongAmount": {
+        "0": "If the credited amount differs from what you sent, the difference is usually the sending bank’s transfer fee or a currency conversion applied on their side.",
+        "1": "Send the payment confirmation from your bank to an agent and the account will be reconciled."
+      },
+      "withdrawalTime": {
+        "0": "Withdrawals are processed back to the original funding method, as anti-money-laundering rules require. Requests submitted before the daily cut-off are reviewed the same business day.",
+        "1": "Once approved, card refunds take 3–5 business days to appear, bank transfers 1–3 business days, and crypto withdrawals are sent once the network confirms."
+      },
+      "withdrawalRejected": {
+        "0": "Withdrawals are most often declined for one of three reasons: verification is incomplete, the destination does not match the original funding method, or open positions would leave the account below its margin requirement.",
+        "1": "Check Settings → KYC Verification first — an unverified account cannot withdraw."
+      },
+      "kyc": {
+        "0": "Verification needs a government ID, a proof of address dated within the last 3 months, and a selfie. Upload them under Settings → KYC Verification.",
+        "1": "Documents are usually reviewed within one business day. Rejections are almost always a cropped edge, glare on the document, or an address document that is too old."
+      },
+      "kycRejected": {
+        "0": "Re-upload using the Replace button on the rejected document. Photograph it flat, in daylight, with all four corners visible and no flash.",
+        "1": "Utility bills, bank statements and council tax letters are accepted as proof of address. Mobile phone bills and handwritten documents are not."
+      },
+      "marginCall": {
+        "0": "Positions are closed automatically when your margin level falls to the close-out threshold. This protects you from going into negative balance and happens without prior notice.",
+        "1": "You can reduce the risk by lowering position size, adding funds, or setting a Stop Loss that triggers before the close-out level is reached."
+      },
+      "leverage": {
+        "0": "Your account leverage is shown on the order ticket next to the estimated margin. Higher leverage lowers the margin per position but makes a close-out happen sooner.",
+        "1": "To apply for a higher tier, go to Settings → Documents → Leverage Increase Request. Requests are reviewed against your trading experience and account history."
+      },
+      "charges": {
+        "0": "Three costs apply: the spread (the difference between the buy and sell price), commission where the instrument charges one, and overnight financing on positions held past the daily rollover.",
+        "1": "Overnight financing can be positive or negative depending on direction and instrument, and it is the cost most often mistaken for an unexplained deduction."
+      },
+      "loginIssue": {
+        "0": "You can set a new password from Settings → My Profile → Change Password, or use Forgot password on the login screen.",
+        "1": "If you are not receiving the reset email, check your spam folder and confirm you are using the address the account was opened with."
+      }
+    }
+  },
+  "tradingHistory": {
+    "title": "Trades"
+  },
+  "marketStats": {
+    "pin": "Instrument anheften",
+    "change24h": "24h Änderung",
+    "high24h": "24h Hoch",
+    "low24h": "24h Tief",
+    "volume24h": "24h Volumen"
+  }
+}
