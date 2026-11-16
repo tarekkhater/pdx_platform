@@ -1,13 +1,14 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowLeft, CreditCard, Bitcoin, ExternalLink, ShieldCheck, ChevronRight } from 'lucide-react';
 import CardDepositModal from './CardDepositModal';
 import CryptoDepositModal from './CryptoDepositModal';
+import { fetchCardPaymentLink } from '@/services/account.service';
 
-const CARD_PAYMENT_URL = 'https://crm.xtrapex.com/pay/6073?amount=100.00';
+// The external card checkout link comes from the CRM (Settings → Custom Payment Link).
 
 const MethodRow = ({ icon: Icon, name, desc, badge, onClick }) => (
   <motion.button
@@ -39,6 +40,15 @@ const MakeDepositModal = ({ isOpen, setIsOpen }) => {
   const [step, setStep] = useState('methods'); // 'methods' | 'cardCheckout'
   const [isCardModalOpen, setIsCardModalOpen] = useState(false);
   const [isCryptoModalOpen, setIsCryptoModalOpen] = useState(false);
+  const [cardLink, setCardLink] = useState('');
+
+  // read the link each time the window opens, so a change in the CRM shows at once
+  useEffect(() => {
+    if (!isOpen) return undefined;
+    let alive = true;
+    fetchCardPaymentLink().then((url) => alive && setCardLink(url));
+    return () => { alive = false; };
+  }, [isOpen]);
 
   const resetStep = () => setStep('methods');
 
@@ -50,7 +60,8 @@ const MakeDepositModal = ({ isOpen, setIsOpen }) => {
   const openCardCheckout = () => setStep('cardCheckout');
 
   const openExternalCardPay = () => {
-    window.open(CARD_PAYMENT_URL, '_blank', 'noopener,noreferrer');
+    if (!cardLink) return;
+    window.open(cardLink, '_blank', 'noopener,noreferrer');
     handleOpenChange(false);
   };
 
@@ -133,13 +144,13 @@ const MakeDepositModal = ({ isOpen, setIsOpen }) => {
                 </div>
 
                 <div className="space-y-1 mt-3">
-                  <MethodRow
+                  {cardLink && <MethodRow
                     icon={ExternalLink}
                     name={t('modals.deposit.cardCheckout.external.name')}
                     desc={t('modals.deposit.cardCheckout.external.desc')}
                     badge={t('modals.deposit.instant')}
                     onClick={openExternalCardPay}
-                  />
+                  />}
                   <MethodRow
                     icon={CreditCard}
                     name={t('modals.deposit.cardCheckout.internal.name')}

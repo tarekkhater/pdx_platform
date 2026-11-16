@@ -3,6 +3,7 @@ import { useInstruments } from '@/context/InstrumentsContext';
 import { useLiveRates } from '@/context/LiveRatesContext';
 import { useAuth } from '@/context/AuthContext';
 import { calcPositionPnl } from '@/domain/pnl';
+import { quoteToUsd } from '@/domain/fx';
 import * as tradesService from '@/services/trades.service';
 import { fetchFavourites, toggleFavourite as persistFavourite } from '@/services/instruments.service';
 import {
@@ -150,7 +151,9 @@ export const TradingProvider = ({ children }) => {
     () =>
       rawPositions.map((position) => {
         const mark = priceFor(position.asset);
-        return { ...position, currentPrice: mark, pnl: calcPositionPnl(position, mark) };
+        const instrument = getInstrument(position.asset);
+        const toUsd = quoteToUsd(instrument?.base, instruments, priceFor);
+        return { ...position, currentPrice: mark, pnl: calcPositionPnl(position, mark, { toUsd, instrument }) };
       }),
     // rates is the real trigger: priceFor is rebuilt from it on every tick.
     // eslint-disable-next-line react-hooks/exhaustive-deps

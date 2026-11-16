@@ -74,6 +74,17 @@ export const fetchTransactions = async ({ type = 'deposit', page = 1, search = '
 
 /* ---------------------------------------------------------------- deposits */
 
+// card checkout link set by the broker in the CRM (Settings → Custom Payment Link). '' = none.
+export const fetchCardPaymentLink = async () => {
+  try {
+    const data = unwrap(await api.get('/users/Deposits/card-link'));
+    const url = typeof data?.url === 'string' ? data.url.trim() : '';
+    return /^https:\/\//i.test(url) ? url : '';
+  } catch {
+    return '';
+  }
+};
+
 export const fetchDepositWallets = async () => {
   try {
     const data = unwrap(await api.get('/users/Deposits/wallets'));

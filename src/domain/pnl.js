@@ -26,7 +26,12 @@ export const isBuy = (side) => String(side ?? '').toLowerCase() === 'buy' || Str
  * @param position domain position: { side, lots, contractSize, entryPrice, spread, commission }
  * @param markPrice the live mid price
  */
-export const calcPositionPnl = (position, markPrice) => {
+/**
+ * @param options.toUsd       quote currency → USD factor (domain/fx.js), 1 for USD-quoted pairs
+ * @param options.instrument  for the exit spread: the server values a buy at mid − buySpread% and a
+ *                            sell at mid + sellSpread% (Position::quotedExitPrice)
+ */
+export const calcPositionPnl = (position, markPrice, { toUsd = 1, instrument = null } = {}) => {
   if (!position) return 0;
 
   const mark = num(markPrice);
@@ -41,9 +46,18 @@ export const calcPositionPnl = (position, markPrice) => {
   const spreadInPrice = (num(position.spread) / 100) * open;
   const buy = isBuy(position.side);
   const entry = buy ? open + spreadInPrice : open - spreadInPrice;
-  const diff = buy ? mark - entry : entry - mark;
 
-  return Number((diff * contractSize * lots + num(position.commission)).toFixed(2));
+  // exit price exactly like the server: spread off the mid, truncated to 4 decimals
+  let exit = mark;
+  if (instrument) {
+    const s = buy ? num(instrument.buySpread) : num(instrument.sellSpread);
+    if (s > 0) exit = buy ? mark - (s * mark) / 100 : mark + (s * mark) / 100;
+    exit = Math.floor(exit * 10000) / 10000;
+  }
+  const diff = buy ? exit - entry : entry - exit;
+  const factor = Number(toUsd) > 0 ? Number(toUsd) : 1;
+
+  return Number((diff * contractSize * lots * factor + num(position.commission) + num(position.swap)).toFixed(2));
 };
 
 /** Return on the margin actually committed, which is what the client risked. */

@@ -92,6 +92,8 @@ export const toPosition = (trade = {}, symbolOf = () => null) => {
     margin,
     spread: firstNum(trade.spread),
     commission: firstNum(trade.com, trade.commission, trade.paid_com),
+    // overnight fee so far (negative when charged); part of the P&L, like on the server
+    swap: firstNum(trade.swap),
     pnl: 0,
     stopLoss: firstNum(trade.stop_loss) || null,
     takeProfit: firstNum(trade.take_profit) || null,

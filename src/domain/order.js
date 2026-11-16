@@ -72,32 +72,35 @@ export const getEntryPrice = (side, mid, instrument) => {
 export const getSpreadPercent = (side, instrument) =>
   String(side).toLowerCase() === 'sell' ? num(instrument?.sellSpread) : num(instrument?.buySpread);
 
-export const computeMargin = ({ lots, contractSize, entryPrice, leverage }) => {
+/** `toUsd`: quote currency → USD (domain/fx.js). 1 for pairs quoted in USD. */
+const usd = (toUsd) => (num(toUsd, 1) > 0 ? num(toUsd, 1) : 1);
+
+export const computeMargin = ({ lots, contractSize, entryPrice, leverage, toUsd = 1 }) => {
   const size = num(contractSize, 1) || 1;
   const lev = num(leverage, 1) > 0 ? num(leverage, 1) : 1;
   const price = num(entryPrice);
   const quantity = num(lots);
   if (!(price > 0) || !(quantity > 0)) return 0;
-  const raw = (quantity * size * price) / lev;
+  const raw = ((quantity * size * price) / lev) * usd(toUsd);
   const rounded = Number(raw.toFixed(3));
   // `total` is validated `gt:0`. A 0.01 lot on a cheap pair rounds to 0.00
   // at two decimals and the server refuses the ticket.
   return rounded > 0 ? rounded : Number(raw.toFixed(6));
 };
 
-export const computeNotional = ({ lots, contractSize, entryPrice }) =>
-  Number((num(lots) * (num(contractSize, 1) || 1) * num(entryPrice)).toFixed(2));
+export const computeNotional = ({ lots, contractSize, entryPrice, toUsd = 1 }) =>
+  Number((num(lots) * (num(contractSize, 1) || 1) * num(entryPrice) * usd(toUsd)).toFixed(2));
 
 /**
  * The inverse, for the "amount in USD" input: the trader names the margin
  * they want to commit and the ticket works out how many lots that buys.
  */
-export const lotsForMargin = ({ margin, contractSize, entryPrice, leverage }) => {
+export const lotsForMargin = ({ margin, contractSize, entryPrice, leverage, toUsd = 1 }) => {
   const size = num(contractSize, 1) || 1;
   const lev = num(leverage, 1) > 0 ? num(leverage, 1) : 1;
   const price = num(entryPrice);
   if (!(price > 0)) return 0;
-  return (num(margin) * lev) / (size * price);
+  return (num(margin) * lev) / (size * price * usd(toUsd));
 };
 
 /**
@@ -111,11 +114,11 @@ export const lotsForMargin = ({ margin, contractSize, entryPrice, leverage }) =>
  *
  *   |target − entry| × contractSize × lots
  */
-export const priceLevelToAmount = ({ level, entryPrice, lots, contractSize }) => {
+export const priceLevelToAmount = ({ level, entryPrice, lots, contractSize, toUsd = 1 }) => {
   const target = num(level);
   const entry = num(entryPrice);
   if (!(target > 0) || !(entry > 0)) return 0;
-  return Number((Math.abs(target - entry) * (num(contractSize, 1) || 1) * num(lots)).toFixed(2));
+  return Number((Math.abs(target - entry) * (num(contractSize, 1) || 1) * num(lots) * usd(toUsd)).toFixed(2));
 };
 
 /**
@@ -124,8 +127,8 @@ export const priceLevelToAmount = ({ level, entryPrice, lots, contractSize }) =>
  * `kind` is which field it came from — stop is away from profit, take is
  * toward it — because the server stores both as a positive amount.
  */
-export const amountToPriceLevel = ({ amount, entryPrice, lots, contractSize, side, kind = 'take' }) => {
-  const size = (num(contractSize, 1) || 1) * num(lots);
+export const amountToPriceLevel = ({ amount, entryPrice, lots, contractSize, side, kind = 'take', toUsd = 1 }) => {
+  const size = (num(contractSize, 1) || 1) * num(lots) * usd(toUsd);
   if (!size) return 0;
   const diff = num(amount) / size;
   const entry = num(entryPrice);
