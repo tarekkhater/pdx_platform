@@ -108,8 +108,15 @@ export const InstrumentsProvider = ({ children }) => {
 
   const getInstrumentById = useCallback((id) => (id == null ? null : byId.get(String(id)) || null), [byId]);
 
-  /** id → symbol, for turning a trade's currency into something the UI reads. */
-  const symbolOfId = useCallback((id) => getInstrumentById(id)?.symbol ?? null, [getInstrumentById]);
+  /**
+   * id → the key a trade's instrument is looked up by (`id:12`). Not the bare ticker: forex pairs
+   * share it (`EUR` = EURUSD, EURCAD, …), so a position stored as `EUR` matched no instrument and
+   * showed no market price and a P&L of $0. The label still prints the ticker (displaySym).
+   */
+  const symbolOfId = useCallback((id) => {
+    const instrument = getInstrumentById(id);
+    return instrument ? uniqueKeyOf(instrument) : null;
+  }, [getInstrumentById]);
   const idOfSymbol = useCallback((symbol) => getInstrument(symbol)?.id ?? null, [getInstrument]);
 
   /**
