@@ -92,15 +92,17 @@ export const needsManualReview = (answers) =>
  * Submitting earlier would create an account with placeholder details that a
  * client could walk away from half-finished.
  */
-export const toRegisterPayload = ({ answers, credentials, deskRef }) => ({
+export const toRegisterPayload = ({ answers, credentials, deskRef, countryId, currencyId }) => ({
   name: answers.firstName,
   surname: answers.lastName,
   email: credentials.email,
   password: credentials.password,
   confirm_password: credentials.password,
   phone: answers.phone,
-  country: answers.country,
-  currency: answers.currency,
+  // the backend takes ids ("The country must be a number" otherwise); the questionnaire keeps
+  // the country name and currency code, looked up in the platform's lists by the caller
+  country: countryId ?? answers.country,
+  currency: currencyId ?? answers.currency,
   postal: answers.postalCode,
   address: [answers.street, answers.city].filter(Boolean).join(', '),
   permanent_address: [answers.street, answers.city].filter(Boolean).join(', '),

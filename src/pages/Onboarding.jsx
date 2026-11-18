@@ -43,7 +43,7 @@ const Onboarding = () => {
   const isExistingAccount = Boolean(user);
 
   // Countries and currencies come from the platform, not from the bundle.
-  const [remoteOptions, setRemoteOptions] = useState({ countries: [], currencies: [] });
+  const [remoteOptions, setRemoteOptions] = useState({ countries: [], currencies: [], countryIds: {}, currencyIds: {} });
 
   useEffect(() => {
     let cancelled = false;
@@ -53,6 +53,9 @@ const Onboarding = () => {
       setRemoteOptions({
         countries: countries.countries.map((c) => ({ value: c.name, label: c.name })),
         currencies: currencies.currencies.map((c) => ({ value: c.code, label: `${c.code} — ${c.name}` })),
+        // the form stores the country name and the currency code; registration needs their ids
+        countryIds: Object.fromEntries(countries.countries.map((c) => [c.name, c.id])),
+        currencyIds: Object.fromEntries(currencies.currencies.map((c) => [c.code, c.id])),
       });
     })();
     return () => {
@@ -118,7 +121,9 @@ const Onboarding = () => {
       }
 
       const deskRef = getDeskRef();
-      const result = await register(toRegisterPayload({ answers, credentials, deskRef }));
+      const countryId = remoteOptions.countryIds[answers.country];
+      const currencyId = remoteOptions.currencyIds[answers.currency];
+      const result = await register(toRegisterPayload({ answers, credentials, deskRef, countryId, currencyId }));
 
       if (!result.ok) {
         setBusy(false);
