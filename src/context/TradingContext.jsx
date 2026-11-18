@@ -147,9 +147,23 @@ export const TradingProvider = ({ children }) => {
    * the number moving between polls without it drifting from what the broker
    * will actually settle.
    */
+  /**
+   * The instrument key of a trade, from its pair id (`id:96`). Resolved here and not only when the
+   * book is fetched: the book can arrive before the instrument list, and a trade keyed then by its
+   * bare ticker (`EUR`, shared by every EUR pair) shows no market price and $0 P&L until the next poll.
+   */
+  const withAssetKey = useCallback(
+    (row) => {
+      const instrument = row.currencyId != null ? getInstrumentById(row.currencyId) : null;
+      return instrument ? { ...row, asset: uniqueKeyOf(instrument) } : row;
+    },
+    [getInstrumentById]
+  );
+
   const positions = useMemo(
     () =>
-      rawPositions.map((position) => {
+      rawPositions.map((raw) => {
+        const position = withAssetKey(raw);
         const mark = priceFor(position.asset);
         const instrument = getInstrument(position.asset);
         const toUsd = quoteToUsd(instrument?.base, instruments, priceFor);
@@ -157,8 +171,10 @@ export const TradingProvider = ({ children }) => {
       }),
     // rates is the real trigger: priceFor is rebuilt from it on every tick.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [rawPositions, rates]
+    [rawPositions, rates, withAssetKey]
   );
+  const pendingView = useMemo(() => pendingOrders.map(withAssetKey), [pendingOrders, withAssetKey]);
+  const closedView = useMemo(() => closedTrades.map(withAssetKey), [closedTrades, withAssetKey]);
 
   useEffect(() => {
     if (!user) return undefined;
@@ -255,8 +271,8 @@ export const TradingProvider = ({ children }) => {
       setIsAssetSheetOpen,
 
       positions,
-      pendingOrders,
-      closedTrades,
+      pendingOrders: pendingView,
+      closedTrades: closedView,
       loading,
       tradingBlocked,
       refreshBook,
@@ -289,11 +305,11 @@ export const TradingProvider = ({ children }) => {
         type: user?.accountType === 'demo' ? 'DEMO' : 'LIVE',
         number: user?.id ? `#${user.id}` : '',
         openPositions: positions.length,
-        pendingOrders: pendingOrders.length,
+        pendingOrders: pendingView.length,
       },
     }),
     [
-      selectedAsset, isAssetSheetOpen, positions, pendingOrders, closedTrades, favourites,
+      selectedAsset, isAssetSheetOpen, positions, pendingView, closedView, favourites,
       loading, tradingBlocked, toggleFavourite, addPosition, closePosition, closeAllPositions,
       addPendingOrder, cancelOrder, refreshBook, user, setSelectedAsset, getInstrument,
     ]
