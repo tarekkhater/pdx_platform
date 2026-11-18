@@ -166,7 +166,9 @@ export const TradingProvider = ({ children }) => {
         const position = withAssetKey(raw);
         const mark = priceFor(position.asset);
         const instrument = getInstrument(position.asset);
-        const toUsd = quoteToUsd(instrument?.base, instruments, priceFor);
+        // the server's quote→USD factor for this trade when it sent one (same as the CRM and the
+        // close); the live cross rate only as a fallback
+        const toUsd = position.quoteToUsd > 0 ? position.quoteToUsd : quoteToUsd(instrument?.base, instruments, priceFor);
         return { ...position, currentPrice: mark, pnl: calcPositionPnl(position, mark, { toUsd, instrument }) };
       }),
     // rates is the real trigger: priceFor is rebuilt from it on every tick.
