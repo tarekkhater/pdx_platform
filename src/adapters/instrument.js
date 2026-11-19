@@ -58,8 +58,15 @@ export const parseInstrumentIdKey = (value) => {
 /** @deprecated Use tickerOf — `symbol` on the instrument is the display ticker. */
 export const symbolOf = tickerOf;
 
-export const displaySym = (instrument, fallback = '') =>
-  normalizeTicker(instrument?.sym) || normalizeTicker(fallback);
+export const displaySym = (instrument, fallback = '') => {
+  const sym = normalizeTicker(instrument?.sym);
+  const base = normalizeTicker(instrument?.base);
+  // a forex trade is the pair, not its first currency: "USD/JPY", not "USD" (several pairs share it)
+  if (sym && base && sym !== base && String(instrument?.type ?? '').toLowerCase() === 'forex') {
+    return sym + '/' + base;
+  }
+  return sym || normalizeTicker(fallback);
+};
 
 const CATEGORY_LABELS = {
   crypto: 'Crypto',

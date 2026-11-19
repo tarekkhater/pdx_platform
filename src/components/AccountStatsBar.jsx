@@ -77,7 +77,8 @@ const AccountStatsBar = ({ asset, currentPrice }) => {
         </div>
 
         <p className="text-[16px] font-bold font-tabular text-gain leading-none ml-1">
-          ${currentPrice.toFixed(instrument.decimals)}
+          {/* forex is quoted in its second currency (yen for USD/JPY), not dollars */}
+          {String(instrument.type).toLowerCase() === 'forex' ? '' : '$'}{currentPrice.toFixed(instrument.decimals)}
         </p>
       </div>
 

@@ -172,8 +172,10 @@ const OpenTrades = ({ wide = false }) => {
    * 0.60 — differences that are the whole trade at these sizes.
    */
   const price = (asset, n) => {
-    const { decimals } = getInstrument(asset);
-    return `$${n.toLocaleString('en-US', {
+    const { decimals, type } = getInstrument(asset);
+    // a forex price is in the quote currency (159.620 yen for USD/JPY), not dollars
+    const prefix = String(type).toLowerCase() === 'forex' ? '' : '$';
+    return `${prefix}${n.toLocaleString('en-US', {
       minimumFractionDigits: decimals,
       maximumFractionDigits: decimals,
     })}`;
