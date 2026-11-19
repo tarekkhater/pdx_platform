@@ -272,12 +272,15 @@ const TradeStation = () => {
     <div className="flex flex-col gap-2 h-[calc(100dvh-73px)] -mt-2 -mx-4 px-1">
       <AccountStatsBar asset={selectedAsset} currentPrice={currentPrice} />
 
-      <div className="grid grid-cols-12 gap-3 flex-1 min-h-0">
+      {/* Side columns at the width their content needs; the chart takes the rest.
+          A 3/6/3 split gave the chart only half the screen and clients found it too
+          small (on a 1920px screen the chart goes from ~950px to ~1250px wide). */}
+      <div className="grid grid-cols-[300px_minmax(0,1fr)_340px] gap-3 flex-1 min-h-0">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
-          className="col-span-3 min-h-0 h-full"
+          className="min-h-0 h-full"
         >
           <AssetList setSelectedAsset={setSelectedAsset} />
         </motion.div>
@@ -286,7 +289,7 @@ const TradeStation = () => {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.1 }}
-          className="col-span-6 min-h-0 flex flex-col gap-3"
+          className="min-w-0 min-h-0 flex flex-col gap-3"
         >
           <div className="flex-1 min-h-0">
             <TradingViewChart asset={selectedAsset} />
@@ -300,7 +303,7 @@ const TradeStation = () => {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.2 }}
-          className="col-span-3 min-h-0 h-full flex flex-col gap-3"
+          className="min-h-0 h-full flex flex-col gap-3"
         >
           <div className="flex-shrink-0">
             <OrderPanel currentPrice={currentPrice} asset={selectedAsset} serverTradable={serverTradable} />
