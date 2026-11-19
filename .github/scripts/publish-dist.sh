@@ -28,7 +28,7 @@ discover() {
 set -euo pipefail
 domain=$1
 escaped=$(printf '%s' "$domain" | sed 's/[.[\*^$()+?{|]/\\&/g')
-conf=$(grep -RslE "server_name[[:space:]].*(^|[[:space:]])${escaped}(;|[[:space:]]|$)" \
+conf=$(grep -RslE "server_name[[:space:]]+([^;]*[[:space:]])?${escaped}(;|[[:space:]]|$)" \
   /etc/nginx /home/*/conf 2>/dev/null | head -1 || true)
 if [ -z "${conf}" ]; then
   echo "No nginx vhost for ${domain}" >&2
