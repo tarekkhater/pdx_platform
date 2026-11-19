@@ -1,0 +1,39 @@
+name: Deploy main
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: deploy-platform
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build
+        run: npm run build
+        env:
+          NODE_OPTIONS: --max-old-space-size=4096
+          VITE_API_BASE_URL: https://backend.hitomorrow.app/api
+          VITE_PUSHER_KEY: 2716aaad2fed0009fa5a
+          VITE_PUSHER_CLUSTER: eu
+          VITE_BROADCAST_AUTH_URL: https://backend.hitomorrow.app/api/broadcasting/auth
+
+      - name: Publish dist
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          DEPLOY_DOMAINS: bein.hitomorrow.app paradox.cfdterminal.app
+        run: bash .github/scripts/publish-dist.sh
