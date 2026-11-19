@@ -85,8 +85,17 @@ export const categoryOf = (type) => {
  * four-figure crypto right and will get something wrong eventually. It is
  * listed in INTEGRATION.md as a question for the backend.
  */
-export const inferDecimals = (price) => {
+export const inferDecimals = (price, { type = '', base = '' } = {}) => {
   const value = Math.abs(Number(price) || 0);
+  // Forex is quoted to the pipette like the market and TradingView: 5 decimals (EURUSD 1.09671),
+  // 3 for yen / forint quotes and other large prices (USDJPY 159.691). The price-size rule below
+  // showed EURGBP as 0.8376 and USDJPY as 159.69, so the last digit, the one that moves every
+  // second, was never visible and forex looked frozen.
+  if (String(type).toLowerCase() === 'forex') {
+    const quote = String(base).toUpperCase();
+    if (quote === 'JPY' || quote === 'HUF' || value >= 50) return 3;
+    return 5;
+  }
   if (value === 0) return 2;
   if (value < 0.1) return 5;
   if (value < 10) return 4;
@@ -117,7 +126,7 @@ export const toInstrument = (asset = {}) => {
     type: String(asset.type ?? '').toLowerCase(),
     image: asset.image || null,
     price,
-    decimals: inferDecimals(price),
+    decimals: inferDecimals(price, { type: asset.type, base }),
 
     /**
      * Spreads are percentages of the mid price, not price units — the field
@@ -156,7 +165,9 @@ export const mergeFinance = (instrument, finance = {}) => {
     ...instrument,
     ...(Number.isFinite(contractSize) && contractSize > 0 ? { contractSize } : {}),
     ...(Number.isFinite(leverage) && leverage > 0 ? { leverage } : {}),
-    ...(Number.isFinite(price) && price > 0 ? { price, decimals: inferDecimals(price) } : {}),
+    ...(Number.isFinite(price) && price > 0
+      ? { price, decimals: inferDecimals(price, { type: instrument.type, base: instrument.base }) }
+      : {}),
     ...(finance.buy_spread != null ? { buySpread: num(finance.buy_spread) } : {}),
     ...(finance.sell_spread != null ? { sellSpread: num(finance.sell_spread) } : {}),
   };
