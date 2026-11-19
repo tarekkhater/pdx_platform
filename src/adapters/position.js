@@ -69,9 +69,10 @@ export const toPosition = (trade = {}, symbolOf = () => null) => {
   const currencyId = currencyIdOf(trade);
   const entryPrice = num(trade.opening_price ?? trade.open_price);
   const lots = firstNum(trade.lot, trade.qty);
-  // amount_user_pnl is the contract size the server used for THIS trade, which
-  // can differ from the instrument's current one if the broker changed it.
-  const contractSize = firstNum(trade.amount_user_pnl, trade.amount) || 1;
+  // contract size = `amount`, the multiplier the SERVER uses (Position::calculateFloatingProfit) and
+  // the one the CRM shows. Not amount_user_pnl: the server ignores it, so reading it here made the
+  // platform's P&L differ from the CRM and from what a close pays whenever it was edited.
+  const contractSize = firstNum(trade.amount, trade.amount_user_pnl) || 1;
   const tradeAmount = firstNum(trade.trade_amount) || lots * contractSize * entryPrice;
   const margin = firstNum(trade.margin) || (num(trade.leverage) > 0 ? tradeAmount : 0);
 
@@ -94,6 +95,9 @@ export const toPosition = (trade = {}, symbolOf = () => null) => {
     commission: firstNum(trade.com, trade.commission, trade.paid_com),
     // overnight fee so far (negative when charged); part of the P&L, like on the server
     swap: firstNum(trade.swap),
+    // quote currency -> USD as the server values it (yen pairs); the P&L uses this so it matches the
+    // CRM and the close to the cent instead of a live rate that can differ slightly
+    quoteToUsd: firstNum(trade.quote_to_usd),
     pnl: 0,
     stopLoss: firstNum(trade.stop_loss) || null,
     takeProfit: firstNum(trade.take_profit) || null,
@@ -105,7 +109,7 @@ export const toPosition = (trade = {}, symbolOf = () => null) => {
 export const toPendingOrder = (trade = {}, symbolOf = () => null) => {
   const currencyId = currencyIdOf(trade);
   const lots = firstNum(trade.lot, trade.qty);
-  const contractSize = firstNum(trade.amount_user_pnl, trade.amount) || 1;
+  const contractSize = firstNum(trade.amount, trade.amount_user_pnl) || 1;
   const targetPrice = firstNum(trade.pendingOrder, trade.pending_order, trade.opening_price);
   const tradeAmount = firstNum(trade.trade_amount) || lots * contractSize * targetPrice;
 
@@ -145,7 +149,7 @@ export const toPendingOrder = (trade = {}, symbolOf = () => null) => {
 export const toClosedTrade = (trade = {}, symbolOf = () => null) => {
   const currencyId = currencyIdOf(trade);
   const lots = firstNum(trade.lot, trade.qty);
-  const contractSize = firstNum(trade.amount_user_pnl, trade.amount) || 1;
+  const contractSize = firstNum(trade.amount, trade.amount_user_pnl) || 1;
   const entryPrice = num(trade.opening_price ?? trade.open_price);
   const pnl = firstNum(trade.profit, trade.net_profit, trade.pnl);
   const commission = firstNum(trade.com, trade.commission, trade.paid_com);
