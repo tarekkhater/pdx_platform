@@ -65,15 +65,14 @@ const TradingViewChart = ({ asset, interval = '60' }) => {
       withdateranges: isDesktop,
       hide_top_toolbar: false,
       hide_legend: false,
-      // A phone can't show a full legend and a volume pane and still leave
-      // room for candles; drop the legend and keep the price action.
-      hide_volume: !isDesktop,
+      // no volume bars either (clean chart, more room for the candles)
+      hide_volume: true,
       save_image: false,
       enable_publishing: false,
-      // EMA is an overlay and costs no height. RSI opens a second pane, which
-      // on a phone leaves the candles too short to read — so it is desktop
-      // only. Both remain one tap away in the indicators menu.
-      studies: isDesktop ? ['STD;EMA', 'STD;RSI'] : ['STD;EMA'],
+      // A clean chart: candles only. The RSI pane took about a third of the height
+      // and clients found the candles too small; EMA and volume are off too.
+      // Anyone can still add them from the Indicators menu.
+      studies: [],
       backgroundColor: theme === 'light' ? '#ffffff' : '#0a0b0d',
       support_host: 'https://www.tradingview.com',
     });
