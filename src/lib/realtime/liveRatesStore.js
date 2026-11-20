@@ -131,6 +131,17 @@ export const ingestPusherPayload = (eventData) => {
   return changed;
 };
 
+/**
+ * After a pause (tab hidden / idle) the prices on screen are old: let the next REST read replace them
+ * instead of waiting for each pair's next tick (a quiet pair can take a while).
+ */
+export const releaseForReseed = () => {
+  pusherLockedIds.clear();
+  for (const [key, entry] of lastQuotes.entries()) {
+    if (entry?.source === 'pusher') lastQuotes.set(key, { ...entry, source: 'paused' });
+  }
+};
+
 /** Signing out must not leave the next user looking at stale prices. */
 export const resetLiveRates = () => {
   lastQuotes.clear();

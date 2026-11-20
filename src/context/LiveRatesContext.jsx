@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useCallback, useEffect, useMemo, useState } from 'react';
-import { subscribeLiveRates, snapshotLiveRates } from '@/lib/realtime/liveRatesStore';
-import { keepCurrencyChannelAlive } from '@/lib/realtime/socketPusher';
+import { subscribeLiveRates, snapshotLiveRates, releaseForReseed } from '@/lib/realtime/liveRatesStore';
+import { keepCurrencyChannelAlive, pauseCurrencyRates, resumeCurrencyRates } from '@/lib/realtime/socketPusher';
+import { startPriceActivityWatch } from '@/lib/realtime/priceActivity';
 import { resolveLiveRate, getMarkLivePrice } from '@/lib/realtime/markPrice';
 import { isAssetTradeableNow, marketClosedReason, isLiveRateFresh } from '@/domain/marketStatus';
 import { useInstruments } from '@/context/InstrumentsContext';
@@ -15,13 +16,28 @@ const LiveRatesContext = createContext(null);
  * every screen reads from one snapshot rather than opening its own.
  */
 export const LiveRatesProvider = ({ children }) => {
-  const { getInstrument, getInstrumentById, idOfSymbol } = useInstruments();
+  const { getInstrument, getInstrumentById, idOfSymbol, reload } = useInstruments();
   const [rates, setRates] = useState(snapshotLiveRates);
 
   useEffect(() => {
     keepCurrencyChannelAlive();
     return subscribeLiveRates(setRates);
   }, []);
+
+  // No live prices for a hidden tab or after 2 minutes without activity (saves Pusher messages); on
+  // the first movement: back on the channel and the latest prices re-read at once.
+  useEffect(
+    () =>
+      startPriceActivityWatch({
+        onPause: () => pauseCurrencyRates(),
+        onResume: () => {
+          releaseForReseed();
+          resumeCurrencyRates();
+          reload?.();
+        },
+      }),
+    [reload]
+  );
 
   /**
    * A two-sided quote for a symbol.
