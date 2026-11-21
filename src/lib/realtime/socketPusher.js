@@ -149,8 +149,28 @@ class SocketManager {
     this.ensureOnlineChannel();
   }
 
+  /** leave the price channel (tab hidden / client idle): Pusher stops sending, and billing, to this tab */
+  pauseRates() {
+    this.ratesPaused = true;
+    if (this.echo && this.channelBound) {
+      try {
+        this.echo.leave(CHANNEL);
+      } catch {
+        // already left
+      }
+    }
+    this.channelBound = false;
+    debug('price channel paused');
+  }
+
+  async resumeRates() {
+    this.ratesPaused = false;
+    if (await this.initialize()) this.ensureChannelBound();
+    debug('price channel resumed');
+  }
+
   ensureChannelBound() {
-    if (!this.echo || this.channelBound) return;
+    if (!this.echo || this.channelBound || this.ratesPaused) return;
 
     const channel = this.echo.channel(CHANNEL);
 
@@ -226,6 +246,9 @@ export const keepCurrencyChannelAlive = () => {
 /** Mark the signed-in client online for as long as this page is connected. */
 export const joinOnlineChannel = (userId) => socketManager.joinOnline(userId);
 export const leaveOnlineChannel = () => socketManager.leaveOnline();
+
+export const pauseCurrencyRates = () => socketManager.pauseRates();
+export const resumeCurrencyRates = () => socketManager.resumeRates();
 
 export const subscribeToCurrencyRates = (callback) => socketManager.subscribe(callback);
 export const disconnectSocket = () => socketManager.disconnect();
