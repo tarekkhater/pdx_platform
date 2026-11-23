@@ -4,6 +4,39 @@ import { ingestPusherPayload } from './liveRatesStore';
 const AUTH_URL = import.meta.env.VITE_BROADCAST_AUTH_URL || `${API_BASE_URL}/broadcasting/auth`;
 
 /**
+ * VITE_REALTIME=socketio talks to the backend's own socket.io server
+ * (socket-server/ in the backend repo) instead of Pusher. Same channels, same
+ * events, same Echo API: only the connection below differs.
+ */
+const REALTIME = String(import.meta.env.VITE_REALTIME || 'pusher').toLowerCase() === 'socketio' ? 'socketio' : 'pusher';
+
+/**
+ * In development Vite proxies /socket.io (vite.config.js), so the page's own
+ * origin is used. Built, it is VITE_SOCKET_URL, or the API origin where nginx
+ * forwards /socket.io to the server.
+ */
+const socketHost = () => {
+  if (import.meta.env.DEV) return window.location.origin;
+  if (import.meta.env.VITE_SOCKET_URL) return import.meta.env.VITE_SOCKET_URL;
+  try {
+    return new URL(API_BASE_URL, window.location.origin).origin;
+  } catch {
+    return window.location.origin;
+  }
+};
+
+/**
+ * socket.io: the server signs each private channel by calling the backend's
+ * /broadcasting/auth with these headers, read at subscribe time (the getter)
+ * for the same reason as the Pusher authorizer below.
+ */
+const socketAuth = {
+  get headers() {
+    return { Authorization: `Bearer ${readToken() || ''}` };
+  },
+};
+
+/**
  * Signs private channels with the token current at subscribe time. The
  * connection is opened for prices before sign-in, so headers fixed when Echo
  * was created would carry no token (or the previous user's).
@@ -63,35 +96,60 @@ class SocketManager {
     if (this.initPromise) return this.initPromise;
 
     const key = import.meta.env.VITE_PUSHER_KEY;
-    if (!key) {
+    if (REALTIME === 'pusher' && !key) {
       console.warn('[socket] VITE_PUSHER_KEY is not set — live prices are disabled.');
       return false;
     }
 
     this.initPromise = (async () => {
       try {
-        // Imported lazily so the Pusher client is not in the bundle that the
+        // Imported lazily so the realtime client is not in the bundle that the
         // login screen has to download.
         const { default: Echo } = await import('laravel-echo');
-        const Pusher = await import('pusher-js');
-        window.Pusher = Pusher.default;
 
-        this.echo = new Echo({
-          broadcaster: 'pusher',
-          key,
-          cluster: import.meta.env.VITE_PUSHER_CLUSTER || 'eu',
-          forceTLS: true,
-          enabledTransports: ['ws', 'wss'],
-          authorizer,
-        });
-
-        const pusher = this.echo.connector?.pusher;
-        if (pusher) {
-          pusher.connection.bind('state_change', (states) => {
-            this.isConnected = states?.current === 'connected';
-            debug('state', states);
+        if (REALTIME === 'socketio') {
+          const { io } = await import('socket.io-client');
+          this.echo = new Echo({
+            broadcaster: 'socket.io',
+            client: io,
+            host: socketHost(),
+            transports: ['websocket', 'polling'],
+            auth: socketAuth,
           });
-          pusher.connection.bind('error', (error) => console.warn('[socket] pusher error', error));
+
+          const socket = this.echo.connector?.socket;
+          if (socket) {
+            socket.on('connect', () => {
+              this.isConnected = true;
+              debug('socket.io connected', socket.id);
+            });
+            socket.on('disconnect', (reason) => {
+              this.isConnected = false;
+              debug('socket.io disconnected', reason);
+            });
+            socket.on('connect_error', (error) => console.warn('[socket] socket.io error', error?.message));
+          }
+        } else {
+          const Pusher = await import('pusher-js');
+          window.Pusher = Pusher.default;
+
+          this.echo = new Echo({
+            broadcaster: 'pusher',
+            key,
+            cluster: import.meta.env.VITE_PUSHER_CLUSTER || 'eu',
+            forceTLS: true,
+            enabledTransports: ['ws', 'wss'],
+            authorizer,
+          });
+
+          const pusher = this.echo.connector?.pusher;
+          if (pusher) {
+            pusher.connection.bind('state_change', (states) => {
+              this.isConnected = states?.current === 'connected';
+              debug('state', states);
+            });
+            pusher.connection.bind('error', (error) => console.warn('[socket] pusher error', error));
+          }
         }
 
         this.isConnected = true;

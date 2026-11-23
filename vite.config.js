@@ -163,6 +163,21 @@ const API_ORIGIN = (() => {
 	}
 })();
 
+/**
+ * The socket.io server (VITE_REALTIME=socketio). It sits behind the API host
+ * at /socket.io unless VITE_SOCKET_URL says otherwise. Its wss:// form is
+ * listed in connect-src as well: older browsers do not let an https: source
+ * cover a WebSocket.
+ */
+const SOCKET_ORIGIN = (() => {
+	try {
+		return new URL(process.env.VITE_SOCKET_URL || API_ORIGIN).origin;
+	} catch {
+		return API_ORIGIN;
+	}
+})();
+const SOCKET_WS_ORIGIN = SOCKET_ORIGIN.replace(/^http/, 'ws');
+
 const CONTENT_SECURITY_POLICY = [
 	"default-src 'self'",
 	"script-src 'self' https://s3.tradingview.com https://widgets.tradingview-widget.com https://accounts.google.com",
@@ -171,7 +186,7 @@ const CONTENT_SECURITY_POLICY = [
 	// The API host is listed explicitly: img-src allows https: wholesale, but
 	// connect-src must not, or an injected script could exfiltrate anywhere.
 	// wss://*.pusher.com is the price feed; without it every quote is blocked.
-	`connect-src 'self' ${API_ORIGIN} wss://*.pusher.com https://*.pusher.com https://*.pusher.app https://accounts.google.com https://www.googleapis.com https://*.tradingview.com https://*.tradingview-widget.com`,
+	`connect-src 'self' ${[...new Set([API_ORIGIN, SOCKET_ORIGIN, SOCKET_WS_ORIGIN])].join(' ')} wss://*.pusher.com https://*.pusher.com https://*.pusher.app https://accounts.google.com https://www.googleapis.com https://*.tradingview.com https://*.tradingview-widget.com`,
 	`img-src 'self' data: blob: https:`,
 	"frame-src 'self' https://*.tradingview.com https://*.tradingview-widget.com https://accounts.google.com",
 	"base-uri 'self'",
@@ -301,6 +316,13 @@ export default defineConfig({
 				target: API_ORIGIN,
 				changeOrigin: true,
 				secure: false,
+			},
+			// socket.io (VITE_REALTIME=socketio), same idea: same-origin in development
+			'/socket.io': {
+				target: SOCKET_ORIGIN,
+				changeOrigin: true,
+				secure: false,
+				ws: true,
 			},
 		},
 	},
