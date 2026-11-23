@@ -250,6 +250,8 @@
     },
     "toast": {
       "tradeClosedTitle": "{{asset}} lezárva",
+      "takeProfitTitle": "Take profit elérve · {{asset}}",
+      "stopLossTitle": "Stop loss elérve · {{asset}}",
       "tradeClosedDesc": "Eredmény {{pnl}}",
       "allClosedTitle": "Minden pozíció lezárva",
       "allClosedDesc_one": "{{count}} pozíció lezárva.",

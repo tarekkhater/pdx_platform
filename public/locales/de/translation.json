@@ -250,6 +250,8 @@
     },
     "toast": {
       "tradeClosedTitle": "{{asset}} geschlossen",
+      "takeProfitTitle": "Take Profit erreicht · {{asset}}",
+      "stopLossTitle": "Stop Loss erreicht · {{asset}}",
       "tradeClosedDesc": "G/V {{pnl}}",
       "allClosedTitle": "Alle Positionen geschlossen",
       "allClosedDesc_one": "{{count}} Position wurde geschlossen.",

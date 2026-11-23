@@ -251,6 +251,8 @@
     },
     "toast": {
       "tradeClosedTitle": "Uzavřeno {{asset}}",
+      "takeProfitTitle": "Take profit dosažen · {{asset}}",
+      "stopLossTitle": "Stop loss dosažen · {{asset}}",
       "tradeClosedDesc": "Zisk/ztráta {{pnl}}",
       "allClosedTitle": "Všechny pozice uzavřeny",
       "allClosedDesc_one": "{{count}} pozice byla uzavřena.",

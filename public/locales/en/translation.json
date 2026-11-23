@@ -257,6 +257,8 @@
     },
     "toast": {
       "tradeClosedTitle": "Closed {{asset}}",
+      "takeProfitTitle": "Take profit hit · {{asset}}",
+      "stopLossTitle": "Stop loss hit · {{asset}}",
       "tradeClosedDesc": "P&L {{pnl}}",
       "allClosedTitle": "All positions closed",
       "allClosedDesc_one": "{{count}} position was closed.",
