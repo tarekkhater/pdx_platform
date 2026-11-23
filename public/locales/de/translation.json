@@ -52,7 +52,7 @@
     "security": "Sicherheit",
     "changePassword": "Passwort ändern",
     "saveChanges": "Änderungen speichern",
-    "savedTitle": "✅ Profil aktualisiert",
+    "savedTitle": "Profil aktualisiert",
     "savedDesc": "Ihre Daten wurden gespeichert.",
     "saveFailedTitle": "Speichern fehlgeschlagen",
     "fields": {
@@ -87,7 +87,7 @@
     },
     "upload": "Hochladen",
     "replace": "Ersetzen",
-    "uploadedTitle": "📤 Dokument hochgeladen",
+    "uploadedTitle": "Dokument hochgeladen",
     "uploadedDesc": "{{document}} wurde zur Prüfung eingereicht."
   },
   "appearance": {
@@ -163,7 +163,8 @@
     "submittedTitle": "Dokument abgeschlossen",
     "submittedDesc": "Eine Kopie wurde Ihrem Konto zugeordnet.",
     "submittedReviewTitle": "Antrag gesendet",
-    "submittedReviewDesc": "Wir prüfen Ihren Antrag und melden uns in Kürze."
+    "submittedReviewDesc": "Wir prüfen Ihren Antrag und melden uns in Kürze.",
+    "submitFailedTitle": "Dokument konnte nicht übermittelt werden"
   },
   "wallets": {
     "title": "Mein Wallet",
@@ -248,16 +249,17 @@
       "closed": "Geschlossen"
     },
     "toast": {
-      "tradeClosedTitle": "✅ Trade geschlossen",
-      "tradeClosedDesc": "Ihre Position wurde erfolgreich geschlossen.",
+      "tradeClosedTitle": "{{asset}} geschlossen",
+      "tradeClosedDesc": "G/V {{pnl}}",
       "allClosedTitle": "Alle Positionen geschlossen",
       "allClosedDesc_one": "{{count}} Position wurde geschlossen.",
       "allClosedDesc_other": "{{count}} Positionen wurden geschlossen.",
       "orderCancelledTitle": "Order storniert",
-      "orderCancelledDesc": "Die offene Order wurde storniert.",
+      "orderCancelledDesc": "Offene Order für {{asset}} entfernt.",
       "closeFailedTitle": "Schließen fehlgeschlagen",
-      "closeFailedDesc": "Die Anfrage wurde abgelehnt. Die Position ist unverändert.",
-      "cancelFailedTitle": "Stornierung fehlgeschlagen"
+      "closeFailedDesc": "Die Position ist weiterhin offen.",
+      "cancelFailedTitle": "Stornierung fehlgeschlagen",
+      "tradeClosedPlain": "Trade geschlossen"
     },
     "closeAll": "Alle schließen",
     "confirmCloseAll": "Bestätigen?",
@@ -308,34 +310,35 @@
     "execution": "Ausführung",
     "cancel": "Abbrechen",
     "toast": {
-      "invalidAmountTitle": "⚠️ Ungültiger Betrag",
-      "invalidAmountDesc": "Bitte geben Sie einen gültigen Betrag für den Handel ein.",
-      "buyOrderPlaced": "📈 Order platziert!",
-      "sellOrderPlaced": "📉 Order platziert!",
-      "orderDesc": "{{orderType}}-Order für {{amount}} {{asset}} zu ${{price}} mit {{leverage}}x Hebel.",
+      "invalidAmountTitle": "Betrag eingeben",
+      "invalidAmountDesc": "Wählen Sie, wie viele Lots Sie handeln möchten.",
       "invalidTargetTitle": "Kein Zielkurs",
       "invalidTargetDesc": "Geben Sie den Kurs ein, zu dem die Order eröffnet werden soll.",
       "slTooSmallTitle": "Stop-Loss ist zu klein",
       "slTooSmallDesc": "Dieser Trade startet mit etwa ${{cost}} Spread. Setzen Sie den Stop-Loss über diesen Betrag.",
-      "pendingPlacedTitle": "Offene Order platziert",
-      "pendingPlacedDesc": "{{orderType}} {{amount}} {{asset}} wartet auf ${{price}}.",
       "pendingFilledTitle": "Offene Order eröffnet",
       "pendingFilledDesc": "{{asset}} hat {{price}} erreicht — die Position ist jetzt offen.",
-      "rejectedTitle": "Auftrag nicht angenommen",
-      "rejectedDesc": "Der Auftrag wurde abgelehnt. Es wurde nichts eröffnet.",
+      "rejectedTitle": "Order nicht platziert",
+      "rejectedDesc": "Es wurde nichts eröffnet.",
       "tradingBlockedTitle": "Handel nicht verfügbar",
       "tradingBlockedDesc": "Für dieses Konto ist der Handel nicht freigeschaltet. Bitte wenden Sie sich an den Support.",
       "leverageChangeBlockedTitle": "Hebel gesperrt",
-      "leverageChangeBlocked": "Sie haben keine Berechtigung, die Hebelwirkung zu ändern. Wenden Sie sich an Ihren Kundenbetreuer oder den Kundendienst für Unterstützung.",
+      "leverageChangeBlocked": "Ihr Kundenbetreuer kann ihn für Sie ändern.",
       "leverageMaxTitle": "Hebel-Limit",
       "leverageMax": "Der Hebel darf nicht höher als {{max}}x sein.",
-      "marketClosedTitle": "Markt geschlossen",
+      "marketClosedTitle": "Markt geschlossen · {{asset}}",
       "marketClosed": {
         "closed": "Dieses Instrument ist außerhalb seiner Handelszeiten.",
         "suspended": "Der Handel mit diesem Instrument ist ausgesetzt.",
         "noQuote": "Für dieses Instrument liegt noch kein Kurs vor.",
         "stale": "Der Kursfeed für dieses Instrument wird nicht mehr aktualisiert."
-      }
+      },
+      "boughtTitle": "{{asset}} gekauft",
+      "soldTitle": "{{asset}} verkauft",
+      "filledDesc": "{{lots}} Lot · {{price}} · {{leverage}}x",
+      "pendingBuyTitle": "Kauforder offen · {{asset}}",
+      "pendingSellTitle": "Verkaufsorder offen · {{asset}}",
+      "pendingDesc": "{{lots}} Lot zu {{price}}"
     },
     "target": "Zielkurs",
     "opensWhenReached": "Wird eröffnet, sobald der Kurs dieses Niveau erreicht",
@@ -359,8 +362,8 @@
     "title": "Benachrichtigungen",
     "empty": "Keine neuen Benachrichtigungen",
     "emptyDesc": "Sie sind auf dem neuesten Stand.",
-    "notImplementedTitle": "🚧 Funktion nicht implementiert",
-    "notImplementedDesc": "🚧 Diese Funktion ist noch nicht implementiert, aber keine Sorge! Sie können sie in Ihrer nächsten Anfrage anfordern! 🚀"
+    "notImplementedTitle": "Demnächst verfügbar",
+    "notImplementedDesc": "Dieser Bereich ist noch nicht verfügbar."
   },
   "modals": {
     "securedEncryption": "Gesichert mit Verschlüsselung auf Bankniveau",
@@ -423,8 +426,8 @@
       "network": "Netzwerk",
       "confirmNotice": "Senden Sie Gelder erst, nachdem Sie an die obige Adresse gesendet haben. Einzahlungen bestätigen sich meist innerhalb von 10-60 Minuten.",
       "successDesc": "Wir benachrichtigen Sie, sobald Ihre Einzahlung on-chain bestätigt ist.",
-      "copiedTitle": "In die Zwischenablage kopiert!",
-      "copiedDesc": "Die Wallet-Adresse wurde kopiert.",
+      "copiedTitle": "Adresse kopiert",
+      "copiedDesc": "Die Wallet-Adresse ist in Ihrer Zwischenablage.",
       "notImplementedDesc": "Die Krypto-Einzahlung ist noch nicht verfügbar."
     },
     "withdraw": {

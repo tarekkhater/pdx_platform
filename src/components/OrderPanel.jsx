@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { ChevronDown, ChevronUp, Minus, Plus, ArrowUpDown, ArrowLeftRight, ArrowUp, ArrowDown, X } from 'lucide-react';
 import { toast } from '@/components/ui/use-toast';
+import { noticeName } from '@/adapters/instrument';
 import { useTrading } from '@/context/TradingContext';
 import { useInstruments } from '@/context/InstrumentsContext';
 import { useLiveRates } from '@/context/LiveRatesContext';
@@ -164,6 +165,17 @@ const OrderPanel = ({ currentPrice, asset, serverTradable }) => {
   const instrument = getInstrument(asset);
   const decimals = instrument.decimals;
 
+  // what notices call the pair ("USD/JPY", "Gold"), never the internal selection key ("id:138")
+  const pairName = noticeName(instrument);
+  // a forex price is in the quote currency (159.122 yen), not dollars; everything else is quoted in USD
+  const priceText = (value) => {
+    const n = Number(value);
+    if (!Number.isFinite(n)) return '';
+    const text = n.toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+    return instrument.type === 'forex' ? text : `$${text}`;
+  };
+  const formatLots = (value) => String(Number(Number(value).toFixed(2)));
+
   // Switching instrument puts the ticket back on the book default. A value
   // the client picked for gold must not size a bitcoin order.
   useEffect(() => {
@@ -295,15 +307,15 @@ const OrderPanel = ({ currentPrice, asset, serverTradable }) => {
       toast({
         title: t('orderPanel.toast.tradingBlockedTitle'),
         description: t('orderPanel.toast.tradingBlockedDesc'),
-        variant: 'destructive',
+        variant: 'warning',
       });
       return;
     }
     if (!tradeable) {
       toast({
-        title: t('orderPanel.toast.marketClosedTitle'),
+        title: t('orderPanel.toast.marketClosedTitle', { asset: pairName }),
         description: t(`orderPanel.toast.marketClosed.${closedReason || 'closed'}`),
-        variant: 'destructive',
+        variant: 'warning',
       });
       return;
     }
@@ -320,7 +332,7 @@ const OrderPanel = ({ currentPrice, asset, serverTradable }) => {
       toast({
         title: t('orderPanel.toast.invalidTargetTitle'),
         description: t('orderPanel.toast.invalidTargetDesc'),
-        variant: 'destructive',
+        variant: 'warning',
       });
       return;
     }
@@ -334,7 +346,7 @@ const OrderPanel = ({ currentPrice, asset, serverTradable }) => {
       toast({
         title: t('orderPanel.toast.invalidAmountTitle'),
         description: t('orderPanel.toast.invalidAmountDesc'),
-        variant: 'destructive',
+        variant: 'warning',
       });
       return;
     }
@@ -351,7 +363,7 @@ const OrderPanel = ({ currentPrice, asset, serverTradable }) => {
             defaultValue: 'This trade opens with about ${{cost}} of spread. Set a stop loss above that amount.',
             cost: openingCost.toFixed(2),
           }),
-          variant: 'destructive',
+          variant: 'warning',
         });
         return;
       }
@@ -434,28 +446,24 @@ const OrderPanel = ({ currentPrice, asset, serverTradable }) => {
       return;
     }
 
+    const sentLots = ticket.lots;
     if (isPending) {
       toast({
-        title: t('orderPanel.toast.pendingPlacedTitle'),
-        description: t('orderPanel.toast.pendingPlacedDesc', {
-          orderType: t(`orderPanel.${orderSide}`),
-          amount: lots,
-          asset,
-          price: targetPrice.toFixed(decimals),
-        }),
+        title: t(orderSide === 'buy' ? 'orderPanel.toast.pendingBuyTitle' : 'orderPanel.toast.pendingSellTitle', { asset: pairName }),
+        description: t('orderPanel.toast.pendingDesc', { lots: formatLots(sentLots), price: priceText(targetPrice) }),
+        variant: 'pending',
       });
       return;
     }
 
     toast({
-      title: orderSide === 'buy' ? t('orderPanel.toast.buyOrderPlaced') : t('orderPanel.toast.sellOrderPlaced'),
-      description: t('orderPanel.toast.orderDesc', {
-        orderType: t(`orderPanel.${orderSide}`),
-        amount: lots,
-        asset,
-        price: entryPrice.toFixed(decimals),
+      title: t(orderSide === 'buy' ? 'orderPanel.toast.boughtTitle' : 'orderPanel.toast.soldTitle', { asset: pairName }),
+      description: t('orderPanel.toast.filledDesc', {
+        lots: formatLots(sentLots),
+        price: priceText(entryPrice),
         leverage,
       }),
+      variant: orderSide === 'buy' ? 'buy' : 'sell',
     });
   };
 
@@ -604,7 +612,7 @@ const OrderPanel = ({ currentPrice, asset, serverTradable }) => {
 
   const confirmRows = confirmSide
     ? [
-        { id: 'pair', label: t('orderPanel.pair'), value: instrument.sym || instrument.symbol || asset },
+        { id: 'pair', label: t('orderPanel.pair'), value: pairName || instrument.sym || instrument.symbol },
         { id: 'type', label: t('orderPanel.type'), value: execution === 'market' ? t('orderPanel.market') : t('orderPanel.pending'), upper: true },
         { id: 'margin', label: t('openTrades.margin'), value: marginText },
         { id: 'leverage', label: t('orderPanel.leverage'), value: `${leverage}x` },
@@ -688,7 +696,7 @@ const OrderPanel = ({ currentPrice, asset, serverTradable }) => {
                   things worth reading before the numbers. */}
               <div className="flex items-center justify-between gap-3 h-11 px-4 border-b border-hairline">
                 <div className="flex items-center gap-2 min-w-0">
-                  <h3 className="text-[14px] font-semibold text-content truncate">{instrument.sym || instrument.symbol || instrument.name}</h3>
+                  <h3 className="text-[14px] font-semibold text-content truncate">{pairName || instrument.sym || instrument.symbol || instrument.name}</h3>
                   <span
                     className={`flex items-center gap-0.5 text-[12px] font-semibold flex-shrink-0 ${
                       confirmSide === 'buy' ? 'text-gain' : 'text-loss'
@@ -968,6 +976,7 @@ const OrderPanel = ({ currentPrice, asset, serverTradable }) => {
                 toast({
                   title: t('orderPanel.toast.leverageMaxTitle'),
                   description: t('orderPanel.toast.leverageMax', { max: MAX_LEVERAGE }),
+                  variant: 'warning',
                 });
                 return;
               }

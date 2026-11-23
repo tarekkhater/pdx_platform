@@ -5,7 +5,7 @@ import { ChevronDown, X, Briefcase } from 'lucide-react';
 import { toast } from '@/components/ui/use-toast';
 import { useTrading } from '@/context/TradingContext';
 import { useInstruments } from '@/context/InstrumentsContext';
-import { displaySym } from '@/adapters/instrument';
+import { displaySym, noticeName } from '@/adapters/instrument';
 import { calcRoi } from '@/domain/pnl';
 import { cn } from '@/lib/utils';
 
@@ -73,16 +73,25 @@ const OpenTrades = ({ wide = false }) => {
    * while its request is in flight — closing a position twice would have the
    * second attempt fail against a position that no longer exists.
    */
+  // "Closed USD/JPY" with the last P&L shown on the row; the server settles the exact amount
+  const closedNotice = (position) => {
+    const name = position ? noticeName(getInstrument(position.asset), position.asset) : '';
+    const pnl = Number(position?.pnl);
+    return {
+      title: name ? t('openTrades.toast.tradeClosedTitle', { asset: name }) : t('openTrades.toast.tradeClosedPlain'),
+      description: Number.isFinite(pnl) ? t('openTrades.toast.tradeClosedDesc', { pnl: signed(pnl) }) : undefined,
+      variant: 'success',
+    };
+  };
+
   const handleClosePosition = async (id) => {
+    const position = positions.find((p) => String(p.id) === String(id));
     setBusyId(id);
     const result = await closePosition(id);
     setBusyId(null);
     toast(
       result?.ok
-        ? {
-            title: t('openTrades.toast.tradeClosedTitle'),
-            description: t('openTrades.toast.tradeClosedDesc'),
-          }
+        ? closedNotice(position)
         : {
             title: t('openTrades.toast.closeFailedTitle'),
             description: result?.message || t('openTrades.toast.closeFailedDesc'),
@@ -92,6 +101,8 @@ const OpenTrades = ({ wide = false }) => {
   };
 
   const handleCancelOrder = async (id) => {
+    const order = (pendingOrders || []).find((o) => String(o.id) === String(id));
+    const name = order ? noticeName(getInstrument(order.asset), order.asset) : '';
     setBusyId(id);
     const result = await cancelOrder(id);
     setBusyId(null);
@@ -99,7 +110,8 @@ const OpenTrades = ({ wide = false }) => {
       result?.ok
         ? {
             title: t('openTrades.toast.orderCancelledTitle'),
-            description: t('openTrades.toast.orderCancelledDesc'),
+            description: name ? t('openTrades.toast.orderCancelledDesc', { asset: name }) : undefined,
+            variant: 'info',
           }
         : {
             title: t('openTrades.toast.cancelFailedTitle'),
@@ -124,6 +136,7 @@ const OpenTrades = ({ wide = false }) => {
         ? {
             title: t('openTrades.toast.allClosedTitle'),
             description: t('openTrades.toast.allClosedDesc', { count }),
+            variant: 'success',
           }
         : {
             title: t('openTrades.toast.closeFailedTitle'),

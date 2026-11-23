@@ -52,7 +52,7 @@
     "security": "Biztonság",
     "changePassword": "Jelszó módosítása",
     "saveChanges": "Módosítások mentése",
-    "savedTitle": "✅ Profil frissítve",
+    "savedTitle": "Profil frissítve",
     "savedDesc": "Az adataid mentésre kerültek.",
     "saveFailedTitle": "A mentés nem sikerült",
     "fields": {
@@ -87,7 +87,7 @@
     },
     "upload": "Feltöltés",
     "replace": "Csere",
-    "uploadedTitle": "📤 Dokumentum feltöltve",
+    "uploadedTitle": "Dokumentum feltöltve",
     "uploadedDesc": "A(z) {{document}} ellenőrzésre beküldve."
   },
   "appearance": {
@@ -163,7 +163,8 @@
     "submittedTitle": "Dokumentum teljesítve",
     "submittedDesc": "A másolatot a fiókjához tároltuk.",
     "submittedReviewTitle": "Igénylés beküldve",
-    "submittedReviewDesc": "Megvizsgáljuk az igénylését, és hamarosan jelentkezünk."
+    "submittedReviewDesc": "Megvizsgáljuk az igénylését, és hamarosan jelentkezünk.",
+    "submitFailedTitle": "A dokumentumot nem sikerült elküldeni"
   },
   "wallets": {
     "title": "Tárcám",
@@ -248,16 +249,17 @@
       "closed": "Lezárt"
     },
     "toast": {
-      "tradeClosedTitle": "✅ Pozíció lezárva",
-      "tradeClosedDesc": "A pozíciód sikeresen lezárult.",
+      "tradeClosedTitle": "{{asset}} lezárva",
+      "tradeClosedDesc": "Eredmény {{pnl}}",
       "allClosedTitle": "Minden pozíció lezárva",
       "allClosedDesc_one": "{{count}} pozíció lezárva.",
       "allClosedDesc_other": "{{count}} pozíció lezárva.",
       "orderCancelledTitle": "Megbízás törölve",
-      "orderCancelledDesc": "A függő megbízás törölve lett.",
+      "orderCancelledDesc": "A(z) {{asset}} függő megbízása törölve.",
       "closeFailedTitle": "A zárás nem sikerült",
-      "closeFailedDesc": "A kérést elutasítottuk. A pozíció változatlan.",
-      "cancelFailedTitle": "A törlés nem sikerült"
+      "closeFailedDesc": "A pozíció nyitva maradt.",
+      "cancelFailedTitle": "A törlés nem sikerült",
+      "tradeClosedPlain": "Pozíció lezárva"
     },
     "closeAll": "Mind zárása",
     "confirmCloseAll": "Biztos?",
@@ -308,34 +310,35 @@
     "execution": "Végrehajtás",
     "cancel": "Mégse",
     "toast": {
-      "invalidAmountTitle": "⚠️ Érvénytelen összeg",
-      "invalidAmountDesc": "Adj meg egy érvényes összeget a kereskedéshez.",
-      "buyOrderPlaced": "📈 Megbízás rögzítve!",
-      "sellOrderPlaced": "📉 Megbízás rögzítve!",
-      "orderDesc": "{{orderType}} megbízás {{amount}} {{asset}} mennyiségre ${{price}} áron, {{leverage}}x tőkeáttétellel.",
+      "invalidAmountTitle": "Adjon meg mennyiséget",
+      "invalidAmountDesc": "Válassza ki, hány lotot szeretne kereskedni.",
       "invalidTargetTitle": "Nincs célár",
       "invalidTargetDesc": "Adja meg az árat, amelyen a megbízás megnyíljon.",
       "slTooSmallTitle": "A stop loss túl kicsi",
       "slTooSmallDesc": "Ez az ügylet körülbelül ${{cost}} spreaddel indul. Állítson be ennél nagyobb stop losst.",
-      "pendingPlacedTitle": "Függő megbízás rögzítve",
-      "pendingPlacedDesc": "{{orderType}} {{amount}} {{asset}} vár a(z) ${{price}} árra.",
       "pendingFilledTitle": "Függő megbízás megnyílt",
       "pendingFilledDesc": "A(z) {{asset}} elérte a(z) {{price}} szintet, az ügylet nyitva van.",
-      "rejectedTitle": "A megbízás elutasítva",
-      "rejectedDesc": "A megbízást elutasítottuk. Semmi nem nyílt meg.",
+      "rejectedTitle": "A megbízás nem jött létre",
+      "rejectedDesc": "Semmi sem nyílt meg.",
       "tradingBlockedTitle": "A kereskedés nem érhető el",
       "tradingBlockedDesc": "Ezen a számlán nincs engedélyezve a kereskedés. Vegye fel a kapcsolatot az ügyfélszolgálattal.",
       "leverageChangeBlockedTitle": "A tőkeáttétel zárolva",
-      "leverageChangeBlocked": "Nincs jogosultsága a tőkeáttétel módosítására. Kérjük, forduljon számlavezetőjéhez vagy az ügyfélszolgálathoz.",
+      "leverageChangeBlocked": "A számlavezetője módosíthatja Önnek.",
       "leverageMaxTitle": "Tőkeáttétel limit",
       "leverageMax": "A tőkeáttétel nem lehet nagyobb, mint {{max}}x.",
-      "marketClosedTitle": "A piac zárva",
+      "marketClosedTitle": "A piac zárva · {{asset}}",
       "marketClosed": {
         "closed": "Ez az instrumentum a kereskedési időn kívül van.",
         "suspended": "Az instrumentum kereskedése fel van függesztve.",
         "noQuote": "Ehhez az instrumentumhoz még nincs árfolyam.",
         "stale": "Az instrumentum árfolyamcsatornája nem frissül."
-      }
+      },
+      "boughtTitle": "{{asset}} megvéve",
+      "soldTitle": "{{asset}} eladva",
+      "filledDesc": "{{lots}} lot · {{price}} · {{leverage}}x",
+      "pendingBuyTitle": "Függő vétel · {{asset}}",
+      "pendingSellTitle": "Függő eladás · {{asset}}",
+      "pendingDesc": "{{lots}} lot, ár: {{price}}"
     },
     "target": "Célár",
     "opensWhenReached": "Megnyílik, amint az árfolyam eléri ezt a szintet",
@@ -359,8 +362,8 @@
     "title": "Értesítések",
     "empty": "Nincs új értesítés",
     "emptyDesc": "Minden rendben, nincs teendő.",
-    "notImplementedTitle": "🚧 A funkció még nem elérhető",
-    "notImplementedDesc": "🚧 Ez a funkció még nincs implementálva — de ne aggódj! A következő üzenetedben kérheted! 🚀"
+    "notImplementedTitle": "Hamarosan",
+    "notImplementedDesc": "Ez a rész még nem érhető el."
   },
   "modals": {
     "securedEncryption": "Banki szintű titkosítással védve",
@@ -423,8 +426,8 @@
       "network": "Hálózat",
       "confirmNotice": "Csak azután küldj pénzt, hogy elküldted a fenti címre. A befizetések általában 10-60 percen belül megerősítést kapnak.",
       "successDesc": "Értesítünk, amint a befizetésed megerősítést kap a láncon.",
-      "copiedTitle": "Vágólapra másolva!",
-      "copiedDesc": "A tárcacím másolva lett.",
+      "copiedTitle": "Cím másolva",
+      "copiedDesc": "A tárcacím a vágólapon van.",
       "notImplementedDesc": "A kripto befizetés még nem elérhető."
     },
     "withdraw": {

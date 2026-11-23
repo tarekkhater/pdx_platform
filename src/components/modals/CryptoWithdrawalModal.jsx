@@ -61,7 +61,7 @@ const CryptoWithdrawalModal = ({ onBack, onSuccess }) => {
     }
 
     await refresh();
-    toast({ title: t('modals.cryptoWithdraw.submittedTitle'), description: t('modals.cryptoWithdraw.submittedDesc') });
+    toast({ title: t('modals.cryptoWithdraw.submittedTitle'), description: t('modals.cryptoWithdraw.submittedDesc'), variant: 'pending' });
     onSuccess?.();
   };
 
