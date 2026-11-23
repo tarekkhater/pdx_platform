@@ -64,7 +64,7 @@ const Certificates = () => {
       toast({
         title: t('certificates.incompleteTitle'),
         description: t('certificates.incompleteDesc'),
-        variant: 'destructive',
+        variant: 'warning',
       });
       return;
     }

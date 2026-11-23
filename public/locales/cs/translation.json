@@ -52,7 +52,7 @@
     "security": "Zabezpečení",
     "changePassword": "Změnit heslo",
     "saveChanges": "Uložit změny",
-    "savedTitle": "✅ Profil aktualizován",
+    "savedTitle": "Profil aktualizován",
     "savedDesc": "Vaše údaje byly uloženy.",
     "saveFailedTitle": "Uložení se nezdařilo",
     "fields": {
@@ -87,7 +87,7 @@
     },
     "upload": "Nahrát",
     "replace": "Nahradit",
-    "uploadedTitle": "📤 Dokument nahrán",
+    "uploadedTitle": "Dokument nahrán",
     "uploadedDesc": "{{document}} byl odeslán ke kontrole."
   },
   "appearance": {
@@ -164,7 +164,8 @@
     "submittedTitle": "Dokument dokončen",
     "submittedDesc": "Kopie byla uložena k vašemu účtu.",
     "submittedReviewTitle": "Žádost odeslána",
-    "submittedReviewDesc": "Vaši žádost posoudíme a brzy se vám ozveme."
+    "submittedReviewDesc": "Vaši žádost posoudíme a brzy se vám ozveme.",
+    "submitFailedTitle": "Dokument se nepodařilo odeslat"
   },
   "wallets": {
     "title": "Moje peněženka",
@@ -249,17 +250,20 @@
       "closed": "Uzavřené"
     },
     "toast": {
-      "tradeClosedTitle": "✅ Obchod uzavřen",
-      "tradeClosedDesc": "Vaše pozice byla úspěšně uzavřena.",
+      "tradeClosedTitle": "Uzavřeno {{asset}}",
+      "takeProfitTitle": "Take profit dosažen · {{asset}}",
+      "stopLossTitle": "Stop loss dosažen · {{asset}}",
+      "tradeClosedDesc": "Zisk/ztráta {{pnl}}",
       "allClosedTitle": "Všechny pozice uzavřeny",
       "allClosedDesc_one": "{{count}} pozice byla uzavřena.",
       "allClosedDesc_few": "{{count}} pozice byly uzavřeny.",
       "allClosedDesc_other": "{{count}} pozic bylo uzavřeno.",
       "orderCancelledTitle": "Příkaz zrušen",
-      "orderCancelledDesc": "Čekající příkaz byl zrušen.",
+      "orderCancelledDesc": "Čekající pokyn na {{asset}} odstraněn.",
       "closeFailedTitle": "Nelze uzavřít",
-      "closeFailedDesc": "Požadavek byl odmítnut. Pozice zůstává beze změny.",
-      "cancelFailedTitle": "Nelze zrušit"
+      "closeFailedDesc": "Pozice zůstává otevřená.",
+      "cancelFailedTitle": "Nelze zrušit",
+      "tradeClosedPlain": "Obchod uzavřen"
     },
     "closeAll": "Zavřít vše",
     "confirmCloseAll": "Potvrdit?",
@@ -310,34 +314,35 @@
     "execution": "Provedení",
     "cancel": "Zrušit",
     "toast": {
-      "invalidAmountTitle": "⚠️ Neplatná částka",
-      "invalidAmountDesc": "Zadejte prosím platnou částku k obchodování.",
-      "buyOrderPlaced": "📈 Příkaz zadán!",
-      "sellOrderPlaced": "📉 Příkaz zadán!",
-      "orderDesc": "Příkaz {{orderType}} na {{amount}} {{asset}} za ${{price}} s pákou {{leverage}}x.",
+      "invalidAmountTitle": "Zadejte objem",
+      "invalidAmountDesc": "Zvolte, kolik lotů chcete obchodovat.",
       "invalidTargetTitle": "Chybí cílová cena",
       "invalidTargetDesc": "Zadejte cenu, za kterou se má příkaz otevřít.",
       "slTooSmallTitle": "Stop loss je příliš malý",
       "slTooSmallDesc": "Tento obchod začíná se spreadem přibližně ${{cost}}. Nastavte stop loss nad tuto částku.",
-      "pendingPlacedTitle": "Čekající příkaz zadán",
-      "pendingPlacedDesc": "{{orderType}} {{amount}} {{asset}} čeká na ${{price}}.",
       "pendingFilledTitle": "Čekající příkaz otevřen",
       "pendingFilledDesc": "{{asset}} dosáhl {{price}} a obchod je nyní otevřený.",
-      "rejectedTitle": "Pokyn nebyl přijat",
-      "rejectedDesc": "Pokyn byl zamítnut. Nic nebylo otevřeno.",
+      "rejectedTitle": "Pokyn nebyl zadán",
+      "rejectedDesc": "Nic nebylo otevřeno.",
       "tradingBlockedTitle": "Obchodování není dostupné",
       "tradingBlockedDesc": "Na tomto účtu není obchodování povoleno. Kontaktujte podporu.",
       "leverageChangeBlockedTitle": "Páka je uzamčena",
-      "leverageChangeBlocked": "Nemáte oprávnění měnit páku. Kontaktujte svého manažera účtu nebo zákaznickou podporu pro pomoc.",
+      "leverageChangeBlocked": "Změnu vám může provést váš manažer účtu.",
       "leverageMaxTitle": "Limit páky",
       "leverageMax": "Páka nesmí být vyšší než {{max}}x.",
-      "marketClosedTitle": "Trh je zavřený",
+      "marketClosedTitle": "Trh je zavřený · {{asset}}",
       "marketClosed": {
         "closed": "Tento instrument je mimo obchodní hodiny.",
         "suspended": "Obchodování s tímto instrumentem je pozastaveno.",
         "noQuote": "Pro tento instrument zatím není k dispozici cena.",
         "stale": "Cenový kanál pro tento instrument se přestal aktualizovat."
-      }
+      },
+      "boughtTitle": "Nakoupeno {{asset}}",
+      "soldTitle": "Prodáno {{asset}}",
+      "filledDesc": "{{lots}} lot · {{price}} · {{leverage}}x",
+      "pendingBuyTitle": "Čekající nákup · {{asset}}",
+      "pendingSellTitle": "Čekající prodej · {{asset}}",
+      "pendingDesc": "{{lots}} lot za {{price}}"
     },
     "target": "Cílová cena",
     "opensWhenReached": "Otevře se, jakmile cena dosáhne této úrovně",
@@ -361,8 +366,8 @@
     "title": "Oznámení",
     "empty": "Žádná nová oznámení",
     "emptyDesc": "Jste v obraze.",
-    "notImplementedTitle": "🚧 Funkce není implementována",
-    "notImplementedDesc": "🚧 Tato funkce ještě není implementována, ale nebojte se! Můžete si ji vyžádat v dalším dotazu! 🚀"
+    "notImplementedTitle": "Již brzy",
+    "notImplementedDesc": "Tato sekce zatím není k dispozici."
   },
   "modals": {
     "securedEncryption": "Zabezpečeno šifrováním na bankovní úrovni",
@@ -425,8 +430,8 @@
       "network": "Síť",
       "confirmNotice": "Prostředky posílejte až po zadání výše uvedené adresy. Vklady se obvykle potvrdí do 10-60 minut.",
       "successDesc": "Jakmile bude váš vklad potvrzen v síti, dáme vám vědět.",
-      "copiedTitle": "Zkopírováno do schránky!",
-      "copiedDesc": "Adresa peněženky byla zkopírována.",
+      "copiedTitle": "Adresa zkopírována",
+      "copiedDesc": "Adresa peněženky je ve schránce.",
       "notImplementedDesc": "Krypto vklad zatím není dostupný."
     },
     "withdraw": {

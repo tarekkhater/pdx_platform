@@ -68,6 +68,20 @@ export const displaySym = (instrument, fallback = '') => {
   return sym || normalizeTicker(fallback);
 };
 
+/**
+ * What a notice calls the instrument: the pair for forex ("USD/JPY"), the name for gold, oil and
+ * indices ("Gold", "US2000"), the ticker for stocks and crypto ("AAPL", "BTC"). Never the internal
+ * selection key ("id:138").
+ */
+export const noticeName = (instrument, fallback = '') => {
+  const type = String(instrument?.type ?? '').toLowerCase();
+  if ((type === 'commodities' || type === 'indices') && instrument?.name) return String(instrument.name);
+  const label = displaySym(instrument);
+  if (label) return label;
+  const raw = String(fallback ?? '');
+  return /^id:/i.test(raw) ? '' : raw;
+};
+
 const CATEGORY_LABELS = {
   crypto: 'Crypto',
   stocks: 'Stocks',

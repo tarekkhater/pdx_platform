@@ -56,7 +56,7 @@
     "security": "Security",
     "changePassword": "Change Password",
     "saveChanges": "Save Changes",
-    "savedTitle": "✅ Profile Updated",
+    "savedTitle": "Profile updated",
     "savedDesc": "Your information has been saved.",
     "saveFailedTitle": "Could not save",
     "fields": {
@@ -91,7 +91,7 @@
     },
     "upload": "Upload",
     "replace": "Replace",
-    "uploadedTitle": "📤 Document uploaded",
+    "uploadedTitle": "Document uploaded",
     "uploadedDesc": "{{document}} was submitted for review.",
     "uploadedLabel": "Submitted",
     "uploadFailedTitle": "Upload failed"
@@ -170,7 +170,8 @@
     "submittedTitle": "Document completed",
     "submittedDesc": "A copy has been stored against your account.",
     "submittedReviewTitle": "Request submitted",
-    "submittedReviewDesc": "We will review your request and come back to you shortly."
+    "submittedReviewDesc": "We will review your request and come back to you shortly.",
+    "submitFailedTitle": "Couldn't submit the document"
   },
   "wallets": {
     "title": "My Wallet",
@@ -255,16 +256,19 @@
       "closed": "Closed"
     },
     "toast": {
-      "tradeClosedTitle": "✅ Trade Closed",
-      "tradeClosedDesc": "Your position has been successfully closed.",
+      "tradeClosedTitle": "Closed {{asset}}",
+      "takeProfitTitle": "Take profit hit · {{asset}}",
+      "stopLossTitle": "Stop loss hit · {{asset}}",
+      "tradeClosedDesc": "P&L {{pnl}}",
       "allClosedTitle": "All positions closed",
       "allClosedDesc_one": "{{count}} position was closed.",
       "allClosedDesc_other": "{{count}} positions were closed.",
       "orderCancelledTitle": "Order cancelled",
-      "orderCancelledDesc": "The pending order has been cancelled.",
+      "orderCancelledDesc": "Pending order on {{asset}} removed.",
       "closeFailedTitle": "Could not close",
-      "closeFailedDesc": "The request was refused. The position is unchanged.",
-      "cancelFailedTitle": "Could not cancel"
+      "closeFailedDesc": "The position is still open.",
+      "cancelFailedTitle": "Could not cancel",
+      "tradeClosedPlain": "Trade closed"
     },
     "closeAll": "Close All",
     "confirmCloseAll": "Confirm?",
@@ -315,34 +319,35 @@
     "execution": "Execution",
     "cancel": "Cancel",
     "toast": {
-      "invalidAmountTitle": "⚠️ Invalid Amount",
-      "invalidAmountDesc": "Please enter a valid amount to trade.",
-      "buyOrderPlaced": "📈 Order Placed!",
-      "sellOrderPlaced": "📉 Order Placed!",
-      "orderDesc": "{{orderType}} order for {{amount}} {{asset}} at ${{price}} with {{leverage}}x leverage.",
+      "invalidAmountTitle": "Enter an amount",
+      "invalidAmountDesc": "Choose how many lots to trade.",
       "invalidTargetTitle": "No target price",
       "invalidTargetDesc": "Enter the price the order should open at.",
       "slTooSmallTitle": "Stop loss is too small",
       "slTooSmallDesc": "This trade opens with about ${{cost}} of spread. Set a stop loss above that amount.",
-      "pendingPlacedTitle": "Pending order placed",
-      "pendingPlacedDesc": "{{orderType}} {{amount}} {{asset}} waiting for ${{price}}.",
       "pendingFilledTitle": "Pending order opened",
       "pendingFilledDesc": "{{asset}} reached {{price}} and the trade is now open.",
-      "rejectedTitle": "Order not accepted",
-      "rejectedDesc": "The order was rejected. Nothing has been opened.",
+      "rejectedTitle": "Order not placed",
+      "rejectedDesc": "Nothing was opened.",
       "tradingBlockedTitle": "Trading unavailable",
       "tradingBlockedDesc": "Trading is not enabled on this account. Contact support.",
       "leverageChangeBlockedTitle": "Leverage locked",
-      "leverageChangeBlocked": "You do not have permission to modify your leverage. Please contact your account manager or customer support for assistance.",
+      "leverageChangeBlocked": "Your account manager can change it for you.",
       "leverageMaxTitle": "Leverage limit",
       "leverageMax": "Leverage cannot be higher than {{max}}x.",
-      "marketClosedTitle": "Market closed",
+      "marketClosedTitle": "Market closed · {{asset}}",
       "marketClosed": {
         "closed": "This instrument is outside its trading hours.",
         "suspended": "Trading in this instrument is suspended.",
         "noQuote": "No price is available for this instrument yet.",
         "stale": "The price feed for this instrument has stopped updating."
-      }
+      },
+      "boughtTitle": "Bought {{asset}}",
+      "soldTitle": "Sold {{asset}}",
+      "filledDesc": "{{lots}} lot · {{price}} · {{leverage}}x",
+      "pendingBuyTitle": "Pending buy · {{asset}}",
+      "pendingSellTitle": "Pending sell · {{asset}}",
+      "pendingDesc": "{{lots}} lot at {{price}}"
     },
     "target": "Target",
     "opensWhenReached": "Opens when the price reaches this level",
@@ -366,8 +371,8 @@
     "title": "Notifications",
     "empty": "No new notifications",
     "emptyDesc": "You're all caught up.",
-    "notImplementedTitle": "🚧 Feature Not Implemented",
-    "notImplementedDesc": "🚧 This feature isn't implemented yet—but don't worry! You can request it in your next prompt! 🚀"
+    "notImplementedTitle": "Coming soon",
+    "notImplementedDesc": "This section isn't available yet."
   },
   "modals": {
     "securedEncryption": "Secured with bank-level encryption",
@@ -430,8 +435,8 @@
       "network": "Network",
       "confirmNotice": "Only send funds after sending to the address above. Deposits usually confirm within 10-60 minutes.",
       "successDesc": "We'll notify you once your deposit is confirmed on-chain.",
-      "copiedTitle": "Copied to clipboard!",
-      "copiedDesc": "Wallet address has been copied.",
+      "copiedTitle": "Address copied",
+      "copiedDesc": "The wallet address is on your clipboard.",
       "notImplementedDesc": "Crypto deposit functionality is not yet available."
     },
     "withdraw": {

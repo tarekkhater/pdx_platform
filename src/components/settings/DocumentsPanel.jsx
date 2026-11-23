@@ -109,6 +109,7 @@ const DocumentsPanel = ({ isOpen, onBack, accountName = 'Antimgreen' }) => {
         description: t(
           record.status === 'review' ? 'documents.submittedReviewDesc' : 'documents.submittedDesc'
         ),
+        variant: record.status === 'review' ? 'pending' : 'success',
       });
       return true;
     }
@@ -121,7 +122,7 @@ const DocumentsPanel = ({ isOpen, onBack, accountName = 'Antimgreen' }) => {
     const result = await run();
     if (!result.ok) {
       toast({
-        title: t('documents.submittedTitle'),
+        title: t('documents.submitFailedTitle'),
         description: result.message,
         variant: 'destructive',
       });

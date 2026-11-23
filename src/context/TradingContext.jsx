@@ -13,7 +13,9 @@ import {
   readStoredSymbol,
   resolveStoredAssetId,
 } from '@/lib/lastSelectedAsset';
-import { uniqueKeyOf, pairLabelOf } from '@/adapters/instrument';
+import { useTranslation } from 'react-i18next';
+import { toast } from '@/components/ui/use-toast';
+import { uniqueKeyOf, pairLabelOf, noticeName } from '@/adapters/instrument';
 
 const TradingContext = createContext(null);
 
@@ -65,6 +67,44 @@ export const TradingProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [tradingBlocked, setTradingBlocked] = useState(false);
   const restoredSelection = useRef(false);
+  const { t } = useTranslation();
+
+  /**
+   * Trades closed without the client pressing close here: a take profit or stop loss, a stop-out,
+   * or the broker from the CRM. Each poll compares the open ids with the previous read; an id that
+   * left the book and was not closed from this tab gets a notice. null until the first read, so
+   * opening the app does not announce what closed while it was shut.
+   */
+  const lastOpenIds = useRef(null);
+  const closingHere = useRef(new Set());
+  // kept a little after the close returns: a poll that left before the close can land after it
+  const forgetClosing = (ids) =>
+    setTimeout(() => ids.forEach((id) => closingHere.current.delete(id)), BOOK_POLL_MS * 3);
+  const announceRef = useRef(() => {});
+  announceRef.current = (trade) => {
+    const instrument = trade.currencyId != null ? getInstrumentById(trade.currencyId) : null;
+    const name = noticeName(instrument, trade.asset);
+    const pnl = Number(trade.pnl);
+    const tp = Number(trade.takeProfit) || 0;
+    const sl = Number(trade.stopLoss) || 0;
+    // SL/TP are dollar amounts and the server books the P&L that hit them (Position::checkAndCloseByPnL)
+    const hitTp = tp > 0 && pnl >= tp - 0.01;
+    const hitSl = !hitTp && sl > 0 && pnl <= -sl + 0.01;
+    const amount = Math.abs(pnl).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    let title = t('openTrades.toast.tradeClosedPlain');
+    if (name) {
+      if (hitTp) title = t('openTrades.toast.takeProfitTitle', { asset: name });
+      else if (hitSl) title = t('openTrades.toast.stopLossTitle', { asset: name });
+      else title = t('openTrades.toast.tradeClosedTitle', { asset: name });
+    }
+    toast({
+      title,
+      description: Number.isFinite(pnl)
+        ? t('openTrades.toast.tradeClosedDesc', { pnl: (pnl < 0 ? '-$' : '+$') + amount })
+        : undefined,
+      variant: hitTp ? 'success' : hitSl ? 'sell' : 'info',
+    });
+  };
 
   // symbolOfId is rebuilt whenever the instrument list changes; holding it in
   // a ref keeps the polling effect from restarting each time.
@@ -126,13 +166,26 @@ export const TradingProvider = ({ children }) => {
       tradesService.fetchClosedTrades({ symbolOf }),
     ]);
 
-    if (open.ok) setRawPositions(open.positions);
+    if (open.ok) {
+      const openIds = new Set(open.positions.map((p) => String(p.id)));
+      const before = lastOpenIds.current;
+      lastOpenIds.current = openIds;
+      if (before && closed.ok) {
+        before.forEach((id) => {
+          if (openIds.has(id) || closingHere.current.has(id)) return;
+          const trade = closed.trades.find((c) => String(c.id) === id);
+          if (trade) announceRef.current(trade);
+        });
+      }
+      setRawPositions(open.positions);
+    }
     if (pending.ok) setPendingOrders(pending.orders);
     if (closed.ok) setClosedTrades(closed.trades);
     setLoading(false);
   }, []);
 
   useEffect(() => {
+    lastOpenIds.current = null;
     if (!user) return undefined;
     refreshBook();
     const interval = setInterval(refreshBook, BOOK_POLL_MS);
@@ -232,18 +285,30 @@ export const TradingProvider = ({ children }) => {
   const closePosition = useCallback(
     async (id) => {
       const position = positions.find((p) => p.id === id);
-      const result = await tradesService.closePosition({ id, pnl: position?.pnl ?? 0 });
-      if (result.ok) await refreshBook();
-      return result;
+      // the client's own close has its own notice (OpenTrades)
+      closingHere.current.add(String(id));
+      try {
+        const result = await tradesService.closePosition({ id, pnl: position?.pnl ?? 0 });
+        if (result.ok) await refreshBook();
+        return result;
+      } finally {
+        forgetClosing([String(id)]);
+      }
     },
     [positions, refreshBook]
   );
 
   const closeAllPositions = useCallback(async () => {
-    const result = await tradesService.closeAllPositions();
-    if (result.ok) await refreshBook();
-    return result;
-  }, [refreshBook]);
+    const ids = rawPositions.map((p) => String(p.id));
+    ids.forEach((id) => closingHere.current.add(id));
+    try {
+      const result = await tradesService.closeAllPositions();
+      if (result.ok) await refreshBook();
+      return result;
+    } finally {
+      forgetClosing(ids);
+    }
+  }, [rawPositions, refreshBook]);
 
   const addPendingOrder = useCallback(
     async (ticket) => {

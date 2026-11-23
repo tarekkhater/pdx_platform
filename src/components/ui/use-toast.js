@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 
-const TOAST_LIMIT = 1
+// Up to three notices on screen; the oldest goes when a fourth arrives.
+const TOAST_LIMIT = 3
 
 let count = 0
 function generateId() {
@@ -13,19 +14,19 @@ const toastStore = {
     toasts: [],
   },
   listeners: [],
-  
+
   getState: () => toastStore.state,
-  
+
   setState: (nextState) => {
     if (typeof nextState === 'function') {
       toastStore.state = nextState(toastStore.state)
     } else {
       toastStore.state = { ...toastStore.state, ...nextState }
     }
-    
+
     toastStore.listeners.forEach(listener => listener(toastStore.state))
   },
-  
+
   subscribe: (listener) => {
     toastStore.listeners.push(listener)
     return () => {
@@ -34,6 +35,11 @@ const toastStore = {
   }
 }
 
+/**
+ * Shows a notice: { title, description, variant, duration? }.
+ * The time on screen is run by the card's countdown bar (toaster.jsx), which stops while the
+ * pointer is on the notice; duration: Infinity keeps it until closed.
+ */
 export const toast = ({ ...props }) => {
   const id = generateId()
 
@@ -67,34 +73,14 @@ export const toast = ({ ...props }) => {
 
 export function useToast() {
   const [state, setState] = useState(toastStore.getState())
-  
+
   useEffect(() => {
     const unsubscribe = toastStore.subscribe((state) => {
       setState(state)
     })
-    
+
     return unsubscribe
   }, [])
-  
-  useEffect(() => {
-    const timeouts = []
-
-    state.toasts.forEach((toast) => {
-      if (toast.duration === Infinity) {
-        return
-      }
-
-      const timeout = setTimeout(() => {
-        toast.dismiss()
-      }, toast.duration || 5000)
-
-      timeouts.push(timeout)
-    })
-
-    return () => {
-      timeouts.forEach((timeout) => clearTimeout(timeout))
-    }
-  }, [state.toasts])
 
   return {
     toast,

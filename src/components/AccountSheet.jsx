@@ -49,6 +49,7 @@ const AccountSheet = ({ isOpen, onClose, account: override }) => {
     toast({
       title: t('notifications.notImplementedTitle'),
       description: t('notifications.notImplementedDesc'),
+      variant: 'info',
     });
 
   // Trade Station, Trading History, Market, and Wallets already live one tap

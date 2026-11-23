@@ -165,3 +165,9 @@ input[type='number'] {
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+/* notice countdown bar (components/ui/toast.jsx): runs the time down, paused while hovered */
+@keyframes toast-countdown {
+  from { transform: scaleX(1); }
+  to { transform: scaleX(0); }
+}

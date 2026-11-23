@@ -143,6 +143,7 @@ const Onboarding = () => {
     toast({
       title: t('onboarding.submittedTitle'),
       description: needsManualReview(answers) ? t('onboarding.submittedReview') : t('onboarding.submittedDesc'),
+      variant: needsManualReview(answers) ? 'pending' : 'success',
     });
 
     navigate('/', { replace: true });
