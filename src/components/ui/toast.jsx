@@ -1,110 +1,123 @@
 import { cn } from '@/lib/utils';
-import * as ToastPrimitives from '@radix-ui/react-toast';
-import { ArrowDownRight, ArrowUpRight, Check, Clock, Info, AlertTriangle, X } from 'lucide-react';
-import React from 'react';
+import { motion } from 'framer-motion';
+import { AlertTriangle, ArrowDownRight, ArrowUpRight, Check, Clock, Info, X } from 'lucide-react';
+import React, { useState } from 'react';
 
 /**
- * One quiet card for every notice: a small tinted icon says what kind of notice it is (bought, sold,
- * waiting, done, warning, error), the title says what happened in a few words, and one line under it
- * carries the detail. No full-red cards, no emoji: the icon carries the meaning.
+ * One notice card for the whole platform.
+ *
+ * A glass card with a tinted icon tile that says what kind of notice it is (bought, sold, waiting,
+ * done, info, warning, error), a short title, one line of detail and a thin countdown bar. It springs
+ * in, slides out, pauses while the pointer is on it and can be swiped away. The card is drawn here;
+ * the stack and the timing live in toaster.jsx.
  */
 
-const ToastProvider = ToastPrimitives.Provider;
-
-const ToastViewport = React.forwardRef(({ className, ...props }, ref) => (
-	<ToastPrimitives.Viewport
-		ref={ref}
-		className={cn(
-			'fixed top-0 z-[100] flex max-h-screen w-full flex-col-reverse gap-2 p-3 sm:bottom-0 sm:right-0 sm:top-auto sm:flex-col sm:p-4 md:max-w-[380px]',
-			className,
-		)}
-		{...props}
-	/>
-));
-ToastViewport.displayName = ToastPrimitives.Viewport.displayName;
-
-const TOAST_CLASS =
-	'group pointer-events-auto relative flex w-full items-center gap-3 overflow-hidden rounded-2xl border border-hairline bg-surface-raised/95 py-3 pl-3 pr-9 shadow-[0_12px_32px_-8px_rgba(0,0,0,0.45)] backdrop-blur-xl transition-all data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=move]:transition-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[swipe=end]:animate-out data-[state=closed]:fade-out-80 data-[state=open]:slide-in-from-top-full data-[state=open]:sm:slide-in-from-bottom-full data-[state=closed]:slide-out-to-right-full';
-
-/** variant -> icon and its tint. "default" is a confirmation; "destructive" is kept for existing callers. */
-const KINDS = {
-	default: { Icon: Check, tone: 'bg-gain/15 text-gain' },
-	success: { Icon: Check, tone: 'bg-gain/15 text-gain' },
-	buy: { Icon: ArrowUpRight, tone: 'bg-gain/15 text-gain' },
-	sell: { Icon: ArrowDownRight, tone: 'bg-loss/15 text-loss' },
-	pending: { Icon: Clock, tone: 'bg-overlay text-content-muted' },
-	info: { Icon: Info, tone: 'bg-overlay text-content-muted' },
-	warning: { Icon: AlertTriangle, tone: 'bg-primary/15 text-primary' },
-	destructive: { Icon: X, tone: 'bg-loss/15 text-loss' },
+/** variant -> icon, tile tint, glow and countdown colour. "default" is a confirmation. */
+export const TOAST_KINDS = {
+	default: { Icon: Check, tile: 'bg-gain/15 text-gain ring-gain/25', glow: 'hsl(var(--gain))', bar: 'bg-gain' },
+	success: { Icon: Check, tile: 'bg-gain/15 text-gain ring-gain/25', glow: 'hsl(var(--gain))', bar: 'bg-gain' },
+	buy: { Icon: ArrowUpRight, tile: 'bg-gain/15 text-gain ring-gain/25', glow: 'hsl(var(--gain))', bar: 'bg-gain' },
+	sell: { Icon: ArrowDownRight, tile: 'bg-loss/15 text-loss ring-loss/25', glow: 'hsl(var(--loss))', bar: 'bg-loss' },
+	pending: { Icon: Clock, tile: 'bg-overlay-strong text-content ring-hairline', glow: 'hsl(var(--content-muted))', bar: 'bg-content-muted' },
+	info: { Icon: Info, tile: 'bg-overlay-strong text-content ring-hairline', glow: 'hsl(var(--content-muted))', bar: 'bg-content-muted' },
+	warning: { Icon: AlertTriangle, tile: 'bg-primary/15 text-primary ring-primary/25', glow: 'hsl(var(--primary))', bar: 'bg-primary' },
+	destructive: { Icon: X, tile: 'bg-loss/15 text-loss ring-loss/25', glow: 'hsl(var(--loss))', bar: 'bg-loss' },
 };
 
-const ToastIcon = ({ variant }) => {
-	const { Icon, tone } = KINDS[variant] || KINDS.default;
-	return (
-		<span className={cn('flex h-8 w-8 shrink-0 items-center justify-center rounded-full', tone)} aria-hidden="true">
-			<Icon className="h-[17px] w-[17px]" strokeWidth={2.25} />
-		</span>
-	);
-};
+const spring = { type: 'spring', stiffness: 420, damping: 32, mass: 0.8 };
 
-const Toast = React.forwardRef(({ className, variant, ...props }, ref) => (
-	<ToastPrimitives.Root ref={ref} className={cn(TOAST_CLASS, className)} {...props} />
-));
-Toast.displayName = ToastPrimitives.Root.displayName;
+/**
+ * @param fromTop  the stack sits at the top of the screen (phones): enter from above
+ * @param duration ms on screen; the countdown bar runs it down and calls onDismiss at the end
+ */
+export const ToastCard = React.forwardRef(
+	({ title, description, action, variant, duration = 4000, fromTop = false, onDismiss, reduceMotion }, ref) => {
+		const kind = TOAST_KINDS[variant] || TOAST_KINDS.default;
+		const { Icon } = kind;
+		const [paused, setPaused] = useState(false);
+		const timed = Number.isFinite(duration) && duration > 0;
+		const enterY = reduceMotion ? 0 : fromTop ? -28 : 28;
 
-const ToastAction = React.forwardRef(({ className, ...props }, ref) => (
-	<ToastPrimitives.Action
-		ref={ref}
-		className={cn(
-			'inline-flex h-7 shrink-0 items-center justify-center rounded-full border border-hairline bg-transparent px-3 text-xs font-medium text-content transition-colors hover:bg-overlay focus:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50',
-			className,
-		)}
-		{...props}
-	/>
-));
-ToastAction.displayName = ToastPrimitives.Action.displayName;
+		return (
+			<motion.li
+				ref={ref}
+				layout
+				role={variant === 'destructive' ? 'alert' : 'status'}
+				aria-live={variant === 'destructive' ? 'assertive' : 'polite'}
+				initial={{ opacity: 0, y: enterY, scale: reduceMotion ? 1 : 0.94, filter: reduceMotion ? 'blur(0px)' : 'blur(8px)' }}
+				animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
+				exit={{ opacity: 0, x: reduceMotion ? 0 : 64, scale: reduceMotion ? 1 : 0.96, transition: { duration: 0.22, ease: [0.4, 0, 1, 1] } }}
+				transition={spring}
+				drag="x"
+				dragConstraints={{ left: 0, right: 0 }}
+				dragElastic={{ left: 0.05, right: 0.6 }}
+				onDragEnd={(_, info) => {
+					if (info.offset.x > 90 || info.velocity.x > 600) onDismiss?.();
+				}}
+				onMouseEnter={() => setPaused(true)}
+				onMouseLeave={() => setPaused(false)}
+				className={cn(
+					'group pointer-events-auto relative w-full cursor-grab touch-pan-y select-none overflow-hidden rounded-[18px] active:cursor-grabbing',
+					'bg-surface-raised/80 backdrop-blur-2xl backdrop-saturate-150',
+					'ring-1 ring-hairline shadow-[inset_0_1px_0_rgba(255,255,255,0.07),0_24px_48px_-16px_rgba(0,0,0,0.55),0_4px_14px_-6px_rgba(0,0,0,0.35)]',
+				)}
+			>
+				{/* soft glow of the notice's colour behind the icon */}
+				<span
+					aria-hidden="true"
+					className="pointer-events-none absolute -left-10 -top-10 h-32 w-32 rounded-full opacity-[0.16] blur-2xl"
+					style={{ background: kind.glow }}
+				/>
 
-const ToastClose = React.forwardRef(({ className, ...props }, ref) => (
-	<ToastPrimitives.Close
-		ref={ref}
-		className={cn(
-			'absolute right-2.5 top-1/2 -translate-y-1/2 rounded-full p-1 text-content-faint opacity-0 transition-opacity hover:bg-overlay hover:text-content focus:opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring group-hover:opacity-100',
-			className,
-		)}
-		toast-close=""
-		aria-label="Close"
-		{...props}
-	>
-		<X className="h-3.5 w-3.5" />
-	</ToastPrimitives.Close>
-));
-ToastClose.displayName = ToastPrimitives.Close.displayName;
+				<div className="relative flex items-center gap-3 py-3 pl-3 pr-10">
+					<motion.span
+						aria-hidden="true"
+						initial={{ scale: reduceMotion ? 1 : 0.5, rotate: reduceMotion ? 0 : -12, opacity: 0 }}
+						animate={{ scale: 1, rotate: 0, opacity: 1 }}
+						transition={{ ...spring, delay: reduceMotion ? 0 : 0.06 }}
+						className={cn('flex h-[38px] w-[38px] shrink-0 items-center justify-center rounded-[12px] ring-1', kind.tile)}
+					>
+						<Icon className="h-[18px] w-[18px]" strokeWidth={2.4} />
+					</motion.span>
 
-const ToastTitle = React.forwardRef(({ className, ...props }, ref) => (
-	<ToastPrimitives.Title
-		ref={ref}
-		className={cn('text-[14px] font-semibold leading-tight tracking-[-0.01em] text-content', className)}
-		{...props}
-	/>
-));
-ToastTitle.displayName = ToastPrimitives.Title.displayName;
+					<div className="min-w-0 flex-1">
+						{title && (
+							<p className="truncate text-[14.5px] font-semibold leading-tight tracking-[-0.01em] text-content">{title}</p>
+						)}
+						{description && (
+							<p className="mt-[3px] text-[13px] leading-snug text-content-muted [font-variant-numeric:tabular-nums]">
+								{description}
+							</p>
+						)}
+					</div>
 
-const ToastDescription = React.forwardRef(({ className, ...props }, ref) => (
-	<ToastPrimitives.Description
-		ref={ref}
-		className={cn('mt-0.5 text-[13px] leading-snug text-content-muted [font-variant-numeric:tabular-nums]', className)}
-		{...props}
-	/>
-));
-ToastDescription.displayName = ToastPrimitives.Description.displayName;
+					{action}
+				</div>
 
-export {
-	Toast,
-	ToastAction,
-	ToastClose,
-	ToastDescription,
-	ToastIcon,
-	ToastProvider,
-	ToastTitle,
-	ToastViewport,
-};
+				<button
+					type="button"
+					onClick={onDismiss}
+					aria-label="Close"
+					className="absolute right-2.5 top-2.5 flex h-6 w-6 items-center justify-center rounded-full bg-overlay text-content-muted opacity-0 transition-all duration-150 hover:bg-overlay-strong hover:text-content focus-visible:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring group-hover:opacity-100"
+				>
+					<X className="h-3 w-3" strokeWidth={2.5} />
+				</button>
+
+				{/* countdown: runs the notice's time down, stops while the pointer is on it, closes it at the end */}
+				{timed && (
+					<span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-[2px] bg-overlay">
+						<span
+							className={cn('block h-full origin-left opacity-70', kind.bar)}
+							style={{
+								animation: `toast-countdown ${duration}ms linear forwards`,
+								animationPlayState: paused ? 'paused' : 'running',
+							}}
+							onAnimationEnd={onDismiss}
+						/>
+					</span>
+				)}
+			</motion.li>
+		);
+	},
+);
+ToastCard.displayName = 'ToastCard';
