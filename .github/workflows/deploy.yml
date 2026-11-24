@@ -35,5 +35,5 @@ jobs:
           SSH_HOST: ${{ secrets.SSH_HOST }}
           SSH_USER: ${{ secrets.SSH_USER }}
           SSH_KEY: ${{ secrets.SSH_KEY }}
-          DEPLOY_DOMAINS: bein.hitomorrow.app paradox.cfdterminal.app
+          DEPLOY_DOMAINS: bein.hitomorrow.app
         run: bash .github/scripts/publish-dist.sh
