@@ -1,14 +1,15 @@
 import { API_BASE_URL, readToken } from '@/lib/api';
 import { ingestPusherPayload } from './liveRatesStore';
 
-const AUTH_URL = import.meta.env.VITE_BROADCAST_AUTH_URL || `${API_BASE_URL}/broadcasting/auth`;
-
 /**
- * VITE_REALTIME=socketio talks to the backend's own socket.io server
- * (socket-server/ in the backend repo) instead of Pusher. Same channels, same
- * events, same Echo API: only the connection below differs.
+ * Realtime runs on the backend's own socket.io server (socket-server/ in the
+ * backend repo). Same channels, same events, same Echo API as Pusher had.
+ *
+ * Pusher is commented out below, not deleted. To bring it back: uncomment
+ * AUTH_URL, the authorizer and the Pusher block in initialize(), and set
+ * VITE_PUSHER_KEY.
  */
-const REALTIME = String(import.meta.env.VITE_REALTIME || 'pusher').toLowerCase() === 'socketio' ? 'socketio' : 'pusher';
+// const AUTH_URL = import.meta.env.VITE_BROADCAST_AUTH_URL || `${API_BASE_URL}/broadcasting/auth`;
 
 /**
  * In development Vite proxies /socket.io (vite.config.js), so the page's own
@@ -27,8 +28,9 @@ const socketHost = () => {
 
 /**
  * socket.io: the server signs each private channel by calling the backend's
- * /broadcasting/auth with these headers, read at subscribe time (the getter)
- * for the same reason as the Pusher authorizer below.
+ * /broadcasting/auth with these headers, read at subscribe time (the getter).
+ * The connection is opened for prices before sign-in, so headers fixed when
+ * Echo was created would carry no token (or the previous user's).
  */
 const socketAuth = {
   get headers() {
@@ -36,27 +38,23 @@ const socketAuth = {
   },
 };
 
-/**
- * Signs private channels with the token current at subscribe time. The
- * connection is opened for prices before sign-in, so headers fixed when Echo
- * was created would carry no token (or the previous user's).
- */
-const authorizer = (channel) => ({
-  authorize: (socketId, callback) => {
-    fetch(AUTH_URL, {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${readToken() || ''}`,
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ socket_id: socketId, channel_name: channel.name }),
-    })
-      .then((response) => (response.ok ? response.json() : Promise.reject(new Error(`auth ${response.status}`))))
-      .then((data) => callback(null, data))
-      .catch((error) => callback(error, null));
-  },
-});
+// Pusher (disabled): signed private channels with the token current at subscribe time.
+// const authorizer = (channel) => ({
+//   authorize: (socketId, callback) => {
+//     fetch(AUTH_URL, {
+//       method: 'POST',
+//       headers: {
+//         Authorization: `Bearer ${readToken() || ''}`,
+//         Accept: 'application/json',
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify({ socket_id: socketId, channel_name: channel.name }),
+//     })
+//       .then((response) => (response.ok ? response.json() : Promise.reject(new Error(`auth ${response.status}`))))
+//       .then((data) => callback(null, data))
+//       .catch((error) => callback(error, null));
+//   },
+// });
 
 /**
  * One Echo connection and one subscription to the public `currencies`
@@ -95,62 +93,62 @@ class SocketManager {
     if (this.echo) return true;
     if (this.initPromise) return this.initPromise;
 
-    const key = import.meta.env.VITE_PUSHER_KEY;
-    if (REALTIME === 'pusher' && !key) {
-      console.warn('[socket] VITE_PUSHER_KEY is not set — live prices are disabled.');
-      return false;
-    }
+    // Pusher (disabled):
+    // const key = import.meta.env.VITE_PUSHER_KEY;
+    // if (!key) {
+    //   console.warn('[socket] VITE_PUSHER_KEY is not set — live prices are disabled.');
+    //   return false;
+    // }
 
     this.initPromise = (async () => {
       try {
         // Imported lazily so the realtime client is not in the bundle that the
         // login screen has to download.
         const { default: Echo } = await import('laravel-echo');
+        const { io } = await import('socket.io-client');
 
-        if (REALTIME === 'socketio') {
-          const { io } = await import('socket.io-client');
-          this.echo = new Echo({
-            broadcaster: 'socket.io',
-            client: io,
-            host: socketHost(),
-            transports: ['websocket', 'polling'],
-            auth: socketAuth,
+        this.echo = new Echo({
+          broadcaster: 'socket.io',
+          client: io,
+          host: socketHost(),
+          transports: ['websocket', 'polling'],
+          auth: socketAuth,
+        });
+
+        const socket = this.echo.connector?.socket;
+        if (socket) {
+          socket.on('connect', () => {
+            this.isConnected = true;
+            debug('socket.io connected', socket.id);
           });
-
-          const socket = this.echo.connector?.socket;
-          if (socket) {
-            socket.on('connect', () => {
-              this.isConnected = true;
-              debug('socket.io connected', socket.id);
-            });
-            socket.on('disconnect', (reason) => {
-              this.isConnected = false;
-              debug('socket.io disconnected', reason);
-            });
-            socket.on('connect_error', (error) => console.warn('[socket] socket.io error', error?.message));
-          }
-        } else {
-          const Pusher = await import('pusher-js');
-          window.Pusher = Pusher.default;
-
-          this.echo = new Echo({
-            broadcaster: 'pusher',
-            key,
-            cluster: import.meta.env.VITE_PUSHER_CLUSTER || 'eu',
-            forceTLS: true,
-            enabledTransports: ['ws', 'wss'],
-            authorizer,
+          socket.on('disconnect', (reason) => {
+            this.isConnected = false;
+            debug('socket.io disconnected', reason);
           });
-
-          const pusher = this.echo.connector?.pusher;
-          if (pusher) {
-            pusher.connection.bind('state_change', (states) => {
-              this.isConnected = states?.current === 'connected';
-              debug('state', states);
-            });
-            pusher.connection.bind('error', (error) => console.warn('[socket] pusher error', error));
-          }
+          socket.on('connect_error', (error) => console.warn('[socket] socket.io error', error?.message));
         }
+
+        // Pusher (disabled):
+        // const Pusher = await import('pusher-js');
+        // window.Pusher = Pusher.default;
+        //
+        // this.echo = new Echo({
+        //   broadcaster: 'pusher',
+        //   key,
+        //   cluster: import.meta.env.VITE_PUSHER_CLUSTER || 'eu',
+        //   forceTLS: true,
+        //   enabledTransports: ['ws', 'wss'],
+        //   authorizer,
+        // });
+        //
+        // const pusher = this.echo.connector?.pusher;
+        // if (pusher) {
+        //   pusher.connection.bind('state_change', (states) => {
+        //     this.isConnected = states?.current === 'connected';
+        //     debug('state', states);
+        //   });
+        //   pusher.connection.bind('error', (error) => console.warn('[socket] pusher error', error));
+        // }
 
         this.isConnected = true;
         this.reconnectAttempts = 0;
