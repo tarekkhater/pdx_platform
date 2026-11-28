@@ -34,7 +34,7 @@ if [ -z "${conf}" ]; then
   echo "No nginx vhost for ${domain}" >&2
   exit 1
 fi
-webroot=$(awk '/^[[:space:]]*root[[:space:]]+/{gsub(/;/,"",$2); print $2; exit}' "${conf}")
+webroot=$(awk '/^[[:space:]]*root[[:space:]]+/{gsub(/[;\r]/,"",$2); print $2; exit}' "${conf}")
 if [ -z "${webroot}" ] || [ ! -d "${webroot}" ]; then
   echo "Bad web root '${webroot}' in ${conf}" >&2
   exit 1
