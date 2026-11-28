@@ -28,7 +28,6 @@ const LOT_STEP = 0.01;
 const MIN_LOT = 0.001;
 const LOT_DECIMALS = 3;
 const USD_STEP = 10;
-const DEFAULT_LEVERAGE = 30;
 const MAX_LEVERAGE = 100;
 const LEVERAGE_OPTIONS = [10, 20, 30, 40, 50, 100, 200, 300, 400, 500];
 const UNITS = ['lots', 'USD'];
@@ -100,39 +99,49 @@ const SelectMenu = ({ open, options, value, onSelect, align = 'left', direction 
 // Leverage gets its own compact grid instead of the vertical SelectMenu list —
 // 8 stacked rows was tall enough to spill past the viewport and force a page
 // scroll; a 4-column grid fits the same options in a fraction of the height.
-const LeverageMenu = ({ open, value, onSelect }) => (
-  <AnimatePresence>
-    {open && (
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9, y: 4 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.9, y: 4 }}
-        transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-        style={{ transformOrigin: 'bottom right' }}
-        className="absolute right-0 bottom-full mb-1.5 w-44 p-1.5 grid grid-cols-4 gap-1 rounded-lg bg-surface-raised border border-hairline shadow-xl shadow-black/50 z-20"
-      >
-        {LEVERAGE_OPTIONS.map((l) => {
-          const overMax = l > MAX_LEVERAGE;
-          return (
-            <button
-              key={l}
-              onClick={() => onSelect(l)}
-              className={`h-8 rounded text-[11px] font-bold font-tabular transition-colors ${
-                l === value
-                  ? 'bg-yellow-600 text-black'
-                  : overMax
-                    ? 'text-content-faint/40 cursor-not-allowed'
-                    : 'text-content-muted hover:bg-overlay-strong'
-              }`}
-            >
-              {l}x
-            </button>
-          );
-        })}
-      </motion.div>
-    )}
-  </AnimatePresence>
-);
+const LeverageMenu = ({ open, value, assetLeverage, onSelect }) => {
+  const stored = Number(assetLeverage);
+  const canReturn = Number.isFinite(stored) && stored > MAX_LEVERAGE;
+  const options = [...LEVERAGE_OPTIONS];
+  if (canReturn && !options.includes(stored)) {
+    options.push(stored);
+    options.sort((a, b) => a - b);
+  }
+
+  return (
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9, y: 4 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.9, y: 4 }}
+          transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+          style={{ transformOrigin: 'bottom right' }}
+          className="absolute right-0 bottom-full mb-1.5 w-44 p-1.5 grid grid-cols-4 gap-1 rounded-lg bg-surface-raised border border-hairline shadow-xl shadow-black/50 z-20"
+        >
+          {options.map((l) => {
+            const locked = l > MAX_LEVERAGE && l !== stored;
+            return (
+              <button
+                key={l}
+                onClick={() => onSelect(l)}
+                className={`h-8 rounded text-[11px] font-bold font-tabular transition-colors ${
+                  l === value
+                    ? 'bg-yellow-600 text-black'
+                    : locked
+                      ? 'text-content-faint/40 cursor-not-allowed'
+                      : 'text-content-muted hover:bg-overlay-strong'
+                }`}
+              >
+                {l}x
+              </button>
+            );
+          })}
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+};
 
 const OrderPanel = ({ currentPrice, asset, serverTradable }) => {
   const { t } = useTranslation();
@@ -151,7 +160,14 @@ const OrderPanel = ({ currentPrice, asset, serverTradable }) => {
   const [unit, setUnit] = useState('lots');
   const [unitMenuOpen, setUnitMenuOpen] = useState(false);
   const [leverageMenuOpen, setLeverageMenuOpen] = useState(false);
-  const [leverage, setLeverage] = useState(DEFAULT_LEVERAGE);
+  const instrument = getInstrument(asset);
+  const leverageFromAsset = Number(instrument.leverage);
+  const [leverage, setLeverage] = useState(() =>
+    Number.isFinite(leverageFromAsset) && leverageFromAsset > 0 ? leverageFromAsset : 1
+  );
+  // True after the client picks a leverage. Switching asset clears it so the
+  // ticket shows that asset's own leverage again.
+  const leverageTouched = useRef(false);
   const [slOn, setSlOn] = useState(false);
   const [tpOn, setTpOn] = useState(false);
   const [slValue, setSlValue] = useState('');
@@ -162,7 +178,6 @@ const OrderPanel = ({ currentPrice, asset, serverTradable }) => {
   // so a half-entered "62" is not read as a target of sixty-two dollars.
   const [targetInput, setTargetInput] = useState('');
 
-  const instrument = getInstrument(asset);
   const decimals = instrument.decimals;
 
   // what notices call the pair ("USD/JPY", "Gold"), never the internal selection key ("id:138")
@@ -176,11 +191,19 @@ const OrderPanel = ({ currentPrice, asset, serverTradable }) => {
   };
   const formatLots = (value) => String(Number(Number(value).toFixed(2)));
 
-  // Switching instrument puts the ticket back on the book default. A value
-  // the client picked for gold must not size a bitcoin order.
+  // The number on the ticket is this asset's leverage from the server. A choice
+  // the client makes stays until they switch asset. A later finance response
+  // can still fill the number in if they have not picked one yet.
   useEffect(() => {
-    setLeverage(DEFAULT_LEVERAGE);
+    leverageTouched.current = false;
   }, [asset]);
+
+  useEffect(() => {
+    if (leverageTouched.current) return;
+    if (Number.isFinite(leverageFromAsset) && leverageFromAsset > 0) {
+      setLeverage(leverageFromAsset);
+    }
+  }, [asset, leverageFromAsset]);
 
   /**
    * The two-sided quote, from the broker's own feed.
@@ -969,10 +992,12 @@ const OrderPanel = ({ currentPrice, asset, serverTradable }) => {
           <LeverageMenu
             open={leverageMenuOpen}
             value={leverage}
+            assetLeverage={leverageFromAsset}
             onSelect={(v) => {
               setLeverageMenuOpen(false);
               if (v === leverage) return;
-              if (v > MAX_LEVERAGE) {
+              const backToAsset = Number.isFinite(leverageFromAsset) && v === leverageFromAsset;
+              if (v > MAX_LEVERAGE && !backToAsset) {
                 toast({
                   title: t('orderPanel.toast.leverageMaxTitle'),
                   description: t('orderPanel.toast.leverageMax', { max: MAX_LEVERAGE }),
@@ -980,6 +1005,7 @@ const OrderPanel = ({ currentPrice, asset, serverTradable }) => {
                 });
                 return;
               }
+              leverageTouched.current = true;
               setLeverage(v);
             }}
           />
